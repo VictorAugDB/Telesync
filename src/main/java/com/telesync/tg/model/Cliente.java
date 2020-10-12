@@ -1,5 +1,7 @@
 package com.telesync.tg.model;
 
+import com.telesync.tg.converter.LiberacaoCreditoConverter;
+import com.telesync.tg.type.LiberacaoCreditoType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -70,7 +73,8 @@ public class Cliente {
     private String profissaoCliente;
 
     @Column(name = "liberacaocredito")
-    private String liberacaoCredito;
+    @Convert(converter = LiberacaoCreditoConverter.class)
+    private LiberacaoCreditoType liberacaoCredito;
 
     @Column(name = "dtcadastrocliente")
     private Date dtCadastroCliente;
