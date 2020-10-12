@@ -1,0 +1,57 @@
+<mat-card>
+    <mat-card-title>Cadastrar Cliente</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Nome" name="nome">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Data de Nascimento" name="data_nascimento">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Sexo" name="sexo">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Estado Civil" name="estado_civil">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nome da Mae" name="nome_mae">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="UF" name="uf">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Cidade" name="cidade">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Rua" name="logradouro">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="CEP" name="cep">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Numero da Casa" name="numero">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Complemento" name="complemento">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Bairro" name="bairro">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Profissao" name="profissao">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Data de Cadastro" name="data_cadastro">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="UserName" name="codigo_login">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="cadastrarCliente()" color="primary">
+        Salvar
+    </button>
+
+    <button mat-raised-button (click)="cancel()" color="warn">
+        Cancelar
+    </button>
+</mat-card>

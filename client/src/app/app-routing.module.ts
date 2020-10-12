@@ -1,3 +1,4 @@
+import { CadastroClienteComponent } from './component/client/cadastro-cliente/cadastro-cliente.component';
 import { ClientCrudComponent } from './views/client-crud/client-crud.component';
 import { HomeComponent } from './views/home/home.component';
 import { NgModule } from '@angular/core';
@@ -8,8 +9,11 @@ const routes: Routes = [{
   component: HomeComponent
 },
 {
-  path: "cadastro",
+  path: "crud-cliente",
   component: ClientCrudComponent
+},{
+  path: "crud-cliente/cadastro",
+  component: CadastroClienteComponent
 }
 ];
 

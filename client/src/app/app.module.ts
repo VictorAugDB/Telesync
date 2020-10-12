@@ -15,6 +15,15 @@ import{ MatListModule } from "@angular/material/list";
 import { HomeComponent } from './views/home/home.component';
 import { ClientCrudComponent } from './views/client-crud/client-crud.component';
 import{ MatCardModule } from "@angular/material/card";
+import { CadastroClienteComponent } from './component/client/cadastro-cliente/cadastro-cliente.component';
+import{ MatButtonModule } from "@angular/material/button";
+import{ MatSnackBarModule } from "@angular/material/snack-bar";
+import{ HttpClientModule } from "@angular/common/http";
+import{ FormsModule } from "@angular/forms";
+import{ MatFormField, MatFormFieldModule } from "@angular/material/form-field";
+import{ MatInput, MatInputModule } from "@angular/material/input";
+
+
 
 
 
@@ -25,7 +34,8 @@ import{ MatCardModule } from "@angular/material/card";
     FooterComponent,
     NavComponent,
     HomeComponent,
-    ClientCrudComponent
+    ClientCrudComponent,
+    CadastroClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +44,13 @@ import{ MatCardModule } from "@angular/material/card";
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    HttpClientModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
