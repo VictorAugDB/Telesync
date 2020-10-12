@@ -41,8 +41,8 @@ ENGINE = InnoDB;
 -- Table `telesyncDB`.`TCliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `telesyncDB`.`TCliente` (
-  `codCliente` INT NOT NULL,
-  `cpfCliente` INT UNSIGNED NOT NULL,
+  `codCliente` INT NOT NULL AUTO_INCREMENT,
+  `cpfCliente` BIGINT UNSIGNED NOT NULL,
   `nomeCliente` VARCHAR(40) NOT NULL,
   `dtNascCliente` DATE NOT NULL,
   `sexoCliente` CHAR(1) NOT NULL,
