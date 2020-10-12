@@ -13,7 +13,6 @@ import { Component, OnInit } from '@angular/core';
 export class CadastroClienteComponent implements OnInit {
 
   cliente: Cliente = {
-    codigoCliente: 1,
     cpfCliente: 12312312312,
     nomeCliente: 'José',
     dtNascCliente: 19900202,

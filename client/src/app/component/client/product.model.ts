@@ -1,5 +1,5 @@
 export interface Cliente{
-    codigoCliente: number
+    codCliente?: number
     cpfCliente: number
     nomeCliente: string
     dtNascCliente: number
