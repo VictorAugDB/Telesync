@@ -1,56 +1,64 @@
 <mat-card>
     <mat-card-title>Cadastrar Cliente</mat-card-title>
-    <form>
+    <form [formGroup]="formulario">
+
+        Value: {{ formulario.value | json }}
+
+        <hr>
+        
         <mat-form-field>
-            <input matInput placeholder="Nome" name="nome">
+            <input matInput placeholder="CPF" formControlName="cpfCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Data de Nascimento" name="data_nascimento">
+            <input matInput placeholder="Nome" formControlName="nomeCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Sexo" name="sexo">
+            <input matInput placeholder="Data de Nascimento" formControlName="dtNascCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Estado Civil" name="estado_civil">
+            <input matInput placeholder="Sexo" formControlName="sexoCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Nome da Mae" name="nome_mae">
+            <input matInput placeholder="Estado Civil" formControlName="estadoCivilCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="UF" name="uf">
+            <input matInput placeholder="Nome da Mae" formControlName="nomeMaeCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Cidade" name="cidade">
+            <input matInput placeholder="UF" formControlName="ufCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Rua" name="logradouro">
+            <input matInput placeholder="Cidade" formControlName="cidadeCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="CEP" name="cep">
+            <input matInput placeholder="Rua" formControlName="logradouroCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Numero da Casa" name="numero">
+            <input matInput placeholder="CEP" formControlName="cepCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Complemento" name="complemento">
+            <input matInput placeholder="Numero da Casa" formControlName="numeroCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Bairro" name="bairro">
+            <input matInput placeholder="Complemento" formControlName="complementoCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Profissao" name="profissao">
+            <input matInput placeholder="Bairro" formControlName="bairroCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Data de Cadastro" name="data_cadastro">
+            <input matInput placeholder="Profissao" formControlName="profissaoCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="UserName" name="codigo_login">
+            <input matInput placeholder="Data de Cadastro" formControlName="dtCadastroCliente">
         </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="UserName" formControlName="codLogin">
+        </mat-form-field>
+
+        <button [disabled]="formulario.invalid" mat-raised-button (click)="cadastrarCliente()" color="primary">
+            Salvar
+        </button>
     </form>
-    
-    <button mat-raised-button (click)="cadastrarCliente()" color="primary">
-        Salvar
-    </button>
 
     <button mat-raised-button (click)="cancel()" color="warn">
         Cancelar
