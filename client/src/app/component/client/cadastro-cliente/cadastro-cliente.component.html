@@ -5,7 +5,7 @@
         Value: {{ formulario.value | json }}
 
         <hr>
-        
+
         <mat-form-field>
             <input matInput placeholder="CPF" formControlName="cpfCliente">
         </mat-form-field>
@@ -55,12 +55,14 @@
             <input matInput placeholder="UserName" formControlName="codLogin">
         </mat-form-field>
 
-        <button [disabled]="formulario.invalid" mat-raised-button (click)="cadastrarCliente()" color="primary">
-            Salvar
-        </button>
+        <div container-buttons>
+            <button [disabled]="formulario.invalid" mat-raised-button (click)="cadastrarCliente()"
+                color="primary">
+                Salvar
+            </button>
+            <button mat-raised-button (click)="cancel()" color="warn">
+                Cancelar
+            </button>
+        </div>
     </form>
-
-    <button mat-raised-button (click)="cancel()" color="warn">
-        Cancelar
-    </button>
 </mat-card>
