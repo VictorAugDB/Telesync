@@ -41,16 +41,15 @@ export class CadastroClienteComponent implements OnInit {
       cpfCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9 ]*')])],
       nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       dtNascCliente: ['', Validators.required],
-      sexoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[m, f, M, F]*')])],
-      estadoCivilCliente: ['', Validators.required],
-      nomeMaeCliente: ['', Validators.required],
-      ufCliente: ['', Validators.required],
-      cidadeCliente: ['', Validators.required],
-      logradouroCliente: ['', Validators.required],
+      estadoCivilCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      nomeMaeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      ufCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      cidadeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      logradouroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       cepCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       numeroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
-      bairroCliente: ['', Validators.required],
-      profissaoCliente: ['', Validators.required],
+      bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       liberacaoCredito: [''],
       dtCadastroCliente: ['', Validators.required],
       codLogin: [''],
@@ -68,4 +67,6 @@ export class CadastroClienteComponent implements OnInit {
   cancel(){
     this.router.navigate(['/crud-cliente'])
   }
+
+  public validacaoLetras = { '0': { pattern: new RegExp('\[a-zA-Z\]')} };
 }

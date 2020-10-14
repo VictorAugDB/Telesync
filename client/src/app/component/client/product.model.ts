@@ -2,7 +2,7 @@ export interface Cliente{
     codCliente?: number
     cpfCliente: number
     nomeCliente: string
-    dtNascCliente: number
+    dtNascCliente: string
     sexoCliente: string
     estadoCivilCliente: string
     nomeMaeCliente: string
@@ -15,6 +15,6 @@ export interface Cliente{
     bairroCliente: string
     profissaoCliente: string
     liberacaoCredito: number
-    dtCadastroCliente: number
+    dtCadastroCliente: string
     codLogin: number   
 }

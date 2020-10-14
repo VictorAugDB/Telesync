@@ -22,10 +22,8 @@ import{ HttpClientModule } from "@angular/common/http";
 import{ FormsModule, ReactiveFormsModule } from "@angular/forms";
 import{ MatFormFieldModule } from "@angular/material/form-field";
 import{ MatInputModule } from "@angular/material/input";
-
-
-
-
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { MatSelectModule } from '@angular/material/select'
 
 @NgModule({
   declarations: [
@@ -51,7 +49,9 @@ import{ MatInputModule } from "@angular/material/input";
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
