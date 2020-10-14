@@ -16,22 +16,22 @@ export class CadastroClienteComponent implements OnInit {
   formulario: FormGroup;
 
   cliente: Cliente = {
-    cpfCliente: 12312312312,
-    nomeCliente: 'José',
-    dtNascCliente: 19900202,
-    sexoCliente: 'm',
-    estadoCivilCliente: 's',
-    nomeMaeCliente: 'Maria',
-    ufCliente: 'SP',
-    cidadeCliente: 'Sorocaba',
-    logradouroCliente: 'Rua da Sé',
-    cepCliente: 84521235,
-    numeroCliente: 874,
-    bairroCliente: 'São Caetano',
-    profissaoCliente: 'Barbeiro',
+    cpfCliente: null,
+    nomeCliente: '',
+    dtNascCliente: null,
+    sexoCliente: '',
+    estadoCivilCliente: '',
+    nomeMaeCliente: '',
+    ufCliente: '',
+    cidadeCliente: '',
+    logradouroCliente: '',
+    cepCliente: null,
+    numeroCliente: null,
+    bairroCliente: '',
+    profissaoCliente: '',
     liberacaoCredito: 2,
-    dtCadastroCliente: 20200202,
-    codLogin: 2,
+    dtCadastroCliente: null,
+    codLogin: null,
   }
 
   constructor(private clientService: ClientService, private router: Router, private fb: FormBuilder) { }
@@ -56,8 +56,6 @@ export class CadastroClienteComponent implements OnInit {
       codLogin: [''],
       complementoCliente: ''
     })
-
-    this.formulario.valueChanges.subscribe(console.log)
   }
 
   cadastrarCliente(): void{

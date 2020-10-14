@@ -2,57 +2,53 @@
     <mat-card-title>Cadastrar Cliente</mat-card-title>
     <form [formGroup]="formulario">
 
-        Value: {{ formulario.value | json }}
-
-        <hr>
-
         <mat-form-field>
-            <input matInput placeholder="CPF" formControlName="cpfCliente">
+            <input matInput placeholder="CPF" formControlName="cpfCliente" [(ngModel)]="cliente.cpfCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Nome" formControlName="nomeCliente">
+            <input matInput placeholder="Nome" formControlName="nomeCliente" [(ngModel)]="cliente.nomeCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Data de Nascimento" formControlName="dtNascCliente">
+            <input matInput placeholder="Data de Nascimento" formControlName="dtNascCliente" [(ngModel)]="cliente.dtNascCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Sexo" formControlName="sexoCliente">
+            <input matInput placeholder="Sexo" formControlName="sexoCliente" [(ngModel)]="cliente.sexoCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Estado Civil" formControlName="estadoCivilCliente">
+            <input matInput placeholder="Estado Civil" formControlName="estadoCivilCliente" [(ngModel)]="cliente.estadoCivilCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Nome da Mae" formControlName="nomeMaeCliente">
+            <input matInput placeholder="Nome da Mae" formControlName="nomeMaeCliente" [(ngModel)]="cliente.nomeMaeCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="UF" formControlName="ufCliente">
+            <input matInput placeholder="UF" formControlName="ufCliente" [(ngModel)]="cliente.ufCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Cidade" formControlName="cidadeCliente">
+            <input matInput placeholder="Cidade" formControlName="cidadeCliente" [(ngModel)]="cliente.cidadeCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Rua" formControlName="logradouroCliente">
+            <input matInput placeholder="Rua" formControlName="logradouroCliente" [(ngModel)]="cliente.logradouroCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="CEP" formControlName="cepCliente">
+            <input matInput placeholder="CEP" formControlName="cepCliente" [(ngModel)]="cliente.cepCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Numero da Casa" formControlName="numeroCliente">
+            <input matInput placeholder="Numero da Casa" formControlName="numeroCliente" [(ngModel)]="cliente.numeroCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Complemento" formControlName="complementoCliente">
+            <input matInput placeholder="Complemento" formControlName="complementoCliente" [(ngModel)]="cliente.complementoCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Bairro" formControlName="bairroCliente">
+            <input matInput placeholder="Bairro" formControlName="bairroCliente" [(ngModel)]="cliente.bairroCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Profissao" formControlName="profissaoCliente">
+            <input matInput placeholder="Profissao" formControlName="profissaoCliente" [(ngModel)]="cliente.profissaoCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Data de Cadastro" formControlName="dtCadastroCliente">
+            <input matInput placeholder="Data de Cadastro" formControlName="dtCadastroCliente" [(ngModel)]="cliente.dtCadastroCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="UserName" formControlName="codLogin">
+            <input matInput placeholder="UserName" formControlName="codLogin" [(ngModel)]="cliente.codLogin">
         </mat-form-field>
 
         <div container-buttons>

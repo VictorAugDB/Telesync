@@ -14,7 +14,7 @@ export interface Cliente{
     complementoCliente?: string
     bairroCliente: string
     profissaoCliente: string
-    liberacaoCredito?: number
+    liberacaoCredito: number
     dtCadastroCliente: number
     codLogin: number   
 }
