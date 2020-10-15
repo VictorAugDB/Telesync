@@ -16,5 +16,6 @@ export interface Cliente{
     profissaoCliente: string
     liberacaoCredito: number
     dtCadastroCliente: string
-    codLogin: number   
+    email: string
+    senha: number
 }

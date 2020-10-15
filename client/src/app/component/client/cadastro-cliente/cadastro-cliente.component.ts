@@ -31,7 +31,8 @@ export class CadastroClienteComponent implements OnInit {
     profissaoCliente: '',
     liberacaoCredito: 2,
     dtCadastroCliente: null,
-    codLogin: null,
+    email: '',
+    senha: null
   }
 
   constructor(private clientService: ClientService, private router: Router, private fb: FormBuilder) { }
@@ -50,9 +51,9 @@ export class CadastroClienteComponent implements OnInit {
       numeroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      liberacaoCredito: [''],
       dtCadastroCliente: ['', Validators.required],
-      codLogin: [''],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      senha: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       complementoCliente: ''
     })
   }

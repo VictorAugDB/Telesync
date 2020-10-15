@@ -11,8 +11,8 @@
         </mat-form-field>
         <mat-form-field>
             <input type = " text " mask="0000-00-00" [dropSpecialCharacters]="false" [showMaskTyped]="true" matInput placeholder="Data de Nascimento" formControlName="dtNascCliente"
-                [(ngModel)]="cliente.dtNascCliente">
-        </mat-form-field>
+                [(ngModel)]="cliente.dtNascCliente">               
+        </mat-form-field>      
         <mat-form-field>
             <mat-label>Sexo</mat-label>
             <mat-select [(value)]="cliente.sexoCliente" name="sexoCliente">
@@ -64,7 +64,10 @@
                 [(ngModel)]="cliente.dtCadastroCliente">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="UserName" formControlName="codLogin" [(ngModel)]="cliente.codLogin">
+            <input matInput placeholder="email" formControlName="email" [(ngModel)]="cliente.email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="senha" formControlName="senha" [(ngModel)]="cliente.senha">
         </mat-form-field>
 
         <div container-buttons>
