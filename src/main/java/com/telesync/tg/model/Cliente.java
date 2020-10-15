@@ -1,5 +1,6 @@
 package com.telesync.tg.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.telesync.tg.converter.LiberacaoCreditoConverter;
 import com.telesync.tg.type.LiberacaoCreditoType;
 import lombok.AllArgsConstructor;
@@ -7,13 +8,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -23,6 +28,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
+@ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "TCliente")
 public class Cliente {
 
@@ -79,6 +86,7 @@ public class Cliente {
     @Column(name = "dtcadastrocliente")
     private Date dtCadastroCliente;
 
-    @Column(name = "codlogin")
-    private int codLogin;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "codlogin")
+    private Login login;
 }

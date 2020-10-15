@@ -4,19 +4,25 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telesync.tg.model.Cliente;
 import com.telesync.tg.repository.JpaClientRepository;
+import com.telesync.tg.repository.JpaLoginRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class ClienteDao implements Dao<Cliente> {
 
     @Autowired
     ObjectMapper objectMapper;
 
     @Autowired
-    JpaClientRepository repository;
+    JpaClientRepository clientRepository;
+
+    @Autowired
+    JpaLoginRepository loginRepository;
 
     @Override
     public Cliente listar() {
@@ -25,8 +31,9 @@ public class ClienteDao implements Dao<Cliente> {
 
     @Override
     public void inserir(String entity) throws JsonProcessingException {
-        final var cliente = objectMapper.readValue(entity, Cliente.class);
-        repository.save(cliente);
+        final var usuario = objectMapper.readValue(entity, Cliente.class);
+        loginRepository.save(usuario.getLogin());
+        clientRepository.save(usuario);
     }
 
     @Override

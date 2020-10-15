@@ -23,7 +23,7 @@ ENGINE = InnoDB;
 -- Table `telesyncDB`.`TLogin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `telesyncDB`.`TLogin` (
-  `codLogin` INT NOT NULL,
+  `codLogin` INT NOT NULL  AUTO_INCREMENT,
   `email` VARCHAR(25) NOT NULL,
   `senha` VARCHAR(10) NULL,
   `codPermissao` INT NOT NULL,
