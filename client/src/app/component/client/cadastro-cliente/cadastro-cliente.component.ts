@@ -4,7 +4,10 @@ import { ClientService } from './../client.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
+function setActualDate(){
+  let date = new Date();
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+}
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -18,7 +21,7 @@ export class CadastroClienteComponent implements OnInit {
   cliente: Cliente = {
     cpfCliente: null,
     nomeCliente: '',
-    dtNascCliente: null,
+    dtNascCliente: "02-20-2020",
     sexoCliente: '',
     estadoCivilCliente: '',
     nomeMaeCliente: '',
@@ -30,7 +33,8 @@ export class CadastroClienteComponent implements OnInit {
     bairroCliente: '',
     profissaoCliente: '',
     liberacaoCredito: 2,
-    dtCadastroCliente: null,
+    dtCadastroCliente: setActualDate(),
+    codPermissao: 0,
     email: '',
     senha: null
   }
@@ -42,6 +46,7 @@ export class CadastroClienteComponent implements OnInit {
       cpfCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9 ]*')])],
       nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       dtNascCliente: ['', Validators.required],
+      sexoCliente: ['', Validators.required],
       estadoCivilCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       nomeMaeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       ufCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
@@ -51,9 +56,8 @@ export class CadastroClienteComponent implements OnInit {
       numeroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      dtCadastroCliente: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      senha: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      senha: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[0-9 ]*')])],
       complementoCliente: ''
     })
   }
