@@ -1,7 +1,21 @@
-import { NgModule, Component } from '@angular/core';
+import { CadastroClienteComponent } from './component/client/cadastro-cliente/cadastro-cliente.component';
+import { ClientCrudComponent } from './views/client-crud/client-crud.component';
+import { HomeComponent } from './views/home/home.component';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [{
+  path: "",
+  component: HomeComponent
+},
+{
+  path: "crud-cliente",
+  component: ClientCrudComponent
+},{
+  path: "crud-cliente/cadastro",
+  component: CadastroClienteComponent
+}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
