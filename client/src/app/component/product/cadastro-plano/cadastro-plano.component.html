@@ -1,0 +1,36 @@
+<mat-card>
+    <mat-card-title class="title">Cadastrar Plano</mat-card-title>
+    <form [formGroup]="formulario" class="campos">
+        <mat-card class="cadastro">
+            <mat-form-field>
+                <mat-label>Escolha um plano</mat-label>
+                <mat-select formControlName="nomePlano">
+                    <mat-option>None</mat-option>
+                    <mat-option value="Plano X">Plano X</mat-option>
+                    <mat-option value="Plano Y">Plano Y</mat-option>
+                    <mat-option value="Plano Z">Plano Z</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="DDD" formControlName="ddd">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Número do Chip" formControlName="numeroChip">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Número" formControlName="numero">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Valor Total" formControlName="valorTotal">
+            </mat-form-field>
+        </mat-card>
+        <div class="container-buttons">
+            <button mat-raised-button (click)="cadastrarProduto()" color="primary">
+                Salvar
+            </button>
+            <button mat-raised-button (click)="cancel()" color="warn">
+                Cancelar
+            </button>
+        </div>
+    </form>
+</mat-card>
