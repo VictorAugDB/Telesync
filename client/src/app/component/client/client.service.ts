@@ -1,4 +1,4 @@
-import { Cliente } from './product.model';
+import { Cliente } from './client.model';
 import { Injectable, ModuleWithComponentFactories } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { HttpClient } from '@angular/common/http';
@@ -25,7 +25,6 @@ export class ClientService {
   cadastrar(cliente: Cliente): Observable<Cliente>{
     let newDate: moment.Moment = moment.utc(cliente.dtNascCliente).local();
     cliente.dtNascCliente = newDate.format("YYYY-MM-DD");
-    console.log(cliente);
     return this.http.post<Cliente>(this.baseUrl + "/inserir", cliente)
   }
 

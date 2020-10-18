@@ -75,10 +75,10 @@
         </mat-card>
         <mat-card class="cadastroLogin">
             <mat-form-field>
-                <input matInput placeholder="email" formControlName="email" [(ngModel)]="cliente.email">
+                <input matInput placeholder="email" formControlName="email" [(ngModel)]="cliente.login.email">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="senha" formControlName="senha" [(ngModel)]="cliente.senha">
+                <input matInput placeholder="senha" formControlName="senha" [(ngModel)]="cliente.login.senha">
             </mat-form-field>
         </mat-card>
         <div class="container-buttons">
@@ -88,6 +88,6 @@
             <button mat-raised-button (click)="cancel()" color="warn">
                 Cancelar
             </button>
-        </div>s
+        </div>
     </form>
 </mat-card>

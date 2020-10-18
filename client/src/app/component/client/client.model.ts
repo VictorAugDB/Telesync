@@ -1,4 +1,6 @@
-export interface Cliente{
+import { Login } from './login.model';
+
+export class Cliente{
     codCliente?: number
     cpfCliente: number
     nomeCliente: string
@@ -16,7 +18,5 @@ export interface Cliente{
     profissaoCliente: string
     liberacaoCredito: number
     dtCadastroCliente: string
-    codPermissao: number
-    email: string
-    senha: string
+    login: Login;
 }

@@ -1,8 +1,9 @@
-import { Cliente } from './../product.model';
+import { Cliente } from '../client.model';
 import { Router } from '@angular/router';
 import { ClientService } from './../client.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Login } from '../login.model';
 
 function setActualDate(){
   let date = new Date();
@@ -34,9 +35,11 @@ export class CadastroClienteComponent implements OnInit {
     profissaoCliente: '',
     liberacaoCredito: 2,
     dtCadastroCliente: setActualDate(),
-    codPermissao: 0,
-    email: '',
-    senha: null
+    login:{
+      email: '',
+      senha: '',
+      codPermissao: 2    
+    }
   }
 
   constructor(private clientService: ClientService, private router: Router, private fb: FormBuilder) { }
