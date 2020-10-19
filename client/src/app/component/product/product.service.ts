@@ -23,11 +23,6 @@ export class ProductService {
   }
 
   cadastrar(plano: Plano): Observable<Plano>{
-    return this.http.post<Plano>(this.baseUrl + "/inserir", plano)
-  }
-
-  buscarPorId(id: number): Observable<Cliente>{
-    const url = `${this.baseUrl}/listarDef/${id}`
-    return this.http.get<Cliente>(url)
+    return this.http.post<Plano>(this.baseUrl + "/plano" + "/inserir", plano)
   }
 }

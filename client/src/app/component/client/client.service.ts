@@ -31,4 +31,9 @@ export class ClientService {
   buscar(): Observable<Cliente[]>{
     return this.http.get<Cliente[]>(this.baseUrl + "/listar")
   }
+
+  buscarPorId(id: number): Observable<Cliente>{
+    const url = `${this.baseUrl}/listarDef/${id}`
+    return this.http.get<Cliente>(url)
+  }
 }
