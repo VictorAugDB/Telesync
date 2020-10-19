@@ -3,7 +3,9 @@ package com.telesync.tg.converter;
 import com.telesync.tg.type.LiberacaoCreditoType;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter
 public class LiberacaoCreditoConverter implements AttributeConverter<LiberacaoCreditoType, String> {
     @Override
     public String convertToDatabaseColumn(LiberacaoCreditoType liberacaoCredito) {
@@ -12,6 +14,6 @@ public class LiberacaoCreditoConverter implements AttributeConverter<LiberacaoCr
 
     @Override
     public LiberacaoCreditoType convertToEntityAttribute(String dbData) {
-        return LiberacaoCreditoType.valueOf(dbData);
+        return LiberacaoCreditoType.valueOf(dbData.toUpperCase());
     }
 }

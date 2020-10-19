@@ -1,7 +1,7 @@
 package com.telesync.tg.controller;
 
 import com.telesync.tg.dao.Dao;
-import com.telesync.tg.model.Cliente;
+import com.telesync.tg.model.Venda;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,21 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("cliente")
+@RequestMapping("venda")
 @CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
-public class ClienteController {
+public class VendaController {
 
     @Autowired
-    Dao<Cliente> dao;
+    Dao<Venda> dao;
 
     @GetMapping(value = "/listar")
-    public List<Cliente> listar() {
+    public List<Venda> listar() {
         return dao.listar();
     }
 
     @GetMapping(value = "/listarEsp")
-    public List<Cliente> listar(@RequestParam List<Integer> ids) {
+    public List<Venda> listar(@RequestParam List<Integer> ids) {
         return dao.listar(ids);
     }
 
@@ -40,7 +40,7 @@ public class ClienteController {
     public ResponseEntity<String> deletar(@RequestParam List<Integer> ids) {
         try {
             dao.deletar(ids);
-            return ResponseEntity.ok("Cliente(s) excluidos com sucesso");
+            return ResponseEntity.ok("Venda(s) excluidos com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
@@ -48,10 +48,10 @@ public class ClienteController {
     }
 
     @PutMapping(value = "/alterar")
-    public ResponseEntity<String> alterar(@RequestBody String cliente) {
+    public ResponseEntity<String> alterar(@RequestBody String Venda) {
         try {
-            dao.alterar(cliente);
-            return ResponseEntity.ok("Cliente alterado com sucesso");
+            dao.alterar(Venda);
+            return ResponseEntity.ok("Venda alterado com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
@@ -59,10 +59,10 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/inserir")
-    public ResponseEntity<String> inserirCliente(@RequestBody String cliente) {
+    public ResponseEntity<String> inserirVenda(@RequestBody String Venda) {
         try {
-            dao.inserir(cliente);
-            return ResponseEntity.ok("Cliente inserido com sucesso");
+            dao.inserir(Venda);
+            return ResponseEntity.ok("Venda inserido com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();

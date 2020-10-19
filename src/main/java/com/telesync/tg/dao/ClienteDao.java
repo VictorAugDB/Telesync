@@ -25,8 +25,13 @@ public class ClienteDao implements Dao<Cliente> {
     JpaLoginRepository loginRepository;
 
     @Override
-    public Cliente listar() {
-        return null;
+    public List<Cliente> listar(List<Integer> ids) {
+        return clientRepository.findAllById(ids);
+    }
+
+    @Override
+    public List<Cliente> listar() {
+        return clientRepository.findAll();
     }
 
     @Override
@@ -37,12 +42,14 @@ public class ClienteDao implements Dao<Cliente> {
     }
 
     @Override
-    public void alterar(String entity) {
-
+    public void alterar(String entity) throws JsonProcessingException {
+        final var usuario = objectMapper.readValue(entity, Cliente.class);
+        clientRepository.save(usuario);
     }
 
     @Override
     public void deletar(List<Integer> ids) {
-
+        ids.forEach(id -> clientRepository.deleteById(id));
+        log.debug("Clientes com os ids {} foram removidos", ids);
     }
 }

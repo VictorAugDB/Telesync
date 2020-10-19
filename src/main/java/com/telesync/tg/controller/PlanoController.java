@@ -1,11 +1,10 @@
 package com.telesync.tg.controller;
 
 import com.telesync.tg.dao.Dao;
-import com.telesync.tg.model.Cliente;
+import com.telesync.tg.model.Plano;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,21 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("cliente")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("plano")
 @Slf4j
-public class ClienteController {
+public class PlanoController {
 
     @Autowired
-    Dao<Cliente> dao;
+    Dao<Plano> dao;
 
     @GetMapping(value = "/listar")
-    public List<Cliente> listar() {
+    public List<Plano> listar() {
         return dao.listar();
     }
 
     @GetMapping(value = "/listarEsp")
-    public List<Cliente> listar(@RequestParam List<Integer> ids) {
+    public List<Plano> listar(@RequestParam List<Integer> ids) {
         return dao.listar(ids);
     }
 
@@ -40,7 +38,7 @@ public class ClienteController {
     public ResponseEntity<String> deletar(@RequestParam List<Integer> ids) {
         try {
             dao.deletar(ids);
-            return ResponseEntity.ok("Cliente(s) excluidos com sucesso");
+            return ResponseEntity.ok("Plano(s) excluidos com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
@@ -48,10 +46,10 @@ public class ClienteController {
     }
 
     @PutMapping(value = "/alterar")
-    public ResponseEntity<String> alterar(@RequestBody String cliente) {
+    public ResponseEntity<String> alterar(@RequestBody String Plano) {
         try {
-            dao.alterar(cliente);
-            return ResponseEntity.ok("Cliente alterado com sucesso");
+            dao.alterar(Plano);
+            return ResponseEntity.ok("Plano alterado com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
@@ -59,10 +57,10 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/inserir")
-    public ResponseEntity<String> inserirCliente(@RequestBody String cliente) {
+    public ResponseEntity<String> inserirPlano(@RequestBody String Plano) {
         try {
-            dao.inserir(cliente);
-            return ResponseEntity.ok("Cliente inserido com sucesso");
+            dao.inserir(Plano);
+            return ResponseEntity.ok("Plano inserido com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
