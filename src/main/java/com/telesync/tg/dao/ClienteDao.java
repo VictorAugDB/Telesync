@@ -25,8 +25,13 @@ public class ClienteDao implements Dao<Cliente> {
     JpaLoginRepository loginRepository;
 
     @Override
-    public Cliente listar() {
+    public List<Cliente> listar(List<Integer> ids) {
         return null;
+    }
+
+    @Override
+    public List<Cliente> listar() {
+        return clientRepository.findAll();
     }
 
     @Override

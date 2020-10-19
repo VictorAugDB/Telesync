@@ -1,5 +1,6 @@
 package com.telesync.tg.model;
 
+import com.telesync.tg.type.PermissaoType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -37,8 +37,5 @@ public class Login {
     private String senha;
 
     @Column(name = "codpermissao")
-    private int codPermissao;
-
-    @OneToOne(mappedBy = "login")
-    private Cliente cliente;
+    private PermissaoType permissao;
 }

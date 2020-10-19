@@ -1,5 +1,6 @@
 package com.telesync.tg.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.telesync.tg.converter.LiberacaoCreditoConverter;
 import com.telesync.tg.type.LiberacaoCreditoType;
@@ -33,8 +34,11 @@ import java.util.Date;
 @Table(name = "TCliente")
 public class Cliente {
 
+    private final static String DATE_FORMAT = "yyyy-MM-dd";
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "codcliente")
     private Integer codCliente;
 
     @Column(name = "cpfcliente")
@@ -44,6 +48,7 @@ public class Cliente {
     private String nomeCliente;
 
     @Column(name = "dtnasccliente")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private Date dtNascCliente;
 
     @Column(name = "sexocliente")
@@ -84,6 +89,7 @@ public class Cliente {
     private LiberacaoCreditoType liberacaoCredito;
 
     @Column(name = "dtcadastrocliente")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private Date dtCadastroCliente;
 
     @OneToOne(cascade = CascadeType.ALL)
