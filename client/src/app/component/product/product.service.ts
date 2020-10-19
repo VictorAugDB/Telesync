@@ -1,6 +1,7 @@
+import { Cliente } from './../client/client.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
-import { Product } from './product.model';
+import { Plano } from './models/product-plano.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -21,7 +22,12 @@ export class ProductService {
     })
   }
 
-  cadastrar(product: Product): Observable<Product>{
-    return this.http.post<Product>(this.baseUrl + "/inserir", product)
+  cadastrar(plano: Plano): Observable<Plano>{
+    return this.http.post<Plano>(this.baseUrl + "/inserir", plano)
+  }
+
+  buscarPorId(id: number): Observable<Cliente>{
+    const url = `${this.baseUrl}/listarDef/${id}`
+    return this.http.get<Cliente>(url)
   }
 }
