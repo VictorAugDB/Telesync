@@ -123,7 +123,7 @@ ENGINE = InnoDB;
 -- Table `telesyncDB`.`TPlano`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `telesyncDB`.`TPlano` (
-  `codPlano` INT NOT NULL,
+  `codPlano` INT AUTO_INCREMENT NOT NULL,
   `nomePlano` VARCHAR(15) NOT NULL,
   `valorPlano` FLOAT NOT NULL,
   `cicloDias` INT NOT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `tstatus_pagamento` (
 -- Table `telesyncDB`.`TVenda`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `telesyncDB`.`TVenda` (
-  `codVenda` INT NOT NULL,
+  `codVenda` INT AUTO_INCREMENT NOT NULL,
   `quantidadeChips` INT NOT NULL,
   `dtVenda` DATE NOT NULL,
   `dtVencim` DATE NOT NULL,
@@ -208,7 +208,7 @@ ENGINE = InnoDB;
 -- Table `telesyncDB`.`TVenda_Plano`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `telesyncDB`.`TVenda_Plano` (
-  `codVendaPlano` INT NOT NULL,
+  `codVendaPlano` INT AUTO_INCREMENT NOT NULL,
   `numeroTelefone` VARCHAR(11) NOT NULL UNIQUE,
   `ddd` VARCHAR(2) NOT NULL,
   `imei` INT NOT NULL UNIQUE,

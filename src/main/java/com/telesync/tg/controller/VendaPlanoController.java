@@ -1,11 +1,10 @@
 package com.telesync.tg.controller;
 
 import com.telesync.tg.dao.Dao;
-import com.telesync.tg.model.Venda;
+import com.telesync.tg.model.VendaPlano;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,21 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("venda")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("vendaPlano")
 @Slf4j
-public class VendaController {
+public class VendaPlanoController {
 
     @Autowired
-    Dao<Venda> dao;
+    Dao<VendaPlano> dao;
 
     @GetMapping(value = "/listar")
-    public List<Venda> listar() {
+    public List<VendaPlano> listar() {
         return dao.listar();
     }
 
     @GetMapping(value = "/listarEsp")
-    public List<Venda> listar(@RequestParam List<Integer> ids) {
+    public List<VendaPlano> listar(@RequestParam List<Integer> ids) {
         return dao.listar(ids);
     }
 
@@ -40,7 +38,7 @@ public class VendaController {
     public ResponseEntity<String> deletar(@RequestParam List<Integer> ids) {
         try {
             dao.deletar(ids);
-            return ResponseEntity.ok("Venda(s) excluidos com sucesso");
+            return ResponseEntity.ok("Venda Plano(s) excluidos com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
@@ -48,10 +46,10 @@ public class VendaController {
     }
 
     @PutMapping(value = "/alterar")
-    public ResponseEntity<String> alterar(@RequestBody String Venda) {
+    public ResponseEntity<String> alterar(@RequestBody String VendaPlano) {
         try {
-            dao.alterar(Venda);
-            return ResponseEntity.ok("Venda alterado com sucesso");
+            dao.alterar(VendaPlano);
+            return ResponseEntity.ok("Venda Plano alterado com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
@@ -59,10 +57,10 @@ public class VendaController {
     }
 
     @PostMapping(value = "/inserir")
-    public ResponseEntity<String> inserirVenda(@RequestBody String Venda) {
+    public ResponseEntity<String> inserirVendaPlano(@RequestBody String VendaPlano) {
         try {
-            dao.inserir(Venda);
-            return ResponseEntity.ok("Venda inserido com sucesso");
+            dao.inserir(VendaPlano);
+            return ResponseEntity.ok("Venda Plano inserido com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();

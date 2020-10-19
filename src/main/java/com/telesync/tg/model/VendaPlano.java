@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,6 +25,7 @@ import javax.persistence.Table;
 public class VendaPlano {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codvendaplano")
     private Integer codVendaPlano;
 
@@ -34,10 +37,10 @@ public class VendaPlano {
     private int imei;
 
     @ManyToOne
-    @JoinColumn(name = "codVenda")
+    @JoinColumn(name = "codvenda")
     private Venda venda;
 
     @ManyToOne
-    @JoinColumn(name = "codPlano")
+    @JoinColumn(name = "codplano")
     private Plano plano;
 }

@@ -27,7 +27,7 @@ insert into tminutos_telefone values (2, "200", "150", "1");
 insert into tplano values(1, "familia", "300", "30", "0", "1", "0");
 insert into tplano values(2, "selfie", "120", "30", "0", "2", "0");
 insert into tplano values(3, "controle", "150", "30", "0", "3", "0");
-insert into tplano values(4, "controle", "150", "30", "1", "0", "1");
+insert into tplano values(4, "fixa", "150", "30", "1", "0", "1");
 
 insert into tstatus_pagamento values(0, "pago");
 insert into tstatus_pagamento values(1, "pendente");

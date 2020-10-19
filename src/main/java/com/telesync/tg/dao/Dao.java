@@ -8,6 +8,6 @@ public interface Dao<T> {
     List<T> listar(List<Integer> ids);
     List<T> listar();
     void inserir(String entity) throws JsonProcessingException;
-    void alterar(String entity);
+    void alterar(String entity) throws JsonProcessingException;
     void deletar(List<Integer> ids);
 }
