@@ -1,18 +1,18 @@
 package com.telesync.tg.model;
 
-import com.telesync.tg.type.PermissaoType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,21 +21,26 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
-@Table(name = "TLogin")
-public class Login {
+@Table(name = "TVenda_Plano")
+public class VendaPlano {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codlogin")
-    private Integer codLogin;
+    @Column(name = "codvendaplano")
+    private Integer codVendaPlano;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "numerotelefone")
+    private String numeroTelefone;
 
-    @Column(name = "senha")
-    private String senha;
+    private String ddd;
 
-    @Column(name = "codpermissao")
-    private PermissaoType permissao;
+    private int imei;
+
+    @ManyToOne
+    @JoinColumn(name = "codvenda")
+    private Venda venda;
+
+    @ManyToOne
+    @JoinColumn(name = "codplano")
+    private Plano plano;
 }
