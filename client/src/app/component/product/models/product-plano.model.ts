@@ -6,7 +6,7 @@ export class Plano{
     nomePlano: string;
     valorPlano: number;
     cicloDias: number;
-    internet: Internet;
-    minutosTelefone: MinutosTelefone;
+    internet?: Internet;
+    minutosTelefone?: MinutosTelefone;
     tipoPlano: number;
 }

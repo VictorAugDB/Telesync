@@ -33,7 +33,7 @@ export class ClientService {
   }
 
   buscarPorId(id: number): Observable<Cliente>{
-    const url = `${this.baseUrl}/listarDef/${id}`
+    const url = `${this.baseUrl}/listarEsp?ids=${id}`
     return this.http.get<Cliente>(url)
   }
 }

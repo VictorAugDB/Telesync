@@ -15,9 +15,12 @@ button{
     display: flex;
     right: 0px;
     bottom: 20px;
+    margin-top: 50px;
+}
 
-    align-items: center;
-    justify-content: center;
+.formularios{
+    display: flex;
+    flex-direction: column
 }
 
 .cadastro{
@@ -27,14 +30,15 @@ button{
     margin: 10px;
     max-width: 800px;
 
-    justify-content: center;
     flex-direction: column;
 }
 
-.campos{
+/*.campos{
     display: flex;
+    width: 100%;
+    height: 100%;
 
     align-items: center;
     justify-content: center;
     flex-direction: bottom;
-}
+}*/

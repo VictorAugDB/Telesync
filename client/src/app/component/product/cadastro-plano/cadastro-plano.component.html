@@ -1,36 +1,58 @@
-<mat-card>
+<mat-card class="formularios">
     <mat-card-title class="title">Cadastrar Plano</mat-card-title>
-    <form [formGroup]="formulario" class="campos">
-        <mat-card class="cadastro">
-            <mat-form-field>
-                <mat-label>Escolha um plano</mat-label>
-                <mat-select formControlName="nomePlano">
-                    <mat-option>None</mat-option>
-                    <mat-option value="Plano X">Plano X</mat-option>
-                    <mat-option value="Plano Y">Plano Y</mat-option>
-                    <mat-option value="Plano Z">Plano Z</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="DDD" formControlName="ddd">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Número do Chip" formControlName="numeroChip">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Número" formControlName="numero">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Valor Total" formControlName="valorTotal">
-            </mat-form-field>
-        </mat-card>
+    <mat-card class="cadastro">
+        <mat-form-field>
+            <mat-label>Escolha um plano</mat-label>
+            <mat-select [(value)]="selected" name="nomePlano">
+                <mat-option [value]="planos[0]?.codPlano -1">{{planos[0]?.nomePlano}}</mat-option>
+                <mat-option [value]="planos[1]?.codPlano -1">{{planos[1]?.nomePlano}}</mat-option>
+                <mat-option [value]="planos[2]?.codPlano -1">{{planos[2]?.nomePlano}}</mat-option>
+                <mat-option [value]="planos[3]?.codPlano -1">{{planos[3]?.nomePlano}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input disabled [ngModel]="planos[selected]?.valorPlano" matInput placeholder="Valor do plano" name="valorPlano">
+        </mat-form-field>
+        <mat-form-field>
+            <input disabled [ngModel]="planos[selected]?.cicloDias" matInput placeholder="Ciclo de cobrança" name="cicloDias">
+        </mat-form-field>
+        <mat-form-field>
+            <input disabled [ngModel]="planos[selected]?.tipoPlano" matInput placeholder="Tipo do plano" name="tipoPlano">
+        </mat-form-field>
+        <mat-form-field>
+            <input [(ngModel)]="vendaPlano.ddd" matInput placeholder="DDD" name="ddd">
+        </mat-form-field>
+        <mat-form-field>
+            <input disabled [(ngModel)]="vendaPlano.imei" matInput placeholder="Número do Chip" name="imei">
+        </mat-form-field>
+        <mat-form-field>
+            <input disabled [(ngModel)]="vendaPlano.numeroTelefone" matInput placeholder="Número de Telefone"
+                name="numeroTelefone">
+        </mat-form-field>
+        <mat-form-field>
+            <input disabled [(ngModel)]="venda.quantidadeChips" matInput placeholder="Quantidade de Chips"
+                name="quantidadeChips">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Escolha um plano</mat-label>
+            <mat-select [(value)]="venda.formaPagamento" name="formaPagamento">
+                <mat-option value="1">Debito</mat-option>
+                <mat-option value="2">Boleto</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input disabled [(ngModel)]="venda.valorTotal" matInput placeholder="Valor Total" name="valorTotal">
+        </mat-form-field>
         <div class="container-buttons">
-            <button mat-raised-button (click)="cadastrarProduto()" color="primary">
+            <button mat-raised-button (click)="cadastrarVenda()" color="primary">
                 Salvar
+            </button>
+            <button mat-raised-button (click)="cadastrarVendaPlano()" color="primary">
+                Adicionar
             </button>
             <button mat-raised-button (click)="cancel()" color="warn">
                 Cancelar
             </button>
         </div>
-    </form>
+    </mat-card>
 </mat-card>
