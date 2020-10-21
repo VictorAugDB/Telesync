@@ -57,13 +57,12 @@ public class PlanoController {
     }
 
     @PostMapping(value = "/inserir")
-    public ResponseEntity<String> inserirPlano(@RequestBody String Plano) {
+    public Plano inserirPlano(@RequestBody String Plano) {
         try {
-            dao.inserir(Plano);
-            return ResponseEntity.ok("Plano inserido com sucesso");
+            return dao.inserir(Plano);
         } catch (Exception ex) {
             log.error(ex.getMessage());
-            return ResponseEntity.badRequest().build();
+            return null;
         }
     }
 }

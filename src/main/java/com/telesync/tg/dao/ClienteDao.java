@@ -35,10 +35,10 @@ public class ClienteDao implements Dao<Cliente> {
     }
 
     @Override
-    public void inserir(String entity) throws JsonProcessingException {
+    public Cliente inserir(String entity) throws JsonProcessingException {
         final var usuario = objectMapper.readValue(entity, Cliente.class);
         loginRepository.save(usuario.getLogin());
-        clientRepository.save(usuario);
+        return clientRepository.save(usuario);
     }
 
     @Override

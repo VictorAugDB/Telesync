@@ -31,9 +31,9 @@ public class VendaDao implements Dao<Venda> {
     }
 
     @Override
-    public void inserir(String entity) throws JsonProcessingException {
+    public Venda inserir(String entity) throws JsonProcessingException {
         final var venda = objectMapper.readValue(entity, Venda.class);
-        repository.save(venda);
+        return repository.save(venda);
     }
 
     @Override
