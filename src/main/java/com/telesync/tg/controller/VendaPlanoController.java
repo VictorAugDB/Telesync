@@ -57,13 +57,12 @@ public class VendaPlanoController {
     }
 
     @PostMapping(value = "/inserir")
-    public ResponseEntity<String> inserirVendaPlano(@RequestBody String VendaPlano) {
+    public VendaPlano inserirVendaPlano(@RequestBody String VendaPlano) {
         try {
-            dao.inserir(VendaPlano);
-            return ResponseEntity.ok("Venda Plano inserido com sucesso");
+            return dao.inserir(VendaPlano);
         } catch (Exception ex) {
             log.error(ex.getMessage());
-            return ResponseEntity.badRequest().build();
+            return null;
         }
     }
 }

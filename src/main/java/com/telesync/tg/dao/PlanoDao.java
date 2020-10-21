@@ -31,9 +31,9 @@ public class PlanoDao implements Dao<Plano> {
     }
 
     @Override
-    public void inserir(String entity) throws JsonProcessingException {
+    public Plano inserir(String entity) throws JsonProcessingException {
         final var plano = objectMapper.readValue(entity, Plano.class);
-        repository.save(plano);
+        return repository.save(plano);
     }
 
     @Override
