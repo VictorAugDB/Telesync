@@ -32,7 +32,7 @@ export class ProductService {
   }
 
   cadVendaPlano(vendaPlano: VendaPlano): Observable<VendaPlano> {
-    return this.http.post<VendaPlano>(this.baseUrl + "/venda" + "/inserir", vendaPlano)
+    return this.http.post<VendaPlano>(this.baseUrl + "/vendaPlano" + "/inserir", vendaPlano)
   }
 
   buscarPlanos(): Observable<Plano[]> {
@@ -42,5 +42,19 @@ export class ProductService {
   buscarPlanoPorId(id: number): Observable<Plano> {
     const url = `${this.baseUrl}/plano/listarEsp?ids=${id}`
     return this.http.get<Plano>(url)
+  }
+
+  deletarVenda(id: number): Observable<Venda> {
+    const url = `${this.baseUrl}/venda/deletar?ids=${id}`
+    return this.http.delete<Venda>(url)
+  }
+
+  deletarVendaPlanos(id: Array<number>): Observable<VendaPlano> {
+    let parametros = ''
+    for(let i =0; i<id.length;i++){
+      i == 0 ? parametros = `?ids=${id[i]}` : parametros += `&ids=${id[i]}`    
+    }
+    const url = `${this.baseUrl}/vendaPlano/deletar${parametros}`
+    return this.http.delete<VendaPlano>(url)
   }
 }

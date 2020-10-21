@@ -7,5 +7,5 @@ export class VendaPlano{
     ddd: string;
     imei: number;
     venda: Venda;
-    planos: Plano[];
+    plano: Plano;
 }

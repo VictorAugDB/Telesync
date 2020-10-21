@@ -34,10 +34,10 @@
                 name="quantidadeChips">
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Escolha um plano</mat-label>
+            <mat-label>Forma de Pagamento</mat-label>
             <mat-select [(value)]="venda.formaPagamento" name="formaPagamento">
-                <mat-option value="1">Debito</mat-option>
-                <mat-option value="2">Boleto</mat-option>
+                <mat-option value="DEBITO">Debito</mat-option>
+                <mat-option value="BOLETO">Boleto</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
@@ -50,8 +50,11 @@
             <button mat-raised-button (click)="cadastrarVendaPlano()" color="primary">
                 Adicionar
             </button>
-            <button mat-raised-button (click)="cancel()" color="warn">
+            <button mat-raised-button (click)="excluirVenda()" color="warn">
                 Cancelar
+            </button>
+            <button mat-raised-button (click)="excluirVendaPlanos()" color="warn">
+                Excluir planos confirmados
             </button>
         </div>
     </mat-card>

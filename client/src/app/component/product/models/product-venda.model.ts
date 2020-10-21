@@ -7,7 +7,7 @@ export class Venda{
     dtVencimento: string;
     valorTotal: number;
     obs?: string;
-    formaPagamento: number;
+    formaPagamento: string;
     statusPagamento: number;
     cliente: Cliente;
 }
