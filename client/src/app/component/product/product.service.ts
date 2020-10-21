@@ -57,4 +57,9 @@ export class ProductService {
     const url = `${this.baseUrl}/vendaPlano/deletar${parametros}`
     return this.http.delete<VendaPlano>(url)
   }
+
+  altVenda(venda: Venda): Observable<Venda> {
+    const url = `${this.baseUrl}/venda/alterar`
+    return this.http.put<Venda>(url, venda)
+  }
 }

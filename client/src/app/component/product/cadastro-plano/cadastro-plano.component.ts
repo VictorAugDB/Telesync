@@ -6,6 +6,7 @@ import { Plano } from '../models/product-plano.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 function setActualDate() {
   let date = new Date();
@@ -25,7 +26,10 @@ function setdtVencimento() {
 
 export class CadastroPlanoComponent implements OnInit {
 
-  constructor(private clientService: ClientService, private productService: ProductService, private router: Router) { }
+  constructor(private clientService: ClientService, private productService: ProductService, private router: Router, private fb: FormBuilder) { }
+
+  formVenda: FormGroup;
+  formVendaPlano: FormGroup;
 
   selected = null;
 
@@ -71,6 +75,21 @@ export class CadastroPlanoComponent implements OnInit {
     });
 
     this.buscarPlanos();
+
+    this.formVendaPlano = this.fb.group({
+      nomePlano: ['', Validators.required],
+      valorPlano: [{ value: '', disabled: true }, Validators.required],
+      cicloDias: [{ value: '', disabled: true }, Validators.required],
+      tipoPlano: [{ value: '', disabled: true }, Validators.required],
+      ddd: ['', Validators.required],
+      imei: [''],
+      numeroTelefone: [''],
+    })
+    this.formVenda = this.fb.group({
+      quantidadeChips: [{ value: '', disabled: true }, Validators.required],
+      formaPagamento: ['', Validators.required],
+      valorTotal: [{ value: '', disabled: true }, Validators.required],
+    })
   }
 
   buscarPlanos(): void {
@@ -106,14 +125,16 @@ export class CadastroPlanoComponent implements OnInit {
     })
   }
 
-  excluirVenda(): void{
-    this.productService.deletarVenda(this.venda.codVenda).subscribe(()=>{
+  excluirVenda(): void {
+    this.productService.deletarVenda(this.venda.codVenda).subscribe(() => {
       this.productService.showMessage('Venda Cancelada!')
     })
   }
 
-  excluirVendaPlanos(): void{
-    this.productService.deletarVendaPlanos(this.codigosVendaPlano).subscribe(()=>{
+  excluirVendaPlanos(): void {
+    this.venda.quantidadeChips = 0;
+    this.venda.valorTotal = 0;
+    this.productService.deletarVendaPlanos(this.codigosVendaPlano).subscribe(() => {
       this.productService.showMessage('Excluído(s) com Sucesso!')
     })
   }
@@ -122,12 +143,18 @@ export class CadastroPlanoComponent implements OnInit {
     this.gerarNumeroImei();
     this.gerarNumeroTelefone();
     this.venda.valorTotal += this.planos[this.selected].valorPlano;
-    this.venda.quantidadeChips+=1;
+    this.venda.quantidadeChips += 1;
     this.vendaPlano.plano = this.planos[this.selected]
     this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
       this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
       this.productService.showMessage('Operação Executada com sucesso!!!')
       console.log(vendaPlano)
+    })
+  }
+
+  alterarVenda() {
+    this.productService.altVenda(this.venda).subscribe(() => {
+      this.productService.showMessage('Compra finalizada com sucesso!')
     })
   }
 
