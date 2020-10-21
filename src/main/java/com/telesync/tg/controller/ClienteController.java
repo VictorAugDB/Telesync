@@ -59,13 +59,12 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/inserir")
-    public ResponseEntity<String> inserirCliente(@RequestBody String cliente) {
+    public Cliente inserirCliente(@RequestBody String cliente) {
         try {
-            dao.inserir(cliente);
-            return ResponseEntity.ok("Cliente inserido com sucesso");
+            return dao.inserir(cliente);
         } catch (Exception ex) {
             log.error(ex.getMessage());
-            return ResponseEntity.badRequest().build();
+            return null;
         }
     }
 }
