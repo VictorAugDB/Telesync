@@ -52,7 +52,7 @@ button{
 
     align-items: center;
     justify-content: center;
-    background-color: #26a69a;
+    background-image: linear-gradient(180deg, #00cbff 0, #00a4e8 25%, #007db2 50%, #16587f 75%, #153851 100%);
     height: 1000px;
 }
 

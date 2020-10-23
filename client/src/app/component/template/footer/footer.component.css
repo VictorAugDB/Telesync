@@ -3,7 +3,7 @@
 
     display: flex;
     justify-content: flex-end;
-    background-color: #3f51b5;
+    background-image: linear-gradient(355deg, #1285bc 0, #1c6995 50%, #1d4f70 100%);
 }
 
 .footer > span{
