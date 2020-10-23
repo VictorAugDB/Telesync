@@ -52,6 +52,8 @@ button{
 
     align-items: center;
     justify-content: center;
+    background-color: #26a69a;
+    height: 1000px;
 }
 
 .cadastro{

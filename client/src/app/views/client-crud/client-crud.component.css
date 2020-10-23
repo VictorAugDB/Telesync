@@ -1,3 +1,36 @@
-button{
-    margin-bottom: 30px;
+.home {
+    margin-bottom: 10px;
+    margin: 0;
+    background-color: #FFF;
+}
+
+.home .title {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+    font-family: 'Roboto Slab', sans-serif;
+    text-align: center;
+}
+
+.home .subtitle {
+    font-size: 1.1rem;
+    font-family: 'Roboto Slab', sans-serif;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    position: relative;
+    width: 1699px;
+    height: 682px;
+    background-color: #26a69a;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_cadastro {
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #00e676;
 }

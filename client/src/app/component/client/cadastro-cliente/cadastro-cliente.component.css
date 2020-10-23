@@ -42,3 +42,7 @@ button{
     display: flex;
     flex-direction: row;
 }
+
+.corpo{
+    background-color: #26a69a;
+}
