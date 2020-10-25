@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { ClientService } from './../../client/client.service';
 import { Venda } from './../models/product-venda.model';
 import { VendaPlano } from './../models/product-venda-plano.model';
@@ -28,14 +29,19 @@ export class CadastroPlanoComponent implements OnInit {
 
   constructor(private clientService: ClientService, private productService: ProductService, private router: Router, private fb: FormBuilder) { }
 
-  formVenda: FormGroup;
   formVendaPlano: FormGroup;
+  formVenda: FormGroup;
 
   selected = null;
 
   cliente: Cliente = null
 
   codigosVendaPlano = []
+
+  profile = {
+    imei: null,
+    numeroTelefone: null,
+  }
 
   planos: Array<Plano> = [{
     codPlano: null,
@@ -53,7 +59,7 @@ export class CadastroPlanoComponent implements OnInit {
     dtVencimento: setdtVencimento(),
     valorTotal: 0,
     obs: '',
-    formaPagamento: '',
+    formaPagamento: 'BOLETO',
     statusPagamento: 2,
     cliente: this.cliente
   }
@@ -82,10 +88,8 @@ export class CadastroPlanoComponent implements OnInit {
       cicloDias: [{ value: '', disabled: true }, Validators.required],
       tipoPlano: [{ value: '', disabled: true }, Validators.required],
       ddd: ['', Validators.required],
-      imei: [''],
-      numeroTelefone: [''],
-    })
-    this.formVenda = this.fb.group({
+      imei: [{ value: '', disabled: true }, Validators.required],
+      numeroTelefone: [{ value: '', disabled: true }, Validators.required],
       quantidadeChips: [{ value: '', disabled: true }, Validators.required],
       formaPagamento: ['', Validators.required],
       valorTotal: [{ value: '', disabled: true }, Validators.required],
@@ -103,12 +107,18 @@ export class CadastroPlanoComponent implements OnInit {
   }*/
 
   gerarNumeroImei(): void {
-    this.vendaPlano.imei = Math.floor(Math.random() * (93456612) + 300000000)
+    const numeroChip = Math.floor(Math.random() * (93456612) + 300000000)
+    this.vendaPlano.imei = numeroChip;
   }
 
   gerarNumeroTelefone() {
     this.vendaPlano.numeroTelefone = Math.floor(Math.random() * (9999999) + 990000000)
 
+  }
+
+  gerarImeiTelefone() {
+    this.gerarNumeroTelefone();
+    this.gerarNumeroImei();
   }
 
   buscarPlano(): void {
@@ -118,16 +128,19 @@ export class CadastroPlanoComponent implements OnInit {
   }
 
   cadastrarVenda(): void {
-    this.productService.cadVenda(this.venda).subscribe((venda) => {
-      this.productService.showMessage('Operação Executada com sucesso!!!')
-      this.venda = venda
-      this.vendaPlano.venda = venda
-    })
+    if (this.venda.codVenda == null) {
+      this.productService.cadVenda(this.venda).subscribe((venda) => {
+        this.productService.showMessage('Operação Executada com sucesso!!!')
+        this.venda = venda
+        this.vendaPlano.venda = venda
+      })
+    }
   }
 
   excluirVenda(): void {
     this.productService.deletarVenda(this.venda.codVenda).subscribe(() => {
       this.productService.showMessage('Venda Cancelada!')
+      this.router.navigate(['/crud-product']);
     })
   }
 
@@ -135,13 +148,25 @@ export class CadastroPlanoComponent implements OnInit {
     this.venda.quantidadeChips = 0;
     this.venda.valorTotal = 0;
     this.productService.deletarVendaPlanos(this.codigosVendaPlano).subscribe(() => {
-      this.productService.showMessage('Excluído(s) com Sucesso!')
     })
   }
 
+  habilitaBtnFinalizar() {
+    let el = <HTMLButtonElement>document.getElementById("finalizar")
+    if (this.codigosVendaPlano.length < 1) {
+      el.disabled = true;
+    } else {
+      el.disabled = false;
+    }
+  }
+
+  excluirTudo() {
+    this.excluirVendaPlanos();
+    this.excluirVenda();
+  }
+
   cadastrarVendaPlano(): void {
-    this.gerarNumeroImei();
-    this.gerarNumeroTelefone();
+    this.vendaPlano.venda = this.venda;
     this.venda.valorTotal += this.planos[this.selected].valorPlano;
     this.venda.quantidadeChips += 1;
     this.vendaPlano.plano = this.planos[this.selected]
@@ -149,12 +174,15 @@ export class CadastroPlanoComponent implements OnInit {
       this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
       this.productService.showMessage('Operação Executada com sucesso!!!')
       console.log(vendaPlano)
-    })
+    }),
+      console.log(this.vendaPlano);
+    console.log(this.venda);
   }
 
   alterarVenda() {
     this.productService.altVenda(this.venda).subscribe(() => {
       this.productService.showMessage('Compra finalizada com sucesso!')
+      this.router.navigate(['/crud-product'])
     })
   }
 

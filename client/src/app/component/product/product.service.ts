@@ -24,9 +24,7 @@ export class ProductService {
       verticalPosition: "top"
     })
   }
-
   
-
   cadVenda(venda: Venda): Observable<Venda> {
     return this.http.post<Venda>(this.baseUrl + "/venda" + "/inserir", venda)
   }
