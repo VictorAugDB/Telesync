@@ -1,7 +1,30 @@
-.home {
+.home{
+    width: 100%;
+    min-width: 1100px;
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
-    margin: 0;
     background-color: #FFF;
+    border-bottom: 5px solid rgb(253,71,85);
+}
+
+.header_home{
+    display: flex;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .home .title {
@@ -20,10 +43,9 @@
 
 .container {
     display: flex;
+    min-height: 450px;
     position: relative;
     width: 100%;
-    height: 682px;
-    background-image: linear-gradient(180deg, #00cbff 0, #00a4e8 25%, #007db2 50%, #16587f 75%, #153851 100%);
     align-items: center;
     justify-content: center;
 }

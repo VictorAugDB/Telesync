@@ -3,11 +3,11 @@
 
     display: flex;
     justify-content: flex-end;
-    background-image: linear-gradient(355deg, #1285bc 0, #1c6995 50%, #1d4f70 100%);
+    background-color: #FFF;
 }
 
 .footer > span{
-    color: #FFF;
+    color: #000;
     font-size: 1.1rem;
     font-weight: 300;
 }
