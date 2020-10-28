@@ -30,6 +30,7 @@ import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cada
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
+import { ContratoComponent } from './component/servicos/contrato/contrato.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credi
     CadastroPlanoComponent,
     ProductCrudComponent,
     AcompanhamentoDePedidoComponent,
-    AnaliseDeCreditoComponent
+    AnaliseDeCreditoComponent,
+    ContratoComponent
   ],
   imports: [
     BrowserModule,
