@@ -1,3 +1,4 @@
+import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
 import { CadastroClienteComponent } from './component/cliente/cadastro-cliente/cadastro-cliente.component';
 import { ClientCrudComponent } from './views/client-crud/client-crud.component';
 import { HomeComponent } from './views/home/home.component';
@@ -22,6 +23,9 @@ const routes: Routes = [{
 },{
   path: "crud-product/cadastro",
   component: CadastroPlanoComponent
+},{
+  path: "analise",
+  component: AnaliseDeCreditoComponent
 }
 ];
 
