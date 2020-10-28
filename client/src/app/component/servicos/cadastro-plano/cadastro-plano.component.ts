@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { ClientService } from './../../client/client.service';
+import { ClientService } from './../../cliente/client.service';
 import { Venda } from './../models/product-venda.model';
 import { VendaPlano } from './../models/product-venda-plano.model';
-import { Cliente } from './../../client/client.model';
+import { Cliente } from './../../cliente/client.model';
 import { Plano } from '../models/product-plano.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';

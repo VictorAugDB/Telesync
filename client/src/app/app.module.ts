@@ -15,7 +15,7 @@ import{ MatListModule } from "@angular/material/list";
 import { HomeComponent } from './views/home/home.component';
 import { ClientCrudComponent } from './views/client-crud/client-crud.component';
 import{ MatCardModule } from "@angular/material/card";
-import { CadastroClienteComponent } from './component/client/cadastro-cliente/cadastro-cliente.component';
+import { CadastroClienteComponent } from './component/cliente/cadastro-cliente/cadastro-cliente.component';
 import{ MatButtonModule } from "@angular/material/button";
 import{ MatSnackBarModule } from "@angular/material/snack-bar";
 import{ HttpClientModule } from "@angular/common/http";
@@ -26,8 +26,10 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatSelectModule } from '@angular/material/select'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CadastroPlanoComponent } from './component/product/cadastro-plano/cadastro-plano.component';
+import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cadastro-plano.component';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
+import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
+import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ProductCrudComponent } from './views/product-crud/product-crud.componen
     ClientCrudComponent,
     CadastroClienteComponent,
     CadastroPlanoComponent,
-    ProductCrudComponent
+    ProductCrudComponent,
+    AcompanhamentoDePedidoComponent,
+    AnaliseDeCreditoComponent
   ],
   imports: [
     BrowserModule,

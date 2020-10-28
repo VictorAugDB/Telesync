@@ -1,10 +1,10 @@
-import { CadastroClienteComponent } from './component/client/cadastro-cliente/cadastro-cliente.component';
+import { CadastroClienteComponent } from './component/cliente/cadastro-cliente/cadastro-cliente.component';
 import { ClientCrudComponent } from './views/client-crud/client-crud.component';
 import { HomeComponent } from './views/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
-import { CadastroPlanoComponent } from './component/product/cadastro-plano/cadastro-plano.component';
+import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cadastro-plano.component';
 
 const routes: Routes = [{
   path: "",

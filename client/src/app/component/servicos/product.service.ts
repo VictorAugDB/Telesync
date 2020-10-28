@@ -1,6 +1,5 @@
 import { VendaPlano } from './models/product-venda-plano.model';
 import { Venda } from './models/product-venda.model';
-import { Cliente } from './../client/client.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Plano } from './models/product-plano.model';
