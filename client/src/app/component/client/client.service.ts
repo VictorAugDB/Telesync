@@ -10,7 +10,7 @@ import * as moment from 'moment';
 })
 export class ClientService {
 
-  baseUrl = "http://localhost:8080"
+  baseUrl = "http://localhost:8080/cliente"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
@@ -28,4 +28,12 @@ export class ClientService {
     return this.http.post<Cliente>(this.baseUrl + "/inserir", cliente)
   }
 
+  buscar(): Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(this.baseUrl + "/listar")
+  }
+
+  buscarPorId(id: number): Observable<Cliente>{
+    const url = `${this.baseUrl}/listarEsp?ids=${id}`
+    return this.http.get<Cliente>(url)
+  }
 }

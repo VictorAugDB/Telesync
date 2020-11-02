@@ -1,5 +1,9 @@
+.container{
+    padding-top: 62px;
+}
+
 .sidenav{
-    background-color: #3f51b5;
+    background-image: radial-gradient(circle at 47.75% 58.4%, #304140 0, #293230 25%, #1f1f1f 50%, #140b0e 75%, #070000 100%);
     width: 200px;
 }
 
@@ -12,5 +16,6 @@
 }
 
 .content{
-    padding: 16px;
+    position: relative;
+    background-color: #FFF;
 }

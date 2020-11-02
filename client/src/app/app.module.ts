@@ -26,7 +26,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatSelectModule } from '@angular/material/select'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CadastroProdutoComponent } from './component/product/cadastro-produto/cadastro-produto.component';
+import { CadastroPlanoComponent } from './component/product/cadastro-plano/cadastro-plano.component';
+import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CadastroProdutoComponent } from './component/product/cadastro-produto/c
     HomeComponent,
     ClientCrudComponent,
     CadastroClienteComponent,
-    CadastroProdutoComponent
+    CadastroPlanoComponent,
+    ProductCrudComponent
   ],
   imports: [
     BrowserModule,

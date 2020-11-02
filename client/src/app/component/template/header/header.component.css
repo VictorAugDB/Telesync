@@ -1,18 +1,27 @@
 .header{
-    display:flex;
-    align-items: center;
+    position: fixed;
+    background-image: radial-gradient(circle at 47.75% 58.4%, #304140 0, #293230 25%, #1f1f1f 50%, #140b0e 75%, #070000 100%);
+    z-index: 9;
+    opacity: 0.9;
 }
 
 .header a{
     display: flex;
     align-items: center;
     text-decoration: none;
+    color: #000;
 }
 
 .header .logo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
     max-height: 64px;
+    opacity: 0.8;
 }
 
 .material-icons{
+    margin-left: 150px;
     padding-left: 20px;
 }

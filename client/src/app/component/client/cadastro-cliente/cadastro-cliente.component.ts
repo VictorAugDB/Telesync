@@ -22,7 +22,7 @@ export class CadastroClienteComponent implements OnInit {
   cliente: Cliente = {
     cpfCliente: null,
     nomeCliente: '',
-    dtNascCliente: "02-20-2020",
+    dtNascCliente: '',
     sexoCliente: '',
     estadoCivilCliente: '',
     nomeMaeCliente: '',

@@ -6,6 +6,11 @@
     flex-direction: column;
 }
 
+.logo:focus{
+    outline: none;
+    box-shadow: none;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -22,6 +27,11 @@
     align-items: center;
 }
 
+.home {
+    margin-bottom: 10px;
+    margin: 0;
+    background-color: #FFF;
+}
 
 .home .title {
     font-size: 2rem;
@@ -39,20 +49,9 @@
 
 .container {
     display: flex;
-    min-height: 450px;
     position: relative;
-    align-items: center;
-    justify-content: center;
-}
-
-.cadastro {
-    margin: 50px;
-}
-
-.inserir_plano {
-    display: flex;
-
-    flex-direction: column;
+    min-height: 450px;
+    width: 100%;
     align-items: center;
     justify-content: center;
 }
