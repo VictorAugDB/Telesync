@@ -1,4 +1,4 @@
-import { Cliente } from '../../client/client.model';
+import { Cliente } from '../../cliente/client.model';
 
 export class Venda{
     codVenda?: number;
