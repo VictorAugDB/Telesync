@@ -191,7 +191,7 @@ export class CadastroPlanoComponent implements OnInit {
   alterarVenda() {
     this.productService.altVenda(this.venda).subscribe(() => {
       this.productService.showMessage('Compra finalizada com sucesso!')
-      this.router.navigate(['/crud-product'])
+      this.router.navigate(['/analise'])
     })
   }
 
