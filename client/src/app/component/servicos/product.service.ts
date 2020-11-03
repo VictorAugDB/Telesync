@@ -45,7 +45,7 @@ export class ProductService {
 
   deletarVenda(id: number): Observable<Venda> {
     const url = `${this.baseUrl}/venda/deletar?ids=${id}`
-    return this.http.delete<Venda>(url)
+    return this.http.delete<Venda>(url, {responseType: 'text' as 'json'})
   }
 
   buscarVendasCliente(id: number, isClientId: Boolean = true) {
@@ -59,7 +59,7 @@ export class ProductService {
       i == 0 ? parametros = `?ids=${id[i]}` : parametros += `&ids=${id[i]}`
     }
     const url = `${this.baseUrl}/vendaPlano/deletar${parametros}`
-    return this.http.delete<VendaPlano>(url)
+    return this.http.delete<VendaPlano>(url, {responseType: 'text' as 'json'})
   }
 
   altVenda(venda: Venda): Observable<Venda> {

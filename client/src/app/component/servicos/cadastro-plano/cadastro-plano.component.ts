@@ -130,7 +130,6 @@ export class CadastroPlanoComponent implements OnInit {
   cadastrarVenda(): void {
     if (this.venda.codVenda == null) {
       this.productService.cadVenda(this.venda).subscribe((venda) => {
-        this.productService.showMessage('Operação Executada com sucesso!!!')
         this.venda = venda
         this.vendaPlano.venda = venda
       })
