@@ -25,7 +25,7 @@ export class ClientService {
   cadastrar(cliente: Cliente): Observable<Cliente>{
     let newDate: moment.Moment = moment.utc(cliente.dtNascCliente).local();
     cliente.dtNascCliente = newDate.format("YYYY-MM-DD");
-    return this.http.post<Cliente>(this.baseUrl + "/inserir", cliente)
+    return this.http.post<Cliente>(this.baseUrl + "/inserir", cliente, {responseType: 'text' as 'json'})
   }
 
   buscar(): Observable<Cliente[]>{
