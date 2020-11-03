@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `telesyncDB`.`TVenda_Plano` (
   `codVendaPlano` INT AUTO_INCREMENT NOT NULL,
   `numeroTelefone` VARCHAR(11) NOT NULL UNIQUE,
   `ddd` VARCHAR(2) NOT NULL,
-  `imei` INT NOT NULL UNIQUE,
+  `imei` BIGINT NOT NULL UNIQUE,
   `codVenda` INT NOT NULL,
   `codPlano` INT NOT NULL,
   PRIMARY KEY (`codVendaPlano`),

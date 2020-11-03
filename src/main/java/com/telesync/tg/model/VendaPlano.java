@@ -34,7 +34,7 @@ public class VendaPlano {
 
     private String ddd;
 
-    private int imei;
+    private Long imei;
 
     @ManyToOne
     @JoinColumn(name = "codvenda")
