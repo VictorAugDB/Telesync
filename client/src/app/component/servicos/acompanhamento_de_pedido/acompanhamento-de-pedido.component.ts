@@ -1,3 +1,5 @@
+import { Venda } from './../models/product-venda.model';
+import { ProductService } from './../product.service';
 import { VendaPlano } from './../models/product-venda-plano.model';
 import { Cliente } from './../../cliente/client.model';
 import { ClientService } from './../../cliente/client.service';
@@ -10,8 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcompanhamentoDePedidoComponent implements OnInit {
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService, private ProductService: ProductService) { }
 
+  vendas: Venda[];
   vendaPlano: VendaPlano[];
   cliente: Cliente;
 
@@ -20,6 +23,18 @@ export class AcompanhamentoDePedidoComponent implements OnInit {
     this.clientService.buscarPorId(id).subscribe(cliente => {
       this.cliente = cliente
     });
+
+    this.encontrarVendasCliente();
+  }
+
+  encontrarVendasCliente(){
+    this.ProductService.buscarVendasCliente(1).subscribe(vendas =>{
+      this.vendas = vendas
+    })
+  }
+
+  mostrarVendasCliente(){
+    console.log(this.vendas);
   }
 
 }

@@ -1,3 +1,4 @@
+import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
 import { CadastroClienteComponent } from './component/cliente/cadastro-cliente/cadastro-cliente.component';
@@ -30,6 +31,9 @@ const routes: Routes = [{
 },{
   path: "contrato",
   component: ContratoComponent
+},{
+  path: "acompanhamento-de-pedido",
+  component: AcompanhamentoDePedidoComponent
 }
 ];
 

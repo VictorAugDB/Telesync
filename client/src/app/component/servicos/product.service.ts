@@ -46,6 +46,11 @@ export class ProductService {
     return this.http.delete<Venda>(url)
   }
 
+  buscarVendasCliente(id: number, isClientId: Boolean = true){
+    const url = `${this.baseUrl}/venda/listarEsp?ids=${id}&isClientId=${isClientId}`
+    return this.http.get<Venda[]>(url)
+  }
+
   deletarVendaPlanos(id: Array<number>): Observable<VendaPlano> {
     let parametros = ''
     for(let i =0; i<id.length;i++){
