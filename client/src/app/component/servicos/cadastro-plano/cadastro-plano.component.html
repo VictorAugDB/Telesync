@@ -5,7 +5,7 @@
     </div>
         <form [formGroup]="formVendaPlano" class="campos">
             <mat-card class="cardVenda">
-                <mat-form-field (click)="cadastrarVenda()">
+                <mat-form-field>
                     <mat-label>Forma de Pagamento</mat-label>
                     <mat-select [(value)]="venda.formaPagamento"
                         formControlName="formaPagamento" name="formaPagamento">
@@ -56,7 +56,7 @@
                         formControlName="numeroTelefone" name="numeroTelefone">
                 </mat-form-field>
                 <div class="container-buttons">
-                    <button [disabled]="formVendaPlano.invalid" mat-raised-button (click)="cadastrarVendaPlano()"
+                    <button [disabled]="formVendaPlano.invalid" mat-raised-button (click)="cadastrarVendaVendaPlano()"
                         color="primary">
                         Adicionar
                     </button>

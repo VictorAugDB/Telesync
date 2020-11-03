@@ -162,7 +162,16 @@ export class CadastroPlanoComponent implements OnInit {
 
   excluirTudo() {
     this.excluirVendaPlanos();
-    this.excluirVenda();
+    setTimeout(() => {
+      this.excluirVenda();
+    }, 500)
+  }
+
+  cadastrarVendaVendaPlano(){
+    this.cadastrarVenda()
+    setTimeout(() => {
+      this.cadastrarVendaPlano()
+    },300)
   }
 
   cadastrarVendaPlano(): void {

@@ -24,7 +24,9 @@ export class AcompanhamentoDePedidoComponent implements OnInit {
       this.cliente = cliente
     });
 
-    this.encontrarVendasCliente();
+    setTimeout(() =>{
+      this.encontrarVendasCliente();
+    }, 1000)
   }
 
   encontrarVendasCliente(){
