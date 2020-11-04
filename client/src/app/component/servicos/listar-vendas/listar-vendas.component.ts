@@ -34,6 +34,6 @@ export class ListarVendasComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.table.dataSource = this.dataSource;
-    }, 300)
+    }, 500)
   }
 }

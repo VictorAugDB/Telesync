@@ -1,4 +1,7 @@
+import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { VendaPlano } from '../models/product-venda-plano.model';
 
 @Component({
   selector: 'app-acompanhar-pedido-especifico',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcompanharPedidoEspecificoComponent implements OnInit {
 
-  constructor() { }
+  vendaPlanos: VendaPlano[]
+  
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
-
 }

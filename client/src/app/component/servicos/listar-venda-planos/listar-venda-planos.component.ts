@@ -18,19 +18,21 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table: MatTable<VendaPlano>;
   dataSource: ListarVendaPlanosDataSource;
 
-  constructor(private productService: ProductService,  private route: ActivatedRoute) {
+  constructor(private productService: ProductService, private route: ActivatedRoute) {
   }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['codVendaPlano', 'numeroTelefone' , 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano'];
+  displayedColumns = ['codVendaPlano', 'numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano'];
 
   ngOnInit() {
     this.dataSource = new ListarVendaPlanosDataSource(this.productService, this.route);
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    setTimeout(() => {
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.table.dataSource = this.dataSource;
+    }, 500)
   }
 }

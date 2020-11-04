@@ -18,7 +18,7 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
 
   venda: Venda = null;
   plano: Plano = null;
-  
+
   data: VendaPlano[] = [
     {
       numeroTelefone: null,
@@ -32,8 +32,11 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {
     super();
-  
-    const id = parseInt(this.route.snapshot.paramMap.get('id'));
+
+    const id = parseInt(this.route.snapshot.paramMap.get('id'))
+    this.productService.buscarVendaPlanosVendaCliente(id).subscribe(vendaPlanos => {
+      this.data = vendaPlanos
+    })
 
     this.productService.buscarVendaCliente(id).subscribe(venda => {
       this.venda = venda;
@@ -42,12 +45,6 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
     this.productService.buscarPlanoPorId(1).subscribe(plano => {
       this.plano = plano
     });
-
-    setTimeout(() =>{
-      this.productService.buscarVendaPlanosVendaCliente(id).subscribe(vendaPlanos => {
-        this.data = vendaPlanos
-      })
-    }, 300)
 
     /*setTimeout(() =>{
 
