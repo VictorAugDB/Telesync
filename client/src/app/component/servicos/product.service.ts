@@ -53,6 +53,17 @@ export class ProductService {
     return this.http.get<Venda[]>(url)
   }
 
+  buscarVendaCliente(id: number, isClientId: Boolean = false) {
+    const url = `${this.baseUrl}/venda/listarEsp?ids=${id}&isClientId=${isClientId}`
+    return this.http.get<Venda>(url)
+  }
+
+
+  buscarVendaPlanosVendaCliente(id: number, isVendaId: Boolean = true) {
+    const url = `${this.baseUrl}/venda/listarEsp?ids=${id}&isClientId=${isVendaId}`
+    return this.http.get<VendaPlano[]>(url)
+  }
+
   deletarVendaPlanos(id: Array<number>): Observable<VendaPlano> {
     let parametros = ''
     for (let i = 0; i < id.length; i++) {
