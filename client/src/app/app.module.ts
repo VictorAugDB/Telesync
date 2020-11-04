@@ -31,6 +31,10 @@ import { ProductCrudComponent } from './views/product-crud/product-crud.componen
 import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
+import { ListarVendasComponent } from './component/servicos/listar-vendas/listar-vendas.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,8 @@ import { ContratoComponent } from './component/servicos/contrato/contrato.compon
     ProductCrudComponent,
     AcompanhamentoDePedidoComponent,
     AnaliseDeCreditoComponent,
-    ContratoComponent
+    ContratoComponent,
+    ListarVendasComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,10 @@ import { ContratoComponent } from './component/servicos/contrato/contrato.compon
     NgxMaskModule.forRoot(),
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

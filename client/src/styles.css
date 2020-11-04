@@ -2,6 +2,7 @@
 
 html, body {
     height: 100%;
+    width: 100%;
 }
 
 body {
@@ -13,6 +14,12 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: rgb(231, 238, 238);
+}
+
+.app{
+    width: 80%;
+    height: 90%;
+    max-height: 1600px;
 }
 
 .blue {
