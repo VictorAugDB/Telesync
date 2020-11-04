@@ -46,7 +46,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Acompanhar</th>
       <td mat-cell *matCellDef="let row">
-        <a routerLink="">
+        <a routerLink="acompanhar/{{row.codVenda}}">
           <i class="material-icons edit">
             trending_flat
           </i>

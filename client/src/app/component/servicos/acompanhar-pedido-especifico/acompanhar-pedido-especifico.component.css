@@ -1,0 +1,51 @@
+.home{
+    width: 100%;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    border-bottom: 5px solid rgb(253,71,85);
+}
+
+.header_home{
+    display: flex;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_link {
+    display: flex;
+
+    margin: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_cadastro {
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgb(253,71,85);
+}
+
+.listar-venda-planos{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
