@@ -38,6 +38,8 @@ import { MatSortModule } from '@angular/material/sort';
 
 import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
+import { ListarVendaPlanosComponent } from './component/servicos/listar-venda-planos/listar-venda-planos.component';
 
 registerLocaleData(localePT)
 
@@ -55,7 +57,9 @@ registerLocaleData(localePT)
     AcompanhamentoDePedidoComponent,
     AnaliseDeCreditoComponent,
     ContratoComponent,
-    ListarVendasComponent
+    ListarVendasComponent,
+    AcompanharPedidoEspecificoComponent,
+    ListarVendaPlanosComponent
   ],
   imports: [
     BrowserModule,
