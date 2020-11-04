@@ -1,8 +1,11 @@
+import { ProductService } from './../product.service';
+import { Venda } from './../models/product-venda.model';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { ListarVendasDataSource, Vendas } from './listar-vendas-datasource';
+import { ListarVendasDataSource } from './listar-vendas-datasource';
+import { ClientService } from '../../cliente/client.service';
 
 @Component({
   selector: 'app-listar-vendas',
@@ -12,19 +15,25 @@ import { ListarVendasDataSource, Vendas } from './listar-vendas-datasource';
 export class ListarVendasComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<Vendas>;
-  dataSource: ListarVendasDataSource;
+  @ViewChild(MatTable) table: MatTable<Venda>;
+  dataSource: ListarVendasDataSource = null;
+
+  constructor(private productService: ProductService, private clientService: ClientService) {
+  }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'vrau'];
+  displayedColumns = ['codVenda', 'quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'statusPagamento', 'action'];
 
   ngOnInit() {
-    this.dataSource = new ListarVendasDataSource();
+    this.dataSource = new ListarVendasDataSource(this.productService, this.clientService);
+    
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.table.dataSource = this.dataSource;
+    }, 300)
   }
 }

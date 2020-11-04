@@ -19,14 +19,14 @@ export class AcompanhamentoDePedidoComponent implements OnInit {
   cliente: Cliente;
 
   ngOnInit(): void {
-    const id = 1;
+    /*const id = 1;
     this.clientService.buscarPorId(id).subscribe(cliente => {
       this.cliente = cliente
-    });
+    });*/
 
-    setTimeout(() =>{
+    /*setTimeout(() =>{
       this.encontrarVendasCliente();
-    }, 1000)
+    }, 1000)*/
   }
 
   encontrarVendasCliente(){

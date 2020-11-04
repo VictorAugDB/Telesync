@@ -2,3 +2,12 @@
   width: 100%;
   height: 80%;
 }
+
+i.edit{
+  color: #FFD700;
+  margin-right: 10px;
+}
+
+i.delete{
+  color: #e35e6b
+}
