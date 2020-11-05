@@ -1,3 +1,8 @@
 .full-width-table {
   width: 100%;
 }
+
+i.edit{
+  color: #FFD700;
+  margin-right: 10px;
+}
