@@ -1,4 +1,3 @@
-import { AcompanharVendaplanoSelecionadoComponent } from './component/servicos/acompanhar-vendaplano-selecionado/acompanhar-vendaplano-selecionado.component';
 import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
@@ -39,9 +38,6 @@ const routes: Routes = [{
 },{
   path: "acompanhamento-de-pedido/venda/:id",
   component: AcompanharPedidoEspecificoComponent
-},{
-  path: "acompanhamento-de-pedido/venda/:id/venda-plano/:idVendaPlano",
-  component: AcompanharVendaplanoSelecionadoComponent
 }
 ];
 

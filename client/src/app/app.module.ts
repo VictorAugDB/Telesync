@@ -40,7 +40,6 @@ import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
 import { ListarVendaPlanosComponent } from './component/servicos/listar-venda-planos/listar-venda-planos.component';
-import { AcompanharVendaplanoSelecionadoComponent } from './component/servicos/acompanhar-vendaplano-selecionado/acompanhar-vendaplano-selecionado.component';
 
 registerLocaleData(localePT)
 
@@ -61,7 +60,6 @@ registerLocaleData(localePT)
     ListarVendasComponent,
     AcompanharPedidoEspecificoComponent,
     ListarVendaPlanosComponent,
-    AcompanharVendaplanoSelecionadoComponent
   ],
   imports: [
     BrowserModule,
