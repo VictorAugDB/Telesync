@@ -9,6 +9,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cadastro-plano.component';
 import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
+import { RelatoriosComponent } from './views/relatorios/relatorios.component';
+import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
 
 const routes: Routes = [{
   path: "",
@@ -38,6 +40,12 @@ const routes: Routes = [{
 },{
   path: "acompanhamento-de-pedido/venda/:id",
   component: AcompanharPedidoEspecificoComponent
+},{
+  path: "relatórios",
+  component: RelatoriosComponent
+},{
+  path: "relatórios/relatório-vendas",
+  component: RelatorioDeVendasComponent
 }
 ];
 
