@@ -38,3 +38,12 @@ body {
     background-color: #e35e6b;
     color: #fff;
 }
+
+.logo:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.logo{
+    cursor:pointer;
+}
