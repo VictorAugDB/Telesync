@@ -60,7 +60,7 @@ export class CadastroPlanoComponent implements OnInit {
     valorTotal: 0,
     obs: '',
     formaPagamento: 'BOLETO',
-    statusPagamento: 2,
+    statusPagamento: 1,
     cliente: this.cliente
   }
 
@@ -102,13 +102,8 @@ export class CadastroPlanoComponent implements OnInit {
     })
   }
 
-  /*gerarNumeroImei(): void {
-    this.vendaPlano.imei = Math.floor(Math.random() * (93456789245612) + 300000000000000)
-  }*/
-
   gerarNumeroImei(): void {
-    const numeroChip = Math.floor(Math.random() * (93456612) + 300000000)
-    this.vendaPlano.imei = numeroChip;
+    this.vendaPlano.imei = Math.floor(Math.random() * (93456789245612) + 300000000000000)
   }
 
   gerarNumeroTelefone() {

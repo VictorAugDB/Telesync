@@ -6,3 +6,11 @@ i.edit{
   color: #FFD700;
   margin-right: 10px;
 }
+
+.mat-row {
+  height: auto;
+}
+
+.mat-cell {
+  padding: 8px 8px 8px 0;
+}
