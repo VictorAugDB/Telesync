@@ -1,48 +1,48 @@
 <div class="mat-elevation-z2">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
+    <!-- codVendaPlano Column -->
     <ng-container matColumnDef="codVendaPlano">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Código da VendaPlano</th>
       <td mat-cell *matCellDef="let row">{{row.codVendaPlano}}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- numeroTelefone Column -->
     <ng-container matColumnDef="numeroTelefone">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Número de Telefone</th>
       <td mat-cell *matCellDef="let row">{{row.numeroTelefone}}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- ddd Column -->
     <ng-container matColumnDef="ddd">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>DDD</th>
       <td mat-cell *matCellDef="let row">{{row.ddd}}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- imei Column -->
     <ng-container matColumnDef="imei">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero do Chip</th>
       <td mat-cell *matCellDef="let row">{{row.imei}}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- nomePlano Column -->
     <ng-container matColumnDef="nomePlano">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome do Plano</th>
       <td mat-cell *matCellDef="let row">{{row.plano.nomePlano}}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- valorPlano Column -->
     <ng-container matColumnDef="valorPlano">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor do Plano</th>
       <td mat-cell *matCellDef="let row">{{row.plano.valorPlano | currency : 'BRL'}}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- cicloCobrança Column -->
     <ng-container matColumnDef="cicloDias">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Ciclo de Cobrança</th>
       <td mat-cell *matCellDef="let row">{{row.plano.cicloDias}}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- tipoPlano Column -->
     <ng-container matColumnDef="tipoPlano">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo do Plano</th>
       <td mat-cell *matCellDef="let row">{{row.plano.tipoPlano}}</td>
