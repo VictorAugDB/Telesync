@@ -60,7 +60,7 @@ export class CadastroPlanoComponent implements OnInit {
     valorTotal: 0,
     obs: '',
     formaPagamento: 'BOLETO',
-    statusPagamento: 2,
+    statusPagamento: 1,
     cliente: this.cliente
   }
 
@@ -102,13 +102,8 @@ export class CadastroPlanoComponent implements OnInit {
     })
   }
 
-  /*gerarNumeroImei(): void {
-    this.vendaPlano.imei = Math.floor(Math.random() * (93456789245612) + 300000000000000)
-  }*/
-
   gerarNumeroImei(): void {
-    const numeroChip = Math.floor(Math.random() * (93456612) + 300000000)
-    this.vendaPlano.imei = numeroChip;
+    this.vendaPlano.imei = Math.floor(Math.random() * (93456789245612) + 300000000000000)
   }
 
   gerarNumeroTelefone() {
@@ -130,7 +125,6 @@ export class CadastroPlanoComponent implements OnInit {
   cadastrarVenda(): void {
     if (this.venda.codVenda == null) {
       this.productService.cadVenda(this.venda).subscribe((venda) => {
-        this.productService.showMessage('Operação Executada com sucesso!!!')
         this.venda = venda
         this.vendaPlano.venda = venda
       })
@@ -162,7 +156,16 @@ export class CadastroPlanoComponent implements OnInit {
 
   excluirTudo() {
     this.excluirVendaPlanos();
-    this.excluirVenda();
+    setTimeout(() => {
+      this.excluirVenda();
+    }, 500)
+  }
+
+  cadastrarVendaVendaPlano(){
+    this.cadastrarVenda()
+    setTimeout(() => {
+      this.cadastrarVendaPlano()
+    },300)
   }
 
   cadastrarVendaPlano(): void {
@@ -182,7 +185,7 @@ export class CadastroPlanoComponent implements OnInit {
   alterarVenda() {
     this.productService.altVenda(this.venda).subscribe(() => {
       this.productService.showMessage('Compra finalizada com sucesso!')
-      this.router.navigate(['/crud-product'])
+      this.router.navigate(['/analise'])
     })
   }
 

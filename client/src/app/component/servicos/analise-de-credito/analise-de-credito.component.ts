@@ -16,7 +16,7 @@ export class AnaliseDeCreditoComponent implements OnInit {
 
   alertarSucesso(){
     alert("Aprovado!!!");
-    this.cancel();
+    this.router.navigate(['/contrato'])
   }
 
   cancel() {

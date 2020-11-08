@@ -75,10 +75,7 @@ button{
 
 .formularios{
     position: relative;
-
-    min-width: 1100px;
-    min-height: 610px;
-    max-height: 650px;
+    
 
     align-items: center;
     justify-content: center;

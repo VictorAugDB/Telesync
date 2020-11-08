@@ -1,3 +1,4 @@
+import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
 import { CadastroClienteComponent } from './component/cliente/cadastro-cliente/cadastro-cliente.component';
@@ -7,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cadastro-plano.component';
+import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
 
 const routes: Routes = [{
   path: "",
@@ -30,6 +32,12 @@ const routes: Routes = [{
 },{
   path: "contrato",
   component: ContratoComponent
+},{
+  path: "acompanhamento-de-pedido",
+  component: AcompanhamentoDePedidoComponent
+},{
+  path: "acompanhamento-de-pedido/venda/:id",
+  component: AcompanharPedidoEspecificoComponent
 }
 ];
 

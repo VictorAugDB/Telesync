@@ -2,6 +2,7 @@
 
 html, body {
     height: 100%;
+    width: 100%;
 }
 
 body {
@@ -15,6 +16,11 @@ body {
     background-color: rgb(231, 238, 238);
 }
 
+.app{
+    width: 80%;
+    height: 90%;
+}
+
 .blue {
     color: blue;
 }
@@ -23,3 +29,21 @@ body {
     vertical-align: middle;
 }
 
+.msg-success{
+    background-color: #28a745;
+    color: #fff;
+}
+
+.msg-error{
+    background-color: #e35e6b;
+    color: #fff;
+}
+
+.logo:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.logo{
+    cursor:pointer;
+}

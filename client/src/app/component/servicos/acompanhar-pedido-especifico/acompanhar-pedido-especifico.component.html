@@ -1,0 +1,119 @@
+<mat-card class="home">
+    <div class="header">
+        <img src="../../../assets/logo.PNG" class="logo" alt="logo" routerLink="/acompanhamento-de-pedido">
+        <p class="header_home">Seja bem vindo sr(a) <img src="../../../assets/user.PNG"></p>
+    </div>
+    <div class="container">
+
+        <div class="container-dados-venda">
+            <div class="recibo">
+                <h2>Acompanhar</h2>
+                <h2 class="title">Recibo</h2>
+                <div class="box-recibo">
+                    <h3 class="title-dados title">Telesync LTDA</h3>
+                    <div class="cabecalho-recibo">
+                        <ul class="primeiro-ul-cabecalho-recibo">
+                            <h3 class="title-dados-cabecalho-recibo">CNPJ Telesync LTDA: <p class="paragrafo">000.000.000-00</p> </h3>
+                            <h3 class="title-dados-cabecalho-recibo">Data da Compra <p class="paragrafo">{{vendaPlanos[0]?.venda.dtVenda}}</p></h3>
+                            <p class="paragrafo-consumidor">Consumidor: {{vendaPlanos[0]?.venda.cliente.cpfCliente}}</p>
+                        </ul>
+                        <ul class="segundo-ul-cabecalho-recibo">
+                            <h3 class="title-dados-cabecalho-recibo">Endereço Telesync LTDA: <p class="paragrafo">Rua José Izidoro Biazetto</p></h3>
+                            <h3 class="title-dados-cabecalho-recibo">Telefone Telesync LTDA: <p class="paragrafo">(15)954354692</p></h3>
+                        </ul>
+                    </div>
+                    <h3 class="title">Recibo</h3>
+                    <div class="dados-plano">
+                        <div class="dados-plano-header">
+                            <ul>
+                                <h3>Código Venda/Plano</h3>
+                                <p *ngFor="let vendaPlano of vendaPlanos">{{vendaPlano.codVendaPlano}}</p>
+                            </ul>
+                            <ul>
+                                <h3>Descrição</h3>
+                                <p *ngFor="let vendaPlano of vendaPlanos">{{vendaPlano.venda.obs}}</p>
+                            </ul>
+                            <ul>
+                                <h3>Quantidade</h3>
+                                <p *ngFor="let vendaPlano of vendaPlanos">{{vendaPlano.venda.quantidadeChips}}</p>
+                            </ul>
+                            <ul>
+                                <h3>Valor Unitário</h3>
+                                <p *ngFor="let vendaPlano of vendaPlanos">{{vendaPlano.plano.valorPlano | currency : 'BRL'}}</p>
+                            </ul>
+                            <ul>
+                                <h3>Numero de Telefone</h3>
+                                <p *ngFor="let vendaPlano of vendaPlanos">{{vendaPlano.numeroTelefone}}</p>
+                            </ul>
+                            <ul>
+                                <h3>Numero do Chip</h3>
+                                <p *ngFor="let vendaPlano of vendaPlanos">{{vendaPlano.imei}}</p>
+                            </ul>
+                        </div>
+                        <div class="vt-recibo">
+                            <h3 class="title-dados-vt-recibo">Valor Total:</h3>
+                            <p class="paragrafo-vt-recibo">{{vendaPlanos[0]?.venda.valorTotal | currency : 'BRL'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-pagamento">
+                <h2 class="title">Status Pagamento</h2>
+                <div class="dados-status-pagamento">
+                    <h3 class="title-dados-status-pagamento">{{vendaPlanos[0]?.venda.statusPagamento}}</h3>
+                    <div class="dados-cpf">
+                        <h3 class="title-dados">CPF</h3>
+                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.cpfCliente}}</p>
+                    </div>
+                    <div class="nome-cliente">
+                        <h3 class="title-dados">Nome</h3>
+                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.nomeCliente}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="entrega">
+                <h2 class="title">Entrega</h2>
+                <div class="dados-entrega">
+                    <ul>
+                        <h3 class="title-dados">UF</h3>
+                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.ufCliente}}</p>
+                    </ul>
+                    <ul>
+                        <h3 class="title-dados">Cidade</h3>
+                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.cidadeCliente}}</p>
+                    </ul>
+                    <ul>
+                        <h3 class="title-dados">CEP</h3>
+                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.cpfCliente.cepCliente}}</p>
+                    </ul>
+                    <ul>
+                        <h3 class="title-dados">Logradouro</h3>
+                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.logradouroCliente}}</p>
+                    </ul>
+                    <ul>
+                        <h3 class="title-dados">Numero de Rastreio</h3>
+                        <p class="paragrafo">Numero de Rastreio</p>
+                    </ul>
+                    <ul>
+                        <h3 class="title-dados">Numero</h3>
+                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.numeroCliente}}</p>
+                    </ul>
+                    <ul>
+                        <h3 class="title-dados">Coreios</h3>
+                        <p class="paragrafo">Correios</p>
+                    </ul>
+                    <ul>
+                        <h3 class="title-dados">Valor do Envio</h3>
+                        <p class="paragrafo">Gratis</p>
+                    </ul>
+                    <ul>
+                        <h3 class="title-dados">Previsão de Entrega</h3>
+                        <p class="paragrafo">00/00/0000</p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

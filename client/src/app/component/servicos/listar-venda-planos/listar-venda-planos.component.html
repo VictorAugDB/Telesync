@@ -1,0 +1,61 @@
+<div class="mat-elevation-z2">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- codVendaPlano Column -->
+    <ng-container matColumnDef="codVendaPlano">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Código da VendaPlano</th>
+      <td mat-cell *matCellDef="let row">{{row.codVendaPlano}}</td>
+    </ng-container>
+
+    <!-- numeroTelefone Column -->
+    <ng-container matColumnDef="numeroTelefone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Número de Telefone</th>
+      <td mat-cell *matCellDef="let row">{{row.numeroTelefone}}</td>
+    </ng-container>
+
+    <!-- ddd Column -->
+    <ng-container matColumnDef="ddd">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>DDD</th>
+      <td mat-cell *matCellDef="let row">{{row.ddd}}</td>
+    </ng-container>
+
+    <!-- imei Column -->
+    <ng-container matColumnDef="imei">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero do Chip</th>
+      <td mat-cell *matCellDef="let row">{{row.imei}}</td>
+    </ng-container>
+
+    <!-- nomePlano Column -->
+    <ng-container matColumnDef="nomePlano">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome do Plano</th>
+      <td mat-cell *matCellDef="let row">{{row.plano.nomePlano}}</td>
+    </ng-container>
+
+    <!-- valorPlano Column -->
+    <ng-container matColumnDef="valorPlano">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor do Plano</th>
+      <td mat-cell *matCellDef="let row">{{row.plano.valorPlano | currency : 'BRL'}}</td>
+    </ng-container>
+
+    <!-- cicloCobrança Column -->
+    <ng-container matColumnDef="cicloDias">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ciclo de Cobrança</th>
+      <td mat-cell *matCellDef="let row">{{row.plano.cicloDias}}</td>
+    </ng-container>
+
+    <!-- tipoPlano Column -->
+    <ng-container matColumnDef="tipoPlano">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo do Plano</th>
+      <td mat-cell *matCellDef="let row">{{row.plano.tipoPlano}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 15, 20]">
+  </mat-paginator>
+</div>

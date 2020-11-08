@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +18,7 @@ import{ MatCardModule } from "@angular/material/card";
 import { CadastroClienteComponent } from './component/cliente/cadastro-cliente/cadastro-cliente.component';
 import{ MatButtonModule } from "@angular/material/button";
 import{ MatSnackBarModule } from "@angular/material/snack-bar";
-import{ HttpClientModule } from "@angular/common/http";
+import{ HttpClient, HttpClientModule } from "@angular/common/http";
 import{ FormsModule, ReactiveFormsModule } from "@angular/forms";
 import{ MatFormFieldModule } from "@angular/material/form-field";
 import{ MatInputModule } from "@angular/material/input";
@@ -31,6 +31,17 @@ import { ProductCrudComponent } from './views/product-crud/product-crud.componen
 import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
+import { ListarVendasComponent } from './component/servicos/listar-vendas/listar-vendas.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
+import localePT from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
+import { ListarVendaPlanosComponent } from './component/servicos/listar-venda-planos/listar-venda-planos.component';
+
+registerLocaleData(localePT)
 
 @NgModule({
   declarations: [
@@ -45,7 +56,10 @@ import { ContratoComponent } from './component/servicos/contrato/contrato.compon
     ProductCrudComponent,
     AcompanhamentoDePedidoComponent,
     AnaliseDeCreditoComponent,
-    ContratoComponent
+    ContratoComponent,
+    ListarVendasComponent,
+    AcompanharPedidoEspecificoComponent,
+    ListarVendaPlanosComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,9 +79,18 @@ import { ContratoComponent } from './component/servicos/contrato/contrato.compon
     NgxMaskModule.forRoot(),
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
-  providers: [],
+  providers: [
+    HttpClient,
+    {
+    provide: LOCALE_ID,
+    useValue: 'pt-BR'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
