@@ -1,3 +1,4 @@
+import { LoginComponent } from './component/login/login.component';
 import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
@@ -9,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cadastro-plano.component';
 import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
+import { RecuperarSenhaComponent } from './component/recuperar-senha/recuperar-senha.component';
 
 const routes: Routes = [{
   path: "",
@@ -38,6 +40,12 @@ const routes: Routes = [{
 },{
   path: "acompanhamento-de-pedido/venda/:id",
   component: AcompanharPedidoEspecificoComponent
+},{
+  path: "login",
+  component: LoginComponent
+},{
+  path: "recuperar-senha",
+  component: RecuperarSenhaComponent
 }
 ];
 

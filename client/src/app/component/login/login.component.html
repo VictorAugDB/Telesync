@@ -1,0 +1,19 @@
+<mat-card class="home">
+    <div class="content">
+        <img class="logo" src="../../../assets/logo_celular.PNG" alt="logo" routerLink="/">
+        <mat-form-field>
+            <input type="text" matInput placeholder="Email" name="email">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="text" matInput placeholder="Senha" name="senha">
+        </mat-form-field>
+
+    </div>
+    <div class="container">
+        <a class="forgot-password" (click)="navigateToRecuperarSenha()">Esqueci minha senha</a>
+        <button mat-raised-button class="btn_cadastro" color="primary">
+            Logar
+        </button>
+    </div>
+</mat-card>

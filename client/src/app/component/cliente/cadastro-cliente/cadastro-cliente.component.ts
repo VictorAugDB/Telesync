@@ -38,7 +38,7 @@ export class CadastroClienteComponent implements OnInit {
     login:{
       email: '',
       senha: '',
-      codPermissao: 2    
+      codPermissao: 2  
     }
   }
 
