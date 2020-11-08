@@ -45,14 +45,6 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
     this.productService.buscarPlanoPorId(1).subscribe(plano => {
       this.plano = plano
     });
-
-    /*setTimeout(() =>{
-
-    }, 300)
-    
-    setTimeout(() =>{
-
-    }, 300)*/
   }
 
   /**
@@ -102,7 +94,7 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return compare(a.codVendaPlano, b.codVendaPlano, isAsc);
-        case 'id': return compare(+a.numeroTelefone, +b.imei, isAsc);
+        case 'id': return compare(+a.numeroTelefone, +b.numeroTelefone, isAsc);
         default: return 0;
       }
     });

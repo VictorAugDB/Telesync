@@ -118,6 +118,7 @@ h3.title-dados-cabecalho-recibo{
     display:flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     width: 30%;
     height: 70%;
