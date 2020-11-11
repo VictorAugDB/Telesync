@@ -20,13 +20,15 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
-.btn_cadastro {
+.btn_login {
     display: flex;
     align-items: center;
     justify-content: center;
 
+    margin-top: 20px;
     width: 100px;
     height: 30px;
     border-radius: 5px;
@@ -34,7 +36,8 @@
 }
 
 .forgot-password{
-    font-size: 0.9rem;
+    margin-left: 60px;
+    font-size: 0.8rem;
 }
 
 .forgot-password:hover{
@@ -42,3 +45,11 @@
     color: rgb(253,71,85);
     cursor: pointer;
 }
+
+.form-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+

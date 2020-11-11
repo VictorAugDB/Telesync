@@ -1,1 +1,22 @@
-<p>recuperar-senha works!</p>
+<mat-card class="home">
+    <div class="content">
+        <img class="logo" src="../../../assets/logo_celular.PNG" alt="logo" routerLink="/">
+        <mat-form-field>
+            <input type="text" matInput placeholder="Digite seu CPF" name="cpf">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Digite a sua pergunta de segurança" name="pergunta">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Digite a resposta da pergunta" name="resposta">
+        </mat-form-field>
+    </div>
+    <div class="container">
+        <button mat-raised-button class="btn_recuperar" (click)="alertarSucesso()" color="primary">
+            Recuperar
+        </button>
+        <button mat-raised-button class="btn_cancelar" (click)="cancel()" color="primary">
+            Cancelar
+        </button>
+    </div>
+</mat-card>

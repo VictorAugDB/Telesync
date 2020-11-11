@@ -86,7 +86,7 @@ registerLocaleData(localePT)
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
   ],
   providers: [
     HttpClient,
