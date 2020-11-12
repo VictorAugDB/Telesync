@@ -53,3 +53,13 @@
     justify-content: center;
 }
 
+.signup{
+    margin-left: 112px;
+    font-size: 0.8rem;
+}
+
+.signup:hover{
+    text-decoration: underline;
+    color: rgb(253,71,85);
+    cursor: pointer;
+}

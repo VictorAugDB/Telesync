@@ -1,7 +1,7 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../shared/authentication.service';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -10,6 +10,31 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  login ={
+    email: '',
+    password: '',
+  }
+
+  constructor(
+    private authenticationService: AuthenticationService, private router: Router
+  ) {  }
+
+  ngOnInit() {
+
+  }
+
+  async onSubmit(){
+    try{
+      const result = await this.authenticationService.login(this.login);
+      console.log(`Login efetuado: ${result}`);
+      this.router.navigate(['']);
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+  /*
 
   loginForm: FormGroup;
   loading = false;
@@ -61,9 +86,13 @@ export class LoginComponent implements OnInit {
         this.loading = false;
       }
   }
+  */
 
   navigateToRecuperarSenha() {
     this.router.navigate(['/recuperar-senha'])
   }
 
+  navigateToCadastro() {
+    this.router.navigate(['/cadastro'])
+  }
 }

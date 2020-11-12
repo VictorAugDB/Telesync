@@ -1,10 +1,10 @@
+import { Cliente } from './../../component/cliente/client.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from './../../../environments/environment.prod';
-import { Cliente } from '../cliente/client.model'
+import { environment } from '../../../environments/environment.prod';
 
 
 @Injectable({
@@ -12,6 +12,22 @@ import { Cliente } from '../cliente/client.model'
 })
 export class AuthenticationService {
 
+  constructor() {  }
+
+  login(user: any){
+    return new Promise((resolve) => {
+      window.localStorage.setItem('token', 'meu-token');
+      resolve(true);
+    });
+  }
+
+  createAccount(account: any){
+    return new Promise((resolve) => {
+      resolve(true);
+    });
+  }
+
+/*
   baseUrl = "/api";
 
   private currentUserSubject: BehaviorSubject<Cliente>
@@ -48,5 +64,5 @@ export class AuthenticationService {
   getUserName(){
 
     return JSON.parse(localStorage.getItem('username'))
-  }
+  }*/
 }
