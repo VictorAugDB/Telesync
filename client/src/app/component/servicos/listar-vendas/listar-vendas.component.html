@@ -47,8 +47,17 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Acompanhar</th>
       <td mat-cell *matCellDef="let row">
         <a routerLink="venda/{{row.codVenda}}">
-          <i class="material-icons edit">
+          <i class="material-icons follow">
             trending_flat
+          </i>
+        </a>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Editar</th>
+      <td mat-cell *matCellDef="let row">
+        <a routerLink="alterar-venda/{{row.codVenda}}">
+          <i class="material-icons edit">
+            edit
           </i>
         </a>
     </ng-container>

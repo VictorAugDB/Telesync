@@ -47,6 +47,15 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo do Plano</th>
       <td mat-cell *matCellDef="let row">{{row.plano.tipoPlano}}</td>
     </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Editar</th>
+      <td mat-cell *matCellDef="let row">
+        <a routerLink="alterar-plano/{{row.codVendaPlano}}">
+          <i class="material-icons edit">
+            edit
+          </i>
+        </a>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -22,7 +22,7 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
   }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['codVendaPlano', 'numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano'];
+  displayedColumns = ['codVendaPlano', 'numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit'];
 
   ngOnInit() {
     this.dataSource = new ListarVendaPlanosDataSource(this.productService, this.route);

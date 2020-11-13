@@ -1,3 +1,4 @@
+import { AlterarDadosCadastraisComponent } from './component/cliente/alterar-dados-cadastrais/alterar-dados-cadastrais.component';
 import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
@@ -9,6 +10,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cadastro-plano.component';
 import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
+import { AlterarVendaComponent } from './component/servicos/alterar-venda/alterar-venda.component';
+import { AlterarVendaPlanoComponent } from './component/servicos/alterar-venda-plano/alterar-venda-plano.component';
 
 const routes: Routes = [{
   path: "",
@@ -38,6 +41,15 @@ const routes: Routes = [{
 },{
   path: "acompanhamento-de-pedido/venda/:id",
   component: AcompanharPedidoEspecificoComponent
+},{
+  path: "acompanhamento-de-pedido/alterar-venda/:id",
+  component: AlterarVendaComponent
+},{
+  path: "acompanhamento-de-pedido/alterar-venda/:id/alterar-plano/:id-venda-plano",
+  component: AlterarVendaPlanoComponent
+},{
+  path: "alterar-dados-cadastrais",
+  component: AlterarDadosCadastraisComponent
 }
 ];
 

@@ -38,7 +38,7 @@ export class ListarVendasDataSource extends DataSource<Venda> {
 
     const id = 1;
     this.clientService.buscarPorId(id).subscribe(cliente => {
-      this.cliente = cliente
+      this.cliente = cliente.find(cliente => true)
     });
   }
 
