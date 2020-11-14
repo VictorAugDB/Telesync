@@ -12,3 +12,14 @@ i.edit{
   color: #FFD700;
   margin-right: 10px;
 }
+
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search > h3{
+  vertical-align: middle;
+  margin: 0px;
+}

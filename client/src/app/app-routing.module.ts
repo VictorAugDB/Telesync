@@ -12,6 +12,8 @@ import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cada
 import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
 import { AlterarVendaComponent } from './component/servicos/alterar-venda/alterar-venda.component';
 import { AlterarVendaPlanoComponent } from './component/servicos/alterar-venda-plano/alterar-venda-plano.component';
+import { RelatoriosComponent } from './views/relatorios/relatorios.component';
+import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
 
 const routes: Routes = [{
   path: "",
@@ -50,6 +52,12 @@ const routes: Routes = [{
 },{
   path: "alterar-dados-cadastrais",
   component: AlterarDadosCadastraisComponent
+},{
+  path: "relatórios",
+  component: RelatoriosComponent
+},{
+  path: "relatórios/relatório-vendas",
+  component: RelatorioDeVendasComponent
 }
 ];
 

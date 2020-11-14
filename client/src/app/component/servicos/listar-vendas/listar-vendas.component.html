@@ -1,5 +1,10 @@
 <div class="mat-elevation-z2">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
+  <div class="search">
+    <mat-form-field>
+      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Buscar">
+    </mat-form-field>
+  </div>
+  <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="dataSource">
     <!-- CodVenda Column -->
     <ng-container matColumnDef="codVenda">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Código da Venda</th>

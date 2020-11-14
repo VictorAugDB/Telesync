@@ -4,15 +4,30 @@
         <p class="header_home">Seja bem vindo sr(a) <img src="../../../assets/user.PNG"></p>
     </div>
     <div class="container">
-        <div class="btn_link">
-            <button mat-raised-button routerLink="/crud-cliente" class="btn_cadastro" color="primary">Cadastrar</button>
+        <div class="img_link" routerLink="/crud-cliente">
+            <div class="img-div">
+                <img class="img" src="../../../assets/registration.svg" alt="cadastrar">
+            </div>
+            <p class="ação">Cadastrar</p>
         </div>
-        <div class="btn_link">
+        <div class="img_link" routerLink="/crud-product">
+            <div class="img-div">
+                <img class="img" src="../../../assets/add.svg" alt="adquirir-plano">
+            </div>
+            <p class="ação">Adquirir Plano</p>
+        </div>
+        <div class="img_link" routerLink="/acompanhamento-de-pedido">
+            <div class="img-div">
+                <img  class="img" src="../../../assets/solicitacao.svg" alt="acompanhar-pedido">
+            </div>
+            <p class="ação">Acompanhar Pedido</p>
+        </div>
+        <!--<div class="btn_link">
             <button mat-raised-button routerLink="/crud-product" class="btn_cadastro" color="primary">Comprar
                 Planos</button>
         </div>
         <div class="btn_link">
             <button mat-raised-button routerLink="/acompanhamento-de-pedido" class="btn_cadastro" color="primary">Acompanhar Pedidos</button>
-        </div>
+        </div>-->
     </div>
 </mat-card>
