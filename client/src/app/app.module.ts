@@ -45,6 +45,7 @@ import { AlterarVendaComponent } from './component/servicos/alterar-venda/altera
 import { AlterarDadosCadastraisComponent } from './component/cliente/alterar-dados-cadastrais/alterar-dados-cadastrais.component';
 import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
 import { RelatoriosComponent } from './views/relatorios/relatorios.component';
+import { ListarClientesComponent } from './component/servicos/listar-clientes/listar-clientes.component';
 
 registerLocaleData(localePT)
 
@@ -70,6 +71,7 @@ registerLocaleData(localePT)
     AlterarDadosCadastraisComponent,
     RelatorioDeVendasComponent,
     RelatoriosComponent,
+    ListarClientesComponent,
   ],
   imports: [
     BrowserModule,

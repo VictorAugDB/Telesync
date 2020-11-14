@@ -8,6 +8,7 @@ import { MatTable } from '@angular/material/table';
 import { ListarVendasDataSource } from './listar-vendas-datasource';
 import { ClientService } from '../../cliente/client.service';
 import { MatTableDataSource } from '@angular/material/table'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listar-vendas',
@@ -35,15 +36,16 @@ export class ListarVendasComponent implements AfterViewInit, OnInit {
 
   //dataSource: ListarVendasDataSource = null;
 
-  constructor(private productService: ProductService, private clientService: ClientService) {
+  constructor(private productService: ProductService, private clientService: ClientService, private route: ActivatedRoute) {
   }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['codVenda', 'quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'statusPagamento', 'action', 'edit'];
 
   ngOnInit() {
-
-    this.productService.buscarVendasCliente(1).subscribe(vendas => {
+    
+    const id = parseInt(this.route.snapshot.paramMap.get('id'))
+    this.productService.buscarVendasCliente(id).subscribe(vendas => {
       this.vendas = vendas;
       this.dataSource = new MatTableDataSource(vendas)
     })

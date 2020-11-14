@@ -14,6 +14,7 @@ import { AlterarVendaComponent } from './component/servicos/alterar-venda/altera
 import { AlterarVendaPlanoComponent } from './component/servicos/alterar-venda-plano/alterar-venda-plano.component';
 import { RelatoriosComponent } from './views/relatorios/relatorios.component';
 import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
+import { ListarClientesComponent } from './component/servicos/listar-clientes/listar-clientes.component';
 
 const routes: Routes = [{
   path: "",
@@ -58,6 +59,21 @@ const routes: Routes = [{
 },{
   path: "relatórios/relatório-vendas",
   component: RelatorioDeVendasComponent
+},{
+  path: "listar-clientes",
+  component: ListarClientesComponent
+},{
+  path: "listar-clientes/:id/acompanhar-vendas",
+  component: AcompanhamentoDePedidoComponent
+},{
+  path: "listar-clientes/:id/acompanhar-vendas/venda/:id",
+  component: AcompanharPedidoEspecificoComponent
+},{
+  path: "listar-clientes/:id/acompanhar-vendas/alterar-venda/:id",
+  component: AlterarVendaComponent
+},{
+  path: "listar-clientes/:id/vendas/alterar-venda/:id/alterar-plano/:id-venda-plano",
+  component: AlterarVendaPlanoComponent
 }
 ];
 
