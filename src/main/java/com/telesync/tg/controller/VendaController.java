@@ -6,6 +6,7 @@ import com.telesync.tg.model.Venda;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +33,13 @@ public class VendaController {
     @Autowired
     Dao<Cliente> clienteDao;
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @GetMapping(value = "/listar")
     public List<Venda> listar() {
         return vendaDao.listar();
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @GetMapping(value = "/listarEsp")
     public List<Venda> listar(@RequestParam List<Integer> ids, Boolean isClientId) {
         if (isClientId) {
@@ -59,6 +62,7 @@ public class VendaController {
         return vendaDao.listar(ids);
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @DeleteMapping(value = "/deletar")
     public ResponseEntity<String> deletar(@RequestParam List<Integer> ids) {
         try {
@@ -70,6 +74,7 @@ public class VendaController {
         }
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @PutMapping(value = "/alterar")
     public ResponseEntity<String> alterar(@RequestBody String Venda) {
         try {
@@ -81,6 +86,7 @@ public class VendaController {
         }
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @PostMapping(value = "/inserir")
     public Venda inserirVenda(@RequestBody String Venda) {
         try {

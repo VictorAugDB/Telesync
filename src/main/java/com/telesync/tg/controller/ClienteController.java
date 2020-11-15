@@ -5,6 +5,7 @@ import com.telesync.tg.model.Cliente;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,16 +27,19 @@ public class ClienteController {
     @Autowired
     Dao<Cliente> dao;
 
+    @PreAuthorize("hasAuthority('BUSCA_CLIENTES')")
     @GetMapping(value = "/listar")
     public List<Cliente> listar() {
         return dao.listar();
     }
 
+    @PreAuthorize("hasAuthority('BUSCA_CLIENTES')")
     @GetMapping(value = "/listarEsp")
     public List<Cliente> listar(@RequestParam List<Integer> ids) {
         return dao.listar(ids);
     }
 
+    @PreAuthorize("hasAuthority('BUSCA_CLIENTES')")
     @DeleteMapping(value = "/deletar")
     public ResponseEntity<String> deletar(@RequestParam List<Integer> ids) {
         try {
@@ -47,6 +51,7 @@ public class ClienteController {
         }
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @PutMapping(value = "/alterar")
     public ResponseEntity<String> alterar(@RequestBody String cliente) {
         try {
@@ -58,6 +63,7 @@ public class ClienteController {
         }
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @PostMapping(value = "/inserir")
     public Cliente inserirCliente(@RequestBody String cliente) {
         try {
