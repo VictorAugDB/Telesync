@@ -4,23 +4,41 @@
         <p class="header_home">Seja bem vindo sr(a) <img src="../../../assets/user.PNG"></p>
     </div>
     <div class="container">
-        <div class="img_link" routerLink="/crud-cliente">
+        <div *ngIf="getPermissao()" class="img_link" routerLink="/cadastro">
             <div class="img-div">
                 <img class="img" src="../../../assets/registration.svg" alt="cadastrar">
             </div>
             <p class="ação">Cadastrar</p>
         </div>
-        <div class="img_link" routerLink="/crud-product">
+        <div class="img_link" routerLink="/cadastro-plano">
             <div class="img-div">
                 <img class="img" src="../../../assets/add.svg" alt="adquirir-plano">
             </div>
-            <p class="ação">Adquirir Plano</p>
+            <p class="ação">Adquirir Plano(s)</p>
         </div>
-        <div class="img_link" routerLink="/acompanhamento-de-pedido">
+        <div *ngIf="!getPermissao()" class="img_link" routerLink="/acompanhamento-de-pedido">
             <div class="img-div">
                 <img  class="img" src="../../../assets/solicitacao.svg" alt="acompanhar-pedido">
             </div>
-            <p class="ação">Acompanhar Pedido</p>
+            <p class="ação">Acompanhar Pedidos</p>
+        </div>
+        <div class="img_link" routerLink="/alterar-dados-cadastrais">
+            <div class="img-div">
+                <img  class="img" src="../../../assets/alterar-dados.svg" alt="alterar-dados">
+            </div>
+            <p class="ação">Alterar Dados Cadastrais</p>
+        </div>
+        <div *ngIf="getPermissao()" class="img_link" routerLink="/listar-clientes">
+            <div class="img-div">
+                <img  class="img" src="../../../assets/gerenciar_clientes.svg" alt="gerenciar-clientes">
+            </div>
+            <p class="ação">Gerenciar Clientes</p>
+        </div>
+        <div *ngIf="getPermissao()" class="img_link" routerLink="/relatórios">
+            <div class="img-div">
+                <img  class="img" src="../../../assets/relatorios.svg" alt="relatórios">
+            </div>
+            <p class="ação">Gerar Relatórios</p>
         </div>
         <!--<div class="btn_link">
             <button mat-raised-button routerLink="/crud-product" class="btn_cadastro" color="primary">Comprar

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import jwt_decode from 'jwt-decode';
+import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 
 @Component({

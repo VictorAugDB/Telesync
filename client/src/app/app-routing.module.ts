@@ -20,6 +20,7 @@ import { AlterarVendaPlanoComponent } from './component/servicos/alterar-venda-p
 import { RelatoriosComponent } from './views/relatorios/relatorios.component';
 import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
 import { ListarClientesComponent } from './component/servicos/listar-clientes/listar-clientes.component';
+import { PermissionGuard } from './account/shared/permission.guard';
 
 const routes: Routes = [
   {
@@ -27,8 +28,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: "", component: TaskListComponent },
-      { path: "crud-product", component: ProductCrudComponent },
-      { path: "crud-product/cadastro", component: CadastroPlanoComponent },
+      { path: "cadastro-plano", component: CadastroPlanoComponent },
       { path: "analise", component: AnaliseDeCreditoComponent },
       { path: "contrato", component: ContratoComponent },
       { path: "acompanhamento-de-pedido", component: AcompanhamentoDePedidoComponent },
@@ -36,13 +36,13 @@ const routes: Routes = [
       { path: "acompanhamento-de-pedido/alterar-venda/:id", component: AlterarVendaComponent},
       { path: "acompanhamento-de-pedido/alterar-venda/:id/alterar-plano/:id-venda-plano", component: AlterarVendaPlanoComponent},
       { path: "alterar-dados-cadastrais", component: AlterarDadosCadastraisComponent },
-      { path: "relatórios", component: RelatoriosComponent },
-      { path: "relatórios/relatório-vendas", component: RelatorioDeVendasComponent },
-      { path: "listar-clientes", component: ListarClientesComponent },
-      { path: "listar-clientes/:id/acompanhar-vendas", component: AcompanhamentoDePedidoComponent },
-      { path: "listar-clientes/:id/acompanhar-vendas/venda/:id", component: AcompanharPedidoEspecificoComponent },
-      { path: "listar-clientes/:id/acompanhar-vendas/alterar-venda/:id", component: AlterarVendaComponent },
-      { path: "listar-clientes/:id/vendas/alterar-venda/:id/alterar-plano/:id-venda-plano", component: AlterarVendaPlanoComponent }
+      { path: "relatórios", component: RelatoriosComponent, canActivate: [PermissionGuard] },
+      { path: "relatórios/relatório-vendas", component: RelatorioDeVendasComponent, canActivate: [PermissionGuard] },
+      { path: "listar-clientes", component: ListarClientesComponent, canActivate: [PermissionGuard] },
+      { path: "listar-clientes/:id/acompanhar-vendas", component: AcompanhamentoDePedidoComponent, canActivate: [PermissionGuard] },
+      { path: "listar-clientes/:id/acompanhar-vendas/venda/:id", component: AcompanharPedidoEspecificoComponent, canActivate: [PermissionGuard] },
+      { path: "listar-clientes/:id/acompanhar-vendas/alterar-venda/:id", component: AlterarVendaComponent, canActivate: [PermissionGuard] },
+      { path: "listar-clientes/:id/vendas/alterar-venda/:id/alterar-plano/:id-venda-plano", component: AlterarVendaPlanoComponent, canActivate: [PermissionGuard] }
     ],
     canActivate: [AuthGuard]
   },
@@ -54,7 +54,7 @@ const routes: Routes = [
       { path: "login", component: LoginComponent },
       { path: "recuperar-senha", component: RecuperarSenhaComponent },
       { path: "cadastro", component: CadastroClienteComponent },
-    ]
+    ],
   }];
 
 @NgModule({

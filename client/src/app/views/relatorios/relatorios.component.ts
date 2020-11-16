@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 
 @Component({
   selector: 'app-relatorios',
@@ -8,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelatoriosComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   navigateToRelatorioVendas(): void{
     this.router.navigate(['/relatórios/relatório-vendas'])
+  }
+
+  getPermissao(){
+    const token = this.authenticationService.decodePayLoadJWT()
+    return token.isFuncionario;
   }
 
 }

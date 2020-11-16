@@ -1,8 +1,7 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../shared/authentication.service';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +16,9 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
-    private authenticationService: AuthenticationService, private router: Router
-  ) {  }
+    private authenticationService: AuthenticationService, private router: Router) {  }
 
   ngOnInit() {
-
   }
 
   async onSubmit(){
@@ -32,6 +29,10 @@ export class LoginComponent implements OnInit {
     } catch(error){
       console.log(error);
     }
+  }
+
+  rota(rota){
+    return rota.path
   }
 
   /*

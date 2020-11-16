@@ -4,8 +4,11 @@
         <p class="header_home">Seja bem vindo sr(a) <img src="../../../assets/user.PNG"></p>
     </div>
     <div class="container">
-        <button mat-raised-button class="btn_cadastro" color="primary" (click)="navigateToRelatorioVendas()">
-            Relatório de Vendas
-        </button>
+        <div *ngIf="getPermissao()" class="img_link" routerLink="/relatórios/relatório-vendas">
+            <div class="img-div">
+                <img  class="img" src="../../../assets/relatorio-de-vendas.svg" alt="relatório-de-vendas">
+            </div>
+            <p class="ação">Gerar Relatórios</p>
+        </div>
     </div>
 </mat-card>

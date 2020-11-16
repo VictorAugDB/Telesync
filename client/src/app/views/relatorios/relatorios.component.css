@@ -1,4 +1,4 @@
-.home{
+.home {
     width: 100%;
     height: 95%;
     display: flex;
@@ -10,12 +10,11 @@
     justify-content: space-between;
     margin-bottom: 10px;
     background-color: #FFF;
-    border-bottom: 5px solid rgb(253,71,85);
+    border-bottom: 5px solid rgb(253, 71, 85);
 }
 
-.header_home{
+.header_home {
     display: flex;
-
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -37,16 +36,48 @@
 
 .container {
     display: flex;
-    height: 100%;
+    height: 80%;
     position: relative;
-    width: 100%;
     align-items: center;
     justify-content: center;
+}
+
+.img_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(255, 236, 224);
+    margin: 20px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px;
+    cursor: pointer;
+
+    transition: background-color 0.5s;
+}
+
+.img_link:hover{
+    background-color: rgb(255, 212, 185);;
+}
+
+.img {
+    width: 50px;
+    height: 50px;
 }
 
 .btn_cadastro {
     width: 200px;
     height: 50px;
     border-radius: 25px;
-    background-color: rgb(253,71,85);
+    background-color: rgb(253, 71, 85);
+}
+
+.ação {
+    text-align: center;
+
+    margin-top: 5px;
+    font-size: 1.05rem;
 }
