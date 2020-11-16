@@ -33,7 +33,7 @@ public class ClienteController {
         return dao.listar();
     }
 
-    @PreAuthorize("hasAuthority('BUSCA_CLIENTES')")
+    @PreAuthorize("hasAuthority('BASICO')")
     @GetMapping(value = "/listarEsp")
     public List<Cliente> listar(@RequestParam List<Integer> ids) {
         return dao.listar(ids);
