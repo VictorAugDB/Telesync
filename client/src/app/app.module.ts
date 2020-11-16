@@ -46,6 +46,12 @@ import { AuthenticationComponent } from './views/authentication/authentication.c
 import { TaskListComponent } from './views/task-list/task-list.component';
 
 import { httpInterceptorProviders } from './http-interceptors';
+import { AlterarVendaPlanoComponent } from './component/servicos/alterar-venda-plano/alterar-venda-plano.component';
+import { AlterarVendaComponent } from './component/servicos/alterar-venda/alterar-venda.component';
+import { AlterarDadosCadastraisComponent } from './component/cliente/alterar-dados-cadastrais/alterar-dados-cadastrais.component';
+import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
+import { RelatoriosComponent } from './views/relatorios/relatorios.component';
+import { ListarClientesComponent } from './component/servicos/listar-clientes/listar-clientes.component';
 
 registerLocaleData(localePT)
 
@@ -70,6 +76,12 @@ registerLocaleData(localePT)
     RecuperarSenhaComponent,
     AuthenticationComponent,
     TaskListComponent,
+    AlterarVendaPlanoComponent,
+    AlterarVendaComponent,
+    AlterarDadosCadastraisComponent,
+    RelatorioDeVendasComponent,
+    RelatoriosComponent,
+    ListarClientesComponent,
   ],
   imports: [
     BrowserModule,

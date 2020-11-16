@@ -7,8 +7,7 @@
 
 .home{
     width: 100%;
-    min-width: 1100px;
-    min-height: 620px;
+    height: 95%;
     display: flex;
     flex-direction: column;
 }
@@ -29,10 +28,25 @@
     align-items: center;
 }
 
+.home .title {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+    font-family: 'Roboto Slab', sans-serif;
+    text-align: center;
+}
+
+.home .subtitle {
+    font-size: 1.1rem;
+    font-family: 'Roboto Slab', sans-serif;
+    text-align: center;
+}
+
 .container {
     display: flex;
-    min-height: 450px;
+    height: 100%;
     position: relative;
+    width: 100%;
     align-items: center;
     justify-content: center;
 }

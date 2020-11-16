@@ -17,7 +17,7 @@ body {
 }
 
 .app{
-    width: 80%;
+    width: 95%;
     height: 90%;
 }
 
@@ -46,4 +46,9 @@ body {
 
 .logo{
     cursor:pointer;
+}
+
+.img_link:focus{
+    outline: none;
+    box-shadow: none;
 }

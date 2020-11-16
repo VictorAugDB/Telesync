@@ -76,8 +76,8 @@ export class CadastroPlanoComponent implements OnInit {
   ngOnInit(): void {
     const id = 1;
     this.clientService.buscarPorId(id).subscribe(cliente => {
-      this.cliente = cliente
-      this.venda.cliente = cliente[0]
+      this.cliente = cliente.find(cliente => true)
+      this.venda.cliente = cliente.find(cliente => true)
     });
 
     this.buscarPlanos();
