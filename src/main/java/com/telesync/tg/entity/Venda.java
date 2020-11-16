@@ -1,4 +1,4 @@
-package com.telesync.tg.model;
+package com.telesync.tg.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @Table(name = "TVenda")
+@ToString
 public class Venda {
 
     private final static String DATE_FORMAT = "yyyy-MM-dd";

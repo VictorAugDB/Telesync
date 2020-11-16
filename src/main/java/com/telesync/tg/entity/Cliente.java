@@ -1,4 +1,4 @@
-package com.telesync.tg.model;
+package com.telesync.tg.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

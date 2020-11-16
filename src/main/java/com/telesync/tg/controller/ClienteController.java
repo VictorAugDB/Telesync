@@ -1,7 +1,7 @@
 package com.telesync.tg.controller;
 
 import com.telesync.tg.dao.Dao;
-import com.telesync.tg.model.Cliente;
+import com.telesync.tg.entity.Cliente;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
 package com.telesync.tg.controller;
 
 import com.telesync.tg.dao.Dao;
-import com.telesync.tg.model.Venda;
-import com.telesync.tg.model.VendaPlano;
+import com.telesync.tg.entity.Venda;
+import com.telesync.tg.entity.VendaPlano;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
