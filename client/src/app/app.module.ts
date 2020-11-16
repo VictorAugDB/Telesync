@@ -45,6 +45,8 @@ import { RecuperarSenhaComponent } from './component/recuperar-senha/recuperar-s
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { TaskListComponent } from './views/task-list/task-list.component';
 
+import { httpInterceptorProviders } from './http-interceptors';
+
 registerLocaleData(localePT)
 
 @NgModule({
@@ -97,7 +99,8 @@ registerLocaleData(localePT)
     {
     provide: LOCALE_ID,
     useValue: 'pt-BR'
-    }
+    },
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

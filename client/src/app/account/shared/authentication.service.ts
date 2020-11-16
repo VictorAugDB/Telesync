@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { environment } from '../../../environments/environment.prod';
+import jwt_decode from 'jwt-decode';
 
 
 @Injectable({
@@ -26,48 +26,44 @@ export class AuthenticationService {
     return false;
   }
 
-/*
-  createAccount(account: any){
-    return new Promise((resolve) => {
-      resolve(true);
-    });
+  getAuthorizationToken(){
+    const token = window.localStorage.getItem('token');
+    return token;
   }
 
-  baseUrl = "/api";
+  getTokenExpirationDate(token: string): Date{
+    const decoded: any = jwt_decode(token);
+    
+    if (decoded.exp === undefined){
+      return null;
+    }
 
-  private currentUserSubject: BehaviorSubject<Cliente>
-  public currentUser: Observable<Cliente>
-
-  constructor(private http: HttpClient) { 
-    this.currentUserSubject = new BehaviorSubject<Cliente>(JSON.parse(localStorage.getItem('currentUser')))
-    this.currentUser = this.currentUserSubject.asObservable();
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp)
+    return date;
   }
 
-  public get currentUserValue(): Cliente {
-    return this.currentUserSubject.getValue();
+  isTokenExpired(token?: string): boolean{
+    if(!token){
+      return true;
+    }
+
+    const date = this.getTokenExpirationDate(token);
+    if(date == undefined){
+      return false;
+    }
+
+    return !(date.valueOf() > new Date().valueOf()) 
   }
 
-  login(nome: string, senha: string){
-    return this.http.post<any>(`${environment.apiUrl}/auth`, {nome, senha}).pipe(map(cliente =>{
-      localStorage.setItem('currentUser', JSON.stringify(cliente));
-      this.currentUserSubject.next(cliente);
-      return cliente;
-    }));
+  isUserLoggedIn(){
+    const token = this.getAuthorizationToken();
+    if(!token){
+      return false;
+    } else if(this.isTokenExpired(token)){
+      return false;
+    }
+    
+    return true;
   }
-
-  logout(){
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('username');
-    this.currentUserSubject.next(null);
-  }
-
-  setUserName(username:string){
-
-    localStorage.setItem('username', JSON.stringify(username));
-  }
-
-  getUserName(){
-
-    return JSON.parse(localStorage.getItem('username'))
-  }*/
 }
