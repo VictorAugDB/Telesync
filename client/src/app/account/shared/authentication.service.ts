@@ -63,7 +63,15 @@ export class AuthenticationService {
     } else if(this.isTokenExpired(token)){
       return false;
     }
-    
+
     return true;
+  }
+
+  decodePayLoadJWT(): any{
+    try {
+      return jwt_decode(this.getAuthorizationToken())
+    } catch(error){
+      return null;
+    }
   }
 }
