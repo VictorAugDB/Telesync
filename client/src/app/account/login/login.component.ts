@@ -12,7 +12,7 @@ import { first } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
   login ={
-    email: '',
+    username: '',
     password: '',
   }
 

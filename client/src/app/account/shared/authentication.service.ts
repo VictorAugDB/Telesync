@@ -12,22 +12,27 @@ import { environment } from '../../../environments/environment.prod';
 })
 export class AuthenticationService {
 
-  constructor() {  }
+  baseUrl = "/api"
 
-  login(user: any){
-    return new Promise((resolve) => {
-      window.localStorage.setItem('token', 'meu-token');
-      resolve(true);
-    });
+  constructor(private http: HttpClient) {  }
+
+  async login(user: any){
+    const result = await this.http.post<any>(`${this.baseUrl}/auth`, user).toPromise();
+    if(result && result.jwt){
+      window.localStorage.setItem('token', result.jwt);
+      return true;
+    }
+
+    return false;
   }
 
+/*
   createAccount(account: any){
     return new Promise((resolve) => {
       resolve(true);
     });
   }
 
-/*
   baseUrl = "/api";
 
   private currentUserSubject: BehaviorSubject<Cliente>
