@@ -2,7 +2,7 @@ package com.telesync.tg.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.telesync.tg.model.Plano;
+import com.telesync.tg.entity.Plano;
 import com.telesync.tg.repository.JpaPlanoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class PlanoDao implements Dao<Plano> {
+public class PlanoDao extends AbstractDao<Plano> {
 
     @Autowired
     JpaPlanoRepository repository;

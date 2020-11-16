@@ -1,11 +1,12 @@
 package com.telesync.tg.controller;
 
 import com.telesync.tg.dao.Dao;
-import com.telesync.tg.model.Venda;
-import com.telesync.tg.model.VendaPlano;
+import com.telesync.tg.entity.Venda;
+import com.telesync.tg.entity.VendaPlano;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,11 +31,13 @@ public class VendaPlanoController {
     @Autowired
     Dao<Venda> vendaDao;
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @GetMapping(value = "/listar")
     public List<VendaPlano> listar() {
         return vendaPlanoDao.listar();
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @GetMapping(value = "/listarEsp")
     public List<VendaPlano> listar(@RequestParam List<Integer> ids, Boolean isVendaId) {
         if (isVendaId) {
@@ -57,6 +60,7 @@ public class VendaPlanoController {
         return vendaPlanoDao.listar(ids);
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @DeleteMapping(value = "/deletar")
     public ResponseEntity<String> deletar(@RequestParam List<Integer> ids) {
         try {
@@ -68,6 +72,7 @@ public class VendaPlanoController {
         }
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @PutMapping(value = "/alterar")
     public ResponseEntity<String> alterar(@RequestBody String VendaPlano) {
         try {
@@ -79,6 +84,7 @@ public class VendaPlanoController {
         }
     }
 
+    @PreAuthorize("hasAuthority('BASICO')")
     @PostMapping(value = "/inserir")
     public VendaPlano inserirVendaPlano(@RequestBody String VendaPlano) {
         try {

@@ -1,4 +1,4 @@
-package com.telesync.tg.model;
+package com.telesync.tg.entity;
 
 import com.telesync.tg.type.PlanoType;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.telesync.tg.model;
+package com.telesync.tg.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,10 +1,11 @@
-package com.telesync.tg.model;
+package com.telesync.tg.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Builder
 @Table(name = "TVenda_Plano")
+@ToString
 public class VendaPlano {
 
     @Id
