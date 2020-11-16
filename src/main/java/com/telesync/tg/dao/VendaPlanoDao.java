@@ -2,7 +2,7 @@ package com.telesync.tg.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.telesync.tg.model.VendaPlano;
+import com.telesync.tg.entity.VendaPlano;
 import com.telesync.tg.repository.JpaVendaPlanoRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class VendaPlanoDao implements Dao<VendaPlano> {
+public class VendaPlanoDao extends AbstractDao<VendaPlano> {
 
     @Autowired
     JpaVendaPlanoRepository repository;
@@ -38,7 +38,12 @@ public class VendaPlanoDao implements Dao<VendaPlano> {
 
     @Override
     public void alterar(String entity) throws JsonProcessingException {
-        inserir(entity);
+        final var vendaPlano = objectMapper.readValue(entity, VendaPlano.class);
+        if (checkIfVendaPlanoExists(vendaPlano)) {
+            repository.save(vendaPlano);
+        } else  {
+            log.error("A venda plano {} não existe", vendaPlano.toString());
+        }
     }
 
     @Override
@@ -46,5 +51,9 @@ public class VendaPlanoDao implements Dao<VendaPlano> {
         final var vendaPlanos = listar(ids);
         repository.deleteInBatch(vendaPlanos);
         log.debug("Venda plano(s) com o(s) id(s) {} exlcluido(s) com sucesso", ids);
+    }
+
+    private boolean checkIfVendaPlanoExists(VendaPlano vendaPlano) {
+        return repository.existsById(vendaPlano.getCodVendaPlano());
     }
 }

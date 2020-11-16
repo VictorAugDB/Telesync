@@ -2,7 +2,7 @@ package com.telesync.tg.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.telesync.tg.model.Venda;
+import com.telesync.tg.entity.Venda;
 import com.telesync.tg.repository.JpaVendaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class VendaDao implements Dao<Venda> {
+public class VendaDao extends AbstractDao<Venda> {
 
     @Autowired
     JpaVendaRepository repository;
@@ -38,7 +38,12 @@ public class VendaDao implements Dao<Venda> {
 
     @Override
     public void alterar(String entity) throws JsonProcessingException {
-        inserir(entity);
+        final var venda = objectMapper.readValue(entity, Venda.class);
+        if (checkIfVendaExists(venda)) {
+            repository.save(venda);
+        } else {
+            log.error("A venda {} não existe", venda.toString());
+        }
     }
 
     @Override
@@ -46,5 +51,9 @@ public class VendaDao implements Dao<Venda> {
         final var vendas = listar(ids);
         repository.deleteInBatch(vendas);
         log.debug("Venda(s) com o(s) id(s) {} foram excluido(s) com sucesso", ids);
+    }
+
+    private boolean checkIfVendaExists(Venda venda) {
+        return repository.existsById(venda.getCodVenda());
     }
 }
