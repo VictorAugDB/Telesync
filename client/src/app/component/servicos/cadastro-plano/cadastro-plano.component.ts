@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 import { Observable } from 'rxjs';
 import { ClientService } from './../../cliente/client.service';
 import { Venda } from './../models/product-venda.model';
@@ -27,12 +28,14 @@ function setdtVencimento() {
 
 export class CadastroPlanoComponent implements OnInit {
 
-  constructor(private clientService: ClientService, private productService: ProductService, private router: Router, private fb: FormBuilder) { }
+  constructor(private clientService: ClientService, private productService: ProductService, private router: Router, private fb: FormBuilder, private authenticationService: AuthenticationService) { }
 
   formVendaPlano: FormGroup;
   formVenda: FormGroup;
 
   selected = null;
+
+  codClienteVend = null;
 
   cliente: Cliente = null
 
@@ -74,11 +77,14 @@ export class CadastroPlanoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = 1;
-    this.clientService.buscarPorId(id).subscribe(cliente => {
-      this.cliente = cliente.find(cliente => true)
-      this.venda.cliente = cliente.find(cliente => true)
-    });
+    const deCodeToken = this.authenticationService.decodePayLoadJWT()
+    const id = deCodeToken.codUsuario;
+    if (!deCodeToken.isFuncionario) {
+      this.clientService.buscarPorId(id).subscribe(cliente => {
+        this.cliente = cliente.find(cliente => true)
+        this.venda.cliente = cliente.find(cliente => true)
+      });
+    }
 
     this.buscarPlanos();
 
@@ -93,6 +99,7 @@ export class CadastroPlanoComponent implements OnInit {
       quantidadeChips: [{ value: '', disabled: true }, Validators.required],
       formaPagamento: ['', Validators.required],
       valorTotal: [{ value: '', disabled: true }, Validators.required],
+      codCliente: [{ value: '' }, Validators.required],
     })
   }
 
@@ -124,10 +131,22 @@ export class CadastroPlanoComponent implements OnInit {
 
   cadastrarVenda(): void {
     if (this.venda.codVenda == null) {
-      this.productService.cadVenda(this.venda).subscribe((venda) => {
-        this.venda = venda
-        this.vendaPlano.venda = venda
-      })
+      if (this.authenticationService.decodePayLoadJWT().isFuncionario) {
+        this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
+          this.cliente = cliente.find(cliente => true)
+          this.venda.cliente = cliente.find(cliente => true)
+        });
+        setTimeout(() => 
+        this.productService.cadVenda(this.venda).subscribe((venda) => {
+          this.venda = venda
+          this.vendaPlano.venda = venda
+        }), 100);
+      } else {
+        this.productService.cadVenda(this.venda).subscribe((venda) => {
+          this.venda = venda
+          this.vendaPlano.venda = venda
+        })
+      }
     }
   }
 
@@ -161,11 +180,11 @@ export class CadastroPlanoComponent implements OnInit {
     }, 500)
   }
 
-  cadastrarVendaVendaPlano(){
+  cadastrarVendaVendaPlano() {
     this.cadastrarVenda()
     setTimeout(() => {
       this.cadastrarVendaPlano()
-    },300)
+    }, 500)
   }
 
   cadastrarVendaPlano(): void {
@@ -187,6 +206,11 @@ export class CadastroPlanoComponent implements OnInit {
       this.productService.showMessage('Compra finalizada com sucesso!')
       this.router.navigate(['/analise'])
     })
+  }
+
+  getPermissao() {
+    const token = this.authenticationService.decodePayLoadJWT()
+    return token.isFuncionario;
   }
 
   cancel() {
