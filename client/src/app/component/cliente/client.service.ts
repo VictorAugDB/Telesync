@@ -10,7 +10,7 @@ import * as moment from 'moment';
 })
 export class ClientService {
 
-  baseUrl = "http://localhost:8080/cliente"
+  baseUrl = '/api/cliente'
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
