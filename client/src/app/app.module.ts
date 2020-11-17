@@ -1,3 +1,4 @@
+import { LoginComponent } from './account/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 
@@ -40,6 +41,17 @@ import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
 import { ListarVendaPlanosComponent } from './component/servicos/listar-venda-planos/listar-venda-planos.component';
+import { RecuperarSenhaComponent } from './component/recuperar-senha/recuperar-senha.component';
+import { AuthenticationComponent } from './views/authentication/authentication.component';
+import { TaskListComponent } from './views/task-list/task-list.component';
+
+import { httpInterceptorProviders } from './http-interceptors';
+import { AlterarVendaPlanoComponent } from './component/servicos/alterar-venda-plano/alterar-venda-plano.component';
+import { AlterarVendaComponent } from './component/servicos/alterar-venda/alterar-venda.component';
+import { AlterarDadosCadastraisComponent } from './component/cliente/alterar-dados-cadastrais/alterar-dados-cadastrais.component';
+import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
+import { RelatoriosComponent } from './views/relatorios/relatorios.component';
+import { ListarClientesComponent } from './component/servicos/listar-clientes/listar-clientes.component';
 
 registerLocaleData(localePT)
 
@@ -60,6 +72,16 @@ registerLocaleData(localePT)
     ListarVendasComponent,
     AcompanharPedidoEspecificoComponent,
     ListarVendaPlanosComponent,
+    LoginComponent,
+    RecuperarSenhaComponent,
+    AuthenticationComponent,
+    TaskListComponent,
+    AlterarVendaPlanoComponent,
+    AlterarVendaComponent,
+    AlterarDadosCadastraisComponent,
+    RelatorioDeVendasComponent,
+    RelatoriosComponent,
+    ListarClientesComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,14 +104,15 @@ registerLocaleData(localePT)
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
   ],
   providers: [
     HttpClient,
     {
     provide: LOCALE_ID,
     useValue: 'pt-BR'
-    }
+    },
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

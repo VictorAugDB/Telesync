@@ -1,0 +1,98 @@
+<mat-card class="corpo">
+    <div class="header">
+        <img src="../../../assets/logo.PNG" alt="logo">
+        <img class="header_home" src="../../../assets/logo_celular.PNG">
+    </div>
+    <form [formGroup]="formulario" class="campos">
+        <div>
+            <h2>Alterar Dados Cadastrais</h2>
+        </div>
+        <mat-card class="cadastro">
+            <mat-form-field *ngIf="getPermissao()">
+                <input matInput placeholder="Código do CLiente" formControlName="codCliente" [(ngModel)]="codClienteVend">
+            </mat-form-field>
+            <mat-form-field>
+                <input mask="000.000.000.99" matInput placeholder="CPF" formControlName="cpfCliente"
+                    [(ngModel)]="cliente.cpfCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Nome" formControlName="nomeCliente" [(ngModel)]="cliente.nomeCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Data de nascimento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dtNascCliente" name="dtNascCliente"
+                    [(ngModel)]="cliente.dtNascCliente">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Sexo</mat-label>
+                <mat-select [(ngModel)]="cliente.sexoCliente" name="sexoCliente"
+                    formControlName="sexoCliente">
+                    <mat-option>None</mat-option>
+                    <mat-option value="m">Masculino</mat-option>
+                    <mat-option value="f">Feminino</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Estado Civil</mat-label>
+                <mat-select [(ngModel)]="cliente.estadoCivilCliente" name="estadoCivilCliente"
+                    formControlName="estadoCivilCliente">
+                    <mat-option>None</mat-option>
+                    <mat-option value="S">Solteiro(a)</mat-option>
+                    <mat-option value="C">Casado(a)</mat-option>
+                    <mat-option value="SE">Separado(a)</mat-option>
+                    <mat-option value="D">Divorciado(a)</mat-option>
+                    <mat-option value="V">Víuvo(a)</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Nome da Mae" formControlName="nomeMaeCliente"
+                    [(ngModel)]="cliente.nomeMaeCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input [patterns]="validacaoLetras" mask="00" matInput placeholder="UF" formControlName="ufCliente"
+                    [(ngModel)]="cliente.ufCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Cidade" formControlName="cidadeCliente"
+                    [(ngModel)]="cliente.cidadeCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Rua" formControlName="logradouroCliente"
+                    [(ngModel)]="cliente.logradouroCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input mask="00000-000" matInput placeholder="CEP" formControlName="cepCliente"
+                    [(ngModel)]="cliente.cepCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Numero da Casa" formControlName="numeroCliente"
+                    [(ngModel)]="cliente.numeroCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Complemento" formControlName="complementoCliente"
+                    [(ngModel)]="cliente.complementoCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Bairro" formControlName="bairroCliente"
+                    [(ngModel)]="cliente.bairroCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Profissao" formControlName="profissaoCliente"
+                    [(ngModel)]="cliente.profissaoCliente">
+            </mat-form-field>
+        </mat-card>
+        <div class="container-buttons">
+            <button [disabled]="formulario.invalid" mat-raised-button (click)="alterarDadosCliente()" color="primary">
+                Salvar
+            </button>
+            <button *ngIf="getPermissao()" [disabled]="verificaBusca()" mat-raised-button (click)="buscarCliente()" color="primary">
+                Buscar
+            </button>
+            <button mat-raised-button (click)="cancel()" color="warn">
+                Cancelar
+            </button>
+        </div>
+    </form>
+</mat-card>

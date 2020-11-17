@@ -23,4 +23,8 @@ export class AcompanharPedidoEspecificoComponent implements OnInit {
       this.vendaPlanos = vendaPlanos
     })
   }
+
+  goToBackPage(){
+    window.history.back()
+  }
 }

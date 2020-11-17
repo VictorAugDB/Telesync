@@ -43,6 +43,11 @@ export class ProductService {
     return this.http.get<Plano>(url)
   }
 
+  buscarVendaPlanoPorId(id: number, isVendaId: Boolean = false): Observable<VendaPlano[]> {
+    const url = `${this.baseUrl}/vendaPlano/listarEsp?ids=${id}&isVendaId=${isVendaId}`
+    return this.http.get<VendaPlano[]>(url)
+  }
+
   deletarVenda(id: number): Observable<Venda> {
     const url = `${this.baseUrl}/venda/deletar?ids=${id}`
     return this.http.delete<Venda>(url, {responseType: 'text' as 'json'})
@@ -76,6 +81,11 @@ export class ProductService {
   altVenda(venda: Venda): Observable<Venda> {
     const url = `${this.baseUrl}/venda/alterar`
     return this.http.put<Venda>(url, venda, {responseType: 'text' as 'json'});
+  }
+
+  altVendaPlano(vendaPlano: VendaPlano): Observable<VendaPlano>{
+    const url = `${this.baseUrl}/vendaPlano/alterar`
+    return this.http.put<VendaPlano>(url, vendaPlano, {responseType: 'text' as 'json'})
   }
 
   errorHandler(e: any): Observable<any> {

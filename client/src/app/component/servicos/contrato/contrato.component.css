@@ -7,8 +7,6 @@
 
 .home{
     width: 100%;
-    min-width: 1100px;
-    min-height: 620px;
     display: flex;
     flex-direction: column;
 }
@@ -29,14 +27,29 @@
     align-items: center;
 }
 
+.home .title {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+    font-family: 'Roboto Slab', sans-serif;
+    text-align: center;
+}
+
+.home .subtitle {
+    font-size: 1.1rem;
+    font-family: 'Roboto Slab', sans-serif;
+    text-align: center;
+}
+
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 450px;
     position: relative;
+    width: 100%;
     align-items: center;
     justify-content: center;
 }
+
 
 .txt_contrato{
     overflow:scroll;

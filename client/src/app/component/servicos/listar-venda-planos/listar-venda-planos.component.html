@@ -1,4 +1,7 @@
 <div class="mat-elevation-z2">
+  <div class="title">
+    <h2>Gerenciar Planos</h2>
+  </div>
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- codVendaPlano Column -->
     <ng-container matColumnDef="codVendaPlano">
@@ -47,15 +50,21 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo do Plano</th>
       <td mat-cell *matCellDef="let row">{{row.plano.tipoPlano}}</td>
     </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Editar</th>
+      <td mat-cell *matCellDef="let row">
+        <a routerLink="alterar-plano/{{row.codVendaPlano}}">
+          <i class="material-icons edit">
+            edit
+          </i>
+        </a>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator
-      [length]="dataSource?.data.length"
-      [pageIndex]="0"
-      [pageSize]="5"
-      [pageSizeOptions]="[5, 10, 15, 20]">
+  <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 15, 20]">
   </mat-paginator>
 </div>

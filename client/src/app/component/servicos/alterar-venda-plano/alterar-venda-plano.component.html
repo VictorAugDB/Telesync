@@ -1,0 +1,53 @@
+<mat-card class="formularios">
+    <div class="header">
+        <img src="../../../assets/logo.PNG" alt="logo">
+        <img class="header_home" src="../../../assets/logo_celular.PNG">
+    </div>
+    <form [formGroup]="formVendaPlano" class="campos">
+        <mat-card class="cardVendaPlano">
+            <div>
+                <h2>Alterar Plano</h2>
+            </div>
+            <mat-form-field (click)="gerarImeiTelefone()">
+                <mat-label>Escolha um plano</mat-label>
+                <mat-select [(value)]="selected" formControlName="nomePlano" name="nomePlano">
+                    <mat-option [value]="planos[0]?.codPlano -1">{{planos[0]?.nomePlano}}</mat-option>
+                    <mat-option [value]="planos[1]?.codPlano -1">{{planos[1]?.nomePlano}}</mat-option>
+                    <mat-option [value]="planos[2]?.codPlano -1">{{planos[2]?.nomePlano}}</mat-option>
+                    <mat-option [value]="planos[3]?.codPlano -1">{{planos[3]?.nomePlano}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input [ngModel]="planos[selected]?.valorPlano" matInput placeholder="Valor do plano"
+                    formControlName="valorPlano" name="valorPlano">
+            </mat-form-field>
+            <mat-form-field>
+                <input [ngModel]="planos[selected]?.cicloDias" matInput placeholder="Ciclo de cobrança"
+                    formControlName="cicloDias" name="cicloDias">
+            </mat-form-field>
+            <mat-form-field>
+                <input [ngModel]="planos[selected]?.tipoPlano" matInput placeholder="Tipo do plano"
+                    formControlName="tipoPlano" name="tipoPlano">
+            </mat-form-field>
+            <mat-form-field>
+                <input [(ngModel)]="vendaPlano.ddd" matInput placeholder="DDD" formControlName="ddd" name="ddd">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [(ngModel)]="vendaPlano.imei" matInput placeholder="Número do Chip"
+                    formControlName="imei" name="imei">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [(ngModel)]="vendaPlano.numeroTelefone" matInput placeholder="Número de Telefone"
+                    formControlName="numeroTelefone" name="numeroTelefone">
+            </mat-form-field>
+            <div class="container-buttons">
+                <button [disabled]="formVendaPlano.invalid" mat-raised-button color="primary" (click)="alterarVendaPlano()">
+                    Adicionar
+                </button>
+                <button mat-raised-button color="warn" (click)="cancel()">
+                    Cancelar
+                </button>
+            </div>
+        </mat-card>
+    </form>
+</mat-card>

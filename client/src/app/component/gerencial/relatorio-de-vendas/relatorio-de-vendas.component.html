@@ -1,0 +1,36 @@
+<mat-card class="home">
+    <div class="header">
+        <img src="../../../assets/logo.PNG" class="logo" alt="logo" routerLink="/">
+        <p class="header_home">Seja bem vindo sr(a) <img src="../../../assets/user.PNG"></p>
+    </div>
+    <div class="container">
+        <div>
+            <h2>Relatório de Vendas</h2>
+        </div>
+        <div class="date">
+            <ul>
+                <mat-form-field>
+                    <mat-label>Data Inicial</mat-label>
+                    <input matInput [matDatepicker]="pickerDtInicial" name="dtInicial">
+                    <mat-datepicker-toggle matSuffix [for]="pickerDtInicial"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerDtInicial></mat-datepicker>
+                </mat-form-field>
+            </ul>
+            <ul>
+                <mat-form-field>
+                    <mat-label>Data Final</mat-label>
+                    <input matInput [matDatepicker]="pickerDtFinal" name="dtFinal">
+                    <mat-datepicker-toggle matSuffix [for]="pickerDtFinal"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerDtFinal></mat-datepicker>
+                </mat-form-field>
+            </ul>
+        </div>
+        <div>
+            <textarea class="txt_contrato" cols="100" rows="20"></textarea>
+        </div>
+        <div class="buttons">
+            <button mat-raised-button class="btn_ação" color="primary">Gerar Relatório</button>
+            <button mat-raised-button class="btn_ação" color="primary">Imprimir</button>
+        </div>
+    </div>
+</mat-card>

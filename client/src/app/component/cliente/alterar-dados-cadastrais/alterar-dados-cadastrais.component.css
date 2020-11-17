@@ -1,0 +1,77 @@
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    margin: 20px 15px 0px 0px;
+}
+
+
+mat-form-field{
+    margin-right: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    background-color: #FFF;
+    border-bottom: 5px solid rgb(253,71,85);
+    margin: 0px 10px 0px 10px
+}
+
+.header_home{
+    display: flex;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-buttons{
+    display: flex;
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.cadastro{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    flex-wrap: wrap;
+
+    flex-direction: row;
+}
+
+.cadastroLogin{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 10px 10px 86px 10px;
+
+    flex-direction: column;
+}
+
+.campos{
+    display: flex;
+
+
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.corpo{
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    height: 95%;
+}

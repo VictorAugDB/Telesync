@@ -1,0 +1,23 @@
+<mat-card class="home">
+    <div class="content">
+        <form (ngSubmit)="onSubmit()" class="form-login" #form="ngForm">
+            <img class="logo" src="../../../assets/logo_celular.PNG" alt="logo" routerLink="/">
+            <mat-form-field>
+                <input matInput class="form-control" type="email" name="email" id="email" [(ngModel)]="login.username"
+                    placeholder="Email" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput class="form-control" type="password" name="password" id="password"
+                    [(ngModel)]="login.password" placeholder="Password" required>
+            </mat-form-field>
+            <div class="container">
+                <a class="signup" (click)="navigateToCadastro()">Cadastre-se</a>
+                <a class="forgot-password" (click)="navigateToRecuperarSenha()">Esqueci minha senha</a>
+                <button type="submit" mat-raised-button [disabled]="form.form.invalid" class="btn_login"
+                    color="primary">
+                    Logar
+                </button>
+            </div>
+        </form>
+    </div>
+</mat-card>
