@@ -1,6 +1,6 @@
 import { Cliente } from './../../component/cliente/client.model';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 import { ClientService } from 'src/app/component/cliente/client.service';
 
@@ -13,7 +13,7 @@ export class TaskListComponent implements OnInit {
   deCodeToken = this.authenticationService.decodePayLoadJWT()
   cliente: Cliente;
 
-  constructor(private authenticationService: AuthenticationService, private clientService: ClientService) { }
+  constructor(private authenticationService: AuthenticationService, private clientService: ClientService, private router: Router) { }
 
   ngOnInit(): void {
     if (!this.deCodeToken.isFuncionario) {
@@ -26,6 +26,15 @@ export class TaskListComponent implements OnInit {
   getPermissao() {
     const token = this.authenticationService.decodePayLoadJWT()
     return token.isFuncionario;
+  }
+
+  logout(){
+    if(this.authenticationService.isUserLoggedIn()){
+      this.authenticationService.logoutUser()
+      this.router.navigate(['/login'])
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
 
 }

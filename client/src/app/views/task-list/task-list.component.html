@@ -1,7 +1,7 @@
 <mat-card class="home">
     <div class="header">
         <img src="../../../assets/logo.PNG" alt="logo">
-        <p *ngIf="!getPermissao()" class="header_home">Seja bem vindo sr(a) {{cliente.nomeCliente}} <img src="../../../assets/user.PNG"></p>
+        <p *ngIf="!getPermissao()" class="header_home">Seja bem vindo sr(a) {{cliente?.nomeCliente}} <img src="../../../assets/user.PNG"></p>
     </div>
     <div class="container">
         <div *ngIf="getPermissao()" class="img_link" routerLink="/cadastro">
@@ -39,6 +39,12 @@
                 <img  class="img" src="../../../assets/relatorios.svg" alt="relatórios">
             </div>
             <p class="ação">Gerar Relatórios</p>
+        </div>
+        <div class="img_link" (click)="logout()">
+            <div class="img-div">
+                <img  class="img" src="../../../assets/logout.svg" alt="logout">
+            </div>
+            <p class="ação">Logout</p>
         </div>
         <!--<div class="btn_link">
             <button mat-raised-button routerLink="/crud-product" class="btn_cadastro" color="primary">Comprar

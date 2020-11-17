@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Cliente } from './../../component/cliente/client.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +15,7 @@ export class AuthenticationService {
 
   baseUrl = "/api"
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient, private router: Router) {  }
 
   async login(user: any){
     const result = await this.http.post<any>(`${this.baseUrl}/auth`, user).toPromise();
@@ -61,6 +62,7 @@ export class AuthenticationService {
     if(!token){
       return false;
     } else if(this.isTokenExpired(token)){
+      this.logoutUser();
       return false;
     }
 
@@ -73,5 +75,10 @@ export class AuthenticationService {
     } catch(error){
       return null;
     }
+  }
+
+  logoutUser(){
+    localStorage.removeItem('token')
+    this.router.navigate(['/events'])
   }
 }
