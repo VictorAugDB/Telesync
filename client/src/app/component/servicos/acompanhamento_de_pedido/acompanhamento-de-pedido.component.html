@@ -1,9 +1,13 @@
 <mat-card class="home">
     <div class="header">
         <img src="../../../assets/logo.PNG" class="logo" alt="logo" routerLink="/">
-        <p class="header_home">Seja bem vindo sr(a) <img src="../../../assets/user.PNG"></p>
     </div>
     <div class="container">
         <app-listar-vendas class="listar-vendas"></app-listar-vendas>
+        <div (click)="goToBackPage()" class="backspace">
+            <i class="material-icons">
+                keyboard_backspace
+            </i>
+        </div>
     </div>
 </mat-card>

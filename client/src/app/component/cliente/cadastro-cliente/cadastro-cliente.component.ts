@@ -68,12 +68,12 @@ export class CadastroClienteComponent implements OnInit {
   cadastrarCliente(): void{
     this.clientService.cadastrar(this.cliente).subscribe(()=>{
       this.clientService.showMessage('Operação Executada com sucesso!!!')
-      this.router.navigate(['/crud-cliente'])
+      this.router.navigate([''])
     })
   }
 
   cancel(){
-    this.router.navigate(['/crud-cliente'])
+    this.router.navigate([''])
   }
 
   public validacaoLetras = { '0': { pattern: new RegExp('\[a-zA-Z\]')} };

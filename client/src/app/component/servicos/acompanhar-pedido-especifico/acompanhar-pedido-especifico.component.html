@@ -1,7 +1,6 @@
 <mat-card class="home">
     <div class="header">
-        <img src="../../../assets/logo.PNG" class="logo" alt="logo" routerLink="/acompanhamento-de-pedido">
-        <p class="header_home">Seja bem vindo sr(a) <img src="../../../assets/user.PNG"></p>
+        <img src="../../../assets/logo.PNG" class="logo" alt="logo" (click)="goToBackPage()">
     </div>
     <div class="container">
 
@@ -25,10 +24,6 @@
                     <h3 class="title">Recibo</h3>
                     <div class="dados-plano">
                         <div class="dados-plano-header">
-                            <ul>
-                                <h3>Código Venda/Plano</h3>
-                                <p *ngFor="let vendaPlano of vendaPlanos">{{vendaPlano.codVendaPlano}}</p>
-                            </ul>
                             <ul>
                                 <h3>Descrição</h3>
                                 <p *ngFor="let vendaPlano of vendaPlanos">{{vendaPlano.venda.obs}}</p>
@@ -86,7 +81,7 @@
                     </ul>
                     <ul>
                         <h3 class="title-dados">CEP</h3>
-                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.cpfCliente.cepCliente}}</p>
+                        <p class="paragrafo">{{vendaPlanos[0]?.venda.cliente.cepCliente}}</p>
                     </ul>
                     <ul>
                         <h3 class="title-dados">Logradouro</h3>
@@ -114,6 +109,11 @@
                     </ul>
                 </div>
             </div>
+        </div>
+        <div (click)="goToBackPage()" class="backspace">
+            <i class="material-icons">
+                keyboard_backspace
+            </i>
         </div>
     </div>
 </mat-card>

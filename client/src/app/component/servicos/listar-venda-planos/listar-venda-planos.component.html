@@ -1,4 +1,7 @@
 <div class="mat-elevation-z2">
+  <div class="title">
+    <h2>Gerenciar Planos</h2>
+  </div>
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- codVendaPlano Column -->
     <ng-container matColumnDef="codVendaPlano">
@@ -61,10 +64,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator
-      [length]="dataSource?.data.length"
-      [pageIndex]="0"
-      [pageSize]="5"
-      [pageSizeOptions]="[5, 10, 15, 20]">
+  <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 15, 20]">
   </mat-paginator>
 </div>

@@ -4,7 +4,13 @@
         <img class="header_home" src="../../../assets/logo_celular.PNG">
     </div>
     <form [formGroup]="formulario" class="campos">
+        <div>
+            <h2>Alterar Dados Cadastrais</h2>
+        </div>
         <mat-card class="cadastro">
+            <mat-form-field *ngIf="getPermissao()">
+                <input matInput placeholder="Código do CLiente" formControlName="codCliente" [(ngModel)]="codClienteVend">
+            </mat-form-field>
             <mat-form-field>
                 <input mask="000.000.000.99" matInput placeholder="CPF" formControlName="cpfCliente"
                     [(ngModel)]="cliente.cpfCliente">
@@ -21,20 +27,21 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Sexo</mat-label>
-                <mat-select [(value)]="cliente.sexoCliente" name="sexoCliente" formControlName="sexoCliente">
+                <mat-select [(ngModel)]="cliente.sexoCliente" name="sexoCliente"
+                    formControlName="sexoCliente">
                     <mat-option>None</mat-option>
-                    <mat-option value="M">Masculino</mat-option>
-                    <mat-option value="F">Feminino</mat-option>
+                    <mat-option value="m">Masculino</mat-option>
+                    <mat-option value="f">Feminino</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Estado Civil</mat-label>
-                <mat-select [(value)]="cliente.estadoCivilCliente" name="estadoCivilCliente"
+                <mat-select [(ngModel)]="cliente.estadoCivilCliente" name="estadoCivilCliente"
                     formControlName="estadoCivilCliente">
                     <mat-option>None</mat-option>
                     <mat-option value="S">Solteiro(a)</mat-option>
                     <mat-option value="C">Casado(a)</mat-option>
-                    <mat-option value="S">Separado(a)</mat-option>
+                    <mat-option value="SE">Separado(a)</mat-option>
                     <mat-option value="D">Divorciado(a)</mat-option>
                     <mat-option value="V">Víuvo(a)</mat-option>
                 </mat-select>
@@ -79,6 +86,9 @@
         <div class="container-buttons">
             <button [disabled]="formulario.invalid" mat-raised-button (click)="alterarDadosCliente()" color="primary">
                 Salvar
+            </button>
+            <button *ngIf="getPermissao()" [disabled]="verificaBusca()" mat-raised-button (click)="buscarCliente()" color="primary">
+                Buscar
             </button>
             <button mat-raised-button (click)="cancel()" color="warn">
                 Cancelar

@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../shared/authentication.service';
 
@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService, private router: Router) {  }
 
   ngOnInit() {
+    if(this.authenticationService.isUserLoggedIn()){
+      this.router.navigate(['']);
+    }
   }
 
   async onSubmit(){

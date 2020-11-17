@@ -9,6 +9,7 @@ import { ListarVendasDataSource } from './listar-vendas-datasource';
 import { ClientService } from '../../cliente/client.service';
 import { MatTableDataSource } from '@angular/material/table'
 import { ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 
 @Component({
   selector: 'app-listar-vendas',
@@ -20,6 +21,7 @@ export class ListarVendasComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<Venda>;
   dataSource = new MatTableDataSource();
+  deCodeToken = this.authenticationService.decodePayLoadJWT();
 
   cliente: Cliente = null;
 
@@ -36,19 +38,27 @@ export class ListarVendasComponent implements AfterViewInit, OnInit {
 
   //dataSource: ListarVendasDataSource = null;
 
-  constructor(private productService: ProductService, private clientService: ClientService, private route: ActivatedRoute) {
+  constructor(private productService: ProductService, private clientService: ClientService, private route: ActivatedRoute, private authenticationService: AuthenticationService) {
   }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['codVenda', 'quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'statusPagamento', 'action', 'edit'];
+  displayedColumns = [];
 
   ngOnInit() {
-    
-    const id = parseInt(this.route.snapshot.paramMap.get('id'))
-    this.productService.buscarVendasCliente(id).subscribe(vendas => {
-      this.vendas = vendas;
-      this.dataSource = new MatTableDataSource(vendas)
-    })
+    this.displayedColumnsByPermission()
+
+    if (this.deCodeToken.isFuncionario) {
+      const id = parseInt(this.route.snapshot.paramMap.get('id-cliente'))
+      this.productService.buscarVendasCliente(id).subscribe(vendas => {
+        this.vendas = vendas;
+        this.dataSource = new MatTableDataSource(vendas)
+      })
+    }else{
+      this.productService.buscarVendasCliente(this.deCodeToken.codUsuario).subscribe(vendas => {
+        this.vendas = vendas;
+        this.dataSource = new MatTableDataSource(vendas)
+      })
+    }
   }
 
   ngAfterViewInit() {
@@ -59,8 +69,15 @@ export class ListarVendasComponent implements AfterViewInit, OnInit {
     }, 500)
   }
 
-  applyFilter(filterValue: string){
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  displayedColumnsByPermission(){
+    if(this.deCodeToken.isFuncionario){
+      this. displayedColumns = ['codVenda', 'quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'statusPagamento', 'action', 'edit'];
+    }else{
+      this.displayedColumns = ['quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'statusPagamento', 'action', 'edit'];
+    }
+  }
 }

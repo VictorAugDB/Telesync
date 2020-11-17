@@ -1,12 +1,14 @@
 .full-width-table {
-  height: 100%;
+  width: 100%;
 }
 
 .mat-row {
+  width: 80%;
   height: 100%;
 }
 
 .mat-cell {
+  width: 80%;
   padding: 5px 5px 5px 0;
 }
 
@@ -29,6 +31,8 @@ i.edit{
 
 .home{
   width: 100%;
+  margin: 0px;
+  padding: 0px;
   flex-direction: column;
 }
 

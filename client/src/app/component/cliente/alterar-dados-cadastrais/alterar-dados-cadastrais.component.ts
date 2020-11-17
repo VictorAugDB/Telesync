@@ -3,8 +3,9 @@ import { ClientService } from './../client.service';
 import { Cliente } from './../client.model';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 
-function setActualDate(){
+function setActualDate() {
   let date = new Date();
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 }
@@ -15,6 +16,10 @@ function setActualDate(){
   styleUrls: ['./alterar-dados-cadastrais.component.css']
 })
 export class AlterarDadosCadastraisComponent implements OnInit {
+
+  deCodeToken = this.authenticationService.decodePayLoadJWT()
+  id = this.deCodeToken.codUsuario;
+  codClienteVend = null;
 
   formulario: FormGroup;
 
@@ -34,26 +39,27 @@ export class AlterarDadosCadastraisComponent implements OnInit {
     profissaoCliente: '',
     liberacaoCredito: 2,
     dtCadastroCliente: setActualDate(),
-    login:{
+    login: {
       email: '',
       senha: '',
-      permissao: 0   
+      permissao: 0
     }
   }
 
-  constructor(private clientService: ClientService, private router: Router, private fb: FormBuilder) { }
+  constructor(private clientService: ClientService, private router: Router, private fb: FormBuilder, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-    const id = 1;
-    this.clientService.buscarPorId(id).subscribe(cliente => {
-      this.cliente = cliente.find(cliente => true)
-    });
+    if (!this.deCodeToken.isFuncionario) {
+      this.clientService.buscarPorId(this.id).subscribe(cliente => {
+        this.cliente = cliente.find(cliente => true)
+      });
+    }
 
     this.formulario = this.fb.group({
-      cpfCliente: [{value: '', disabled: true}, Validators.compose([Validators.required, Validators.pattern('[0-9 ]*')])],
+      cpfCliente: [{ value: '', disabled: true }, Validators.compose([Validators.required, Validators.pattern('[0-9 ]*')])],
       nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       dtNascCliente: ['', Validators.required],
-      sexoCliente: ['', Validators.required],
+      sexoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       estadoCivilCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       nomeMaeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       ufCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
@@ -63,20 +69,41 @@ export class AlterarDadosCadastraisComponent implements OnInit {
       numeroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      complementoCliente: ''
+      complementoCliente: '',
+      codCliente: ''
     })
   }
 
-  alterarDadosCliente(): void{
-    this.clientService.altDadosCliente(this.cliente).subscribe(()=>{
+  alterarDadosCliente(): void {
+    this.clientService.altDadosCliente(this.cliente).subscribe(() => {
       this.clientService.showMessage('Operação Executada com sucesso!!!')
-      this.router.navigate(['/crud-cliente'])
+      this.router.navigate([''])
     })
   }
 
-  cancel(){
-    this.router.navigate(['/crud-cliente'])
+  buscarCliente(): void {
+    if (this.deCodeToken.isFuncionario) {
+      this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
+        this.cliente = cliente.find(cliente => true)
+      });
+    }
   }
 
-  public validacaoLetras = { '0': { pattern: new RegExp('\[a-zA-Z\]')} };
+  getPermissao() {
+    const token = this.deCodeToken
+    return token.isFuncionario;
+  }
+
+  verificaBusca(): boolean{
+    if(this.codClienteVend !== null){
+      return false;
+    }
+    return true;
+  }
+
+  cancel() {
+    this.router.navigate([''])
+  }
+
+  public validacaoLetras = { '0': { pattern: new RegExp('\[a-zA-Z\]') } };
 }

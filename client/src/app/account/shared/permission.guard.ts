@@ -14,13 +14,16 @@ export class PermissionGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    const deCodeToken = this.authenticationService.decodePayLoadJWT()
-    if (deCodeToken.isFuncionario) {
-      return true
-    }else {
-      this.router.navigate(['']);
-      return false;
+    if (this.authenticationService.isUserLoggedIn()) {
+      const deCodeToken = this.authenticationService.decodePayLoadJWT()
+      if (deCodeToken.isFuncionario && this.router.url !== '/login') {
+        return true
+      } else {
+        this.router.navigate(['']);
+        return false;
+      }
+    } else{
+      return true;
     }
   }
-
 }

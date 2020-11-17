@@ -39,10 +39,10 @@ const routes: Routes = [
       { path: "relatórios", component: RelatoriosComponent, canActivate: [PermissionGuard] },
       { path: "relatórios/relatório-vendas", component: RelatorioDeVendasComponent, canActivate: [PermissionGuard] },
       { path: "listar-clientes", component: ListarClientesComponent, canActivate: [PermissionGuard] },
-      { path: "listar-clientes/:id/acompanhar-vendas", component: AcompanhamentoDePedidoComponent, canActivate: [PermissionGuard] },
-      { path: "listar-clientes/:id/acompanhar-vendas/venda/:id", component: AcompanharPedidoEspecificoComponent, canActivate: [PermissionGuard] },
-      { path: "listar-clientes/:id/acompanhar-vendas/alterar-venda/:id", component: AlterarVendaComponent, canActivate: [PermissionGuard] },
-      { path: "listar-clientes/:id/vendas/alterar-venda/:id/alterar-plano/:id-venda-plano", component: AlterarVendaPlanoComponent, canActivate: [PermissionGuard] }
+      { path: "listar-clientes/:id-cliente/acompanhar-vendas", component: AcompanhamentoDePedidoComponent, canActivate: [PermissionGuard] },
+      { path: "listar-clientes/:id-cliente/acompanhar-vendas/venda/:id", component: AcompanharPedidoEspecificoComponent, canActivate: [PermissionGuard] },
+      { path: "listar-clientes/:id-cliente/acompanhar-vendas/alterar-venda/:id", component: AlterarVendaComponent, canActivate: [PermissionGuard] },
+      { path: "listar-clientes/:id-cliente/acompanhar-vendas/alterar-venda/:id/alterar-plano/:id-venda-plano", component: AlterarVendaPlanoComponent, canActivate: [PermissionGuard] }
     ],
     canActivate: [AuthGuard]
   },
@@ -51,10 +51,11 @@ const routes: Routes = [
     component: AuthenticationComponent,
     children:[
       { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: "login", component: LoginComponent },
+      { path: "login", component: LoginComponent},
       { path: "recuperar-senha", component: RecuperarSenhaComponent },
       { path: "cadastro", component: CadastroClienteComponent },
     ],
+    canActivate: [PermissionGuard] 
   }];
 
 @NgModule({

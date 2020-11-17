@@ -1,7 +1,7 @@
 <mat-card class="home">
     <div class="header">
         <img src="../../../assets/logo.PNG" alt="logo">
-        <p class="header_home">Seja bem vindo sr(a) <img src="../../../assets/user.PNG"></p>
+        <p *ngIf="!getPermissao()" class="header_home">Seja bem vindo sr(a) {{cliente.nomeCliente}} <img src="../../../assets/user.PNG"></p>
     </div>
     <div class="container">
         <div *ngIf="getPermissao()" class="img_link" routerLink="/cadastro">
