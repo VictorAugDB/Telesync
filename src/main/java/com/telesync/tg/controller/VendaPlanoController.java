@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -61,11 +60,11 @@ public class VendaPlanoController {
     }
 
     @PreAuthorize("hasAuthority('BASICO')")
-    @DeleteMapping(value = "/deletar")
-    public ResponseEntity<String> deletar(@RequestParam List<Integer> ids) {
+    @PostMapping(value = "/cancelar")
+    public ResponseEntity<String> cancelar(@RequestParam List<Integer> ids) {
         try {
             vendaPlanoDao.deletar(ids);
-            return ResponseEntity.ok("Venda Plano(s) excluidos com sucesso");
+            return ResponseEntity.ok("Venda Plano(s) cancelados com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
