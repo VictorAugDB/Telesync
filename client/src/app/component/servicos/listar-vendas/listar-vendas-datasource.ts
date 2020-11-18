@@ -23,7 +23,7 @@ export class ListarVendasDataSource extends DataSource<Venda> {
       valorTotal: null,
       obs: '',
       formaPagamento: '',
-      statusPagamento: null,
+      status: null,
       cliente: this.cliente
   }]
   paginator: MatPaginator;

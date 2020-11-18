@@ -63,7 +63,7 @@ export class CadastroPlanoComponent implements OnInit {
     valorTotal: 0,
     obs: '',
     formaPagamento: 'BOLETO',
-    statusPagamento: 1,
+    status: true,
     cliente: this.cliente
   }
 
@@ -128,7 +128,7 @@ export class CadastroPlanoComponent implements OnInit {
 
   buscarPlano(): void {
     this.productService.buscarPlanoPorId(this.selected).subscribe(plano => {
-      this.plano = plano
+      this.plano = plano.find(plano => true)
     });
   }
 
