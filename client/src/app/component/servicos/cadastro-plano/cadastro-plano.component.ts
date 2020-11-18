@@ -100,6 +100,8 @@ export class CadastroPlanoComponent implements OnInit {
       formaPagamento: ['', Validators.required],
       valorTotal: [{ value: '', disabled: true }, Validators.required],
       codCliente: [{ value: '' }, Validators.required],
+      nomeCliente: [''],
+      cpfCliente: [''],
     })
   }
 
@@ -131,29 +133,17 @@ export class CadastroPlanoComponent implements OnInit {
 
   cadastrarVenda(): void {
     if (this.venda.codVenda == null) {
-      if (this.authenticationService.decodePayLoadJWT().isFuncionario) {
-        this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
-          this.cliente = cliente.find(cliente => true)
-          this.venda.cliente = cliente.find(cliente => true)
-        });
-        setTimeout(() => 
-        this.productService.cadVenda(this.venda).subscribe((venda) => {
-          this.venda = venda
-          this.vendaPlano.venda = venda
-        }), 100);
-      } else {
-        this.productService.cadVenda(this.venda).subscribe((venda) => {
-          this.venda = venda
-          this.vendaPlano.venda = venda
-        })
-      }
+      this.productService.cadVenda(this.venda).subscribe((venda) => {
+        this.venda = venda
+        this.vendaPlano.venda = venda
+      })
     }
   }
 
   excluirVenda(): void {
     this.productService.deletarVenda(this.venda.codVenda).subscribe(() => {
       this.productService.showMessage('Venda Cancelada!')
-      this.router.navigate(['/crud-product']);
+      this.router.navigate([''])
     })
   }
 
@@ -174,10 +164,14 @@ export class CadastroPlanoComponent implements OnInit {
   }
 
   excluirTudo() {
-    this.excluirVendaPlanos();
-    setTimeout(() => {
-      this.excluirVenda();
-    }, 500)
+    if (this.codigosVendaPlano.length > 0) {
+      this.excluirVendaPlanos();
+      setTimeout(() => {
+        this.excluirVenda();
+      }, 500)
+    } else {
+      this.router.navigate([''])
+    }
   }
 
   cadastrarVendaVendaPlano() {
@@ -215,6 +209,16 @@ export class CadastroPlanoComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/crud-product'])
+  }
+
+  paunoseucu() {
+    const pau = document.getElementById('codCliente')
+    pau.addEventListener('change', (event) => {
+      this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
+        this.cliente = cliente.find(cliente => true)
+        this.venda.cliente = cliente.find(cliente => true)
+      });
+    })
   }
 
 }

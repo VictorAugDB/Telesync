@@ -58,7 +58,6 @@ export class AlterarDadosCadastraisComponent implements OnInit {
     this.formulario = this.fb.group({
       cpfCliente: [{ value: '', disabled: true }, Validators.compose([Validators.required, Validators.pattern('[0-9 ]*')])],
       nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      dtNascCliente: ['', Validators.required],
       sexoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       estadoCivilCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       nomeMaeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],

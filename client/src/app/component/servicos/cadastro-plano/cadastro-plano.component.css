@@ -54,23 +54,8 @@ button{
     display: flex;
 }
 
-.btnFinalizar{
-    position: absolute;
-
-    left: 30px;
-    bottom: 55px;
-}
-
-.btnCancelar{
-    position: absolute;
-
-    left: 470px;
-    bottom: 55px;
-}
-
 .formularios{
     position: relative;
-    
 
     align-items: center;
     justify-content: center;
