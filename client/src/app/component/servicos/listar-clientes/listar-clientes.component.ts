@@ -21,7 +21,7 @@ export class ListarClientesComponent implements AfterViewInit, OnInit {
   cliente: Cliente[] = null
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['codCliente', 'cpfCliente', 'nomeCliente', 'dtNascCliente', 'sexoCliente', 'estadoCivilCliente', 'nomeMaeCliente', 'ufCliente', 'cidadeCliente', 'logradouroCliente', 'cepCliente', 'numeroCliente', 'bairroCliente', 'profissaoCliente', 'liberacaoCredito', 'dtCadastroCliente', 'edit'];
+  displayedColumns = ['codCliente', 'cpfCliente', 'nomeCliente', 'dtNascCliente', 'sexoCliente', 'estadoCivilCliente', 'nomeMaeCliente', 'liberacaoCredito', 'dtCadastroCliente', 'edit'];
 
   constructor(private clientService: ClientService) { }
 
