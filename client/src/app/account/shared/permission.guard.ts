@@ -18,11 +18,14 @@ export class PermissionGuard implements CanActivate {
       const deCodeToken = this.authenticationService.decodePayLoadJWT()
       if (deCodeToken.isFuncionario && this.router.url !== '/login') {
         return true
+      } else if (deCodeToken.codPermissao !== 2 && this.router.url === '/relatório-vendas') {
+        this.router.navigate(['']);
+        return false;
       } else {
         this.router.navigate(['']);
         return false;
       }
-    } else{
+    } else {
       return true;
     }
   }
