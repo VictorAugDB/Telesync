@@ -7,6 +7,14 @@ i.edit{
   margin-right: 10px;
 }
 
+i.cancel{
+  color: rgb(255, 56, 56);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+
+
 .mat-row {
   height: auto;
 }

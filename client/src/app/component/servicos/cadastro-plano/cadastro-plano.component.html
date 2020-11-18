@@ -20,7 +20,7 @@
         <mat-card class="cardVenda">
             <mat-form-field *ngIf="getPermissao()">
                 <input [(ngModel)]="codClienteVend" id="codCliente" matInput placeholder="Código do Cliente"
-                    formControlName="codCliente" name="codCliente" (click)="paunoseucu()">
+                    formControlName="codCliente" name="codCliente" (click)="buscarClienteOnChange()">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Forma de Pagamento</mat-label>

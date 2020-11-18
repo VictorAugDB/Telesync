@@ -72,6 +72,7 @@ export class CadastroPlanoComponent implements OnInit {
     numeroTelefone: null,
     ddd: '',
     imei: null,
+    status: null,
     venda: this.venda,
     plano: this.planos[this.selected]
   }
@@ -211,9 +212,9 @@ export class CadastroPlanoComponent implements OnInit {
     this.router.navigate(['/crud-product'])
   }
 
-  paunoseucu() {
-    const pau = document.getElementById('codCliente')
-    pau.addEventListener('change', (event) => {
+  buscarClienteOnChange() {
+    const busca = document.getElementById('codCliente')
+    busca.addEventListener('change', (event) => {
       this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
         this.cliente = cliente.find(cliente => true)
         this.venda.cliente = cliente.find(cliente => true)

@@ -24,6 +24,7 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
       numeroTelefone: null,
       ddd: '',
       imei: null,
+      status: null,
       venda: this.venda,
       plano: this.plano
     }];

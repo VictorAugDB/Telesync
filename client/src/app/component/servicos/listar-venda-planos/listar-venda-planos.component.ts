@@ -42,9 +42,24 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
 
   displayedColumnsByPermission(){
     if(this.deCodeToken.isFuncionario){
-      this.displayedColumns = ['codVendaPlano', 'numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit'];
+      this.displayedColumns = ['codVendaPlano', 'numeroTelefone', 'ddd', 'imei', 'status' ,'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit', 'cancel'];
     }else{
-      this.displayedColumns = ['numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit'];
+      this.displayedColumns = ['numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit', 'cancel'];
     }
+  }
+
+  verificaStatus(row){
+    if(row == true){
+      return 'Ativo'
+    }else{
+      return 'Cancelado'
+    }
+  }
+
+  cancelarPlano(row){
+    row.status = false;
+    this.productService.altVendaPlano(row).subscribe(() => {
+      this.productService.showMessage('Venda Cancelada!')
+    })
   }
 }
