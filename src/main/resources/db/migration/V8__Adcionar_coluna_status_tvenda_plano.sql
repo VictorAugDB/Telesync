@@ -1,0 +1,2 @@
+ALTER TABLE tvenda_plano
+ADD COLUMN `status` TINYINT NOT NULL DEFAULT 1 AFTER imei;

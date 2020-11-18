@@ -30,10 +30,11 @@ public class JwtUtil {
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
     }
 
-    public String generateToken(UserDetails userDetails, Integer codUsuario, Boolean isFuncionario) {
+    public String generateToken(UserDetails userDetails, Integer codUsuario, Boolean isFuncionario, int codPermissao) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("codUsuario", codUsuario);
         claims.put("isFuncionario", isFuncionario);
+        claims.put("codPermissao", codPermissao);
         return createToken(claims, userDetails.getUsername());
     }
 
