@@ -3,7 +3,6 @@ package com.telesync.tg.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.telesync.tg.type.FormaPagamentoType;
-import com.telesync.tg.type.StatusPagamentoType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -54,11 +53,10 @@ public class Venda {
 
     private String obs;
 
+    private boolean status;
+
     @Column(name = "codpagamento")
     private FormaPagamentoType formaPagamento;
-
-    @Column(name = "codstatuspag")
-    private StatusPagamentoType statusPagamento;
 
     @ManyToOne
     @JoinColumn(name = "codcliente")
