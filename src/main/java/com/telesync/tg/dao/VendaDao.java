@@ -49,8 +49,13 @@ public class VendaDao extends AbstractDao<Venda> {
     @Override
     public void deletar(List<Integer> ids) {
         final var vendas = listar(ids);
-        repository.deleteInBatch(vendas);
-        log.debug("Venda(s) com o(s) id(s) {} foram excluido(s) com sucesso", ids);
+        if (vendas.isEmpty()) {
+            log.error("Vendas não encontradas");
+        } else {
+            vendas.forEach(v -> v.setStatus(false));
+            repository.saveAll(vendas);
+            log.debug("Venda(s) com o(s) id(s) {} foram cancelado(s) com sucesso", ids);
+        }
     }
 
     private boolean checkIfVendaExists(Venda venda) {
