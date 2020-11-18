@@ -6,6 +6,7 @@ import com.telesync.tg.entity.Funcionario;
 import com.telesync.tg.model.AuthorizationRequest;
 import com.telesync.tg.model.AuthorizationResponse;
 import com.telesync.tg.service.CustomUserDetailService;
+import com.telesync.tg.type.PermissaoType;
 import com.telesync.tg.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,18 +54,25 @@ public class AuthController {
 
         int codUsuario;
         boolean isFuncionario;
+        int codPermissao;
 
         if (userDetails.getAuthorities().size() > 1) {
             final var funcionario = funcionarioDao.getUsuarioByLogin(userDetails);
             codUsuario = funcionario.getCodFuncionario();
             isFuncionario = true;
+            if (userDetails.getAuthorities().size() > 2) {
+                codPermissao = PermissaoType.GERAR_RELATORIO.ordinal();
+            } else {
+                codPermissao = PermissaoType.BUSCA_CLIENTES.ordinal();
+            }
         } else {
             final var cliente = clienteDao.getUsuarioByLogin(userDetails);
             codUsuario = cliente.getCodCliente();
             isFuncionario = false;
+            codPermissao = PermissaoType.BASICO.ordinal();
         }
 
-        final var jwt = jwtUtil.generateToken(userDetails, codUsuario, isFuncionario);
+        final var jwt = jwtUtil.generateToken(userDetails, codUsuario, isFuncionario, codPermissao);
 
         return ResponseEntity.ok(new AuthorizationResponse(jwt));
     }
