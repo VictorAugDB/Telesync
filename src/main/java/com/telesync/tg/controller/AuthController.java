@@ -3,6 +3,7 @@ package com.telesync.tg.controller;
 import com.telesync.tg.dao.Dao;
 import com.telesync.tg.entity.Cliente;
 import com.telesync.tg.entity.Funcionario;
+import com.telesync.tg.helper.ResetSenhaHelper;
 import com.telesync.tg.model.AuthorizationRequest;
 import com.telesync.tg.model.AuthorizationResponse;
 import com.telesync.tg.service.CustomUserDetailService;
@@ -14,10 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collections;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -34,12 +39,15 @@ public class AuthController {
     JwtUtil jwtUtil;
 
     @Autowired
+    ResetSenhaHelper resetSenhaHelper;
+
+    @Autowired
     Dao<Funcionario> funcionarioDao;
 
     @Autowired
     Dao<Cliente> clienteDao;
 
-    @PostMapping
+    @PostMapping(value = "/autenticar")
     public ResponseEntity<?> authenticate(@RequestBody AuthorizationRequest authorizationRequest) {
         try {
             authenticationManager.authenticate(
@@ -75,6 +83,17 @@ public class AuthController {
         final var jwt = jwtUtil.generateToken(userDetails, codUsuario, isFuncionario, codPermissao);
 
         return ResponseEntity.ok(new AuthorizationResponse(jwt));
+    }
+
+    @PostMapping(value = "/resetar-senha")
+    public ResponseEntity<?> resetarSenha(@RequestParam int clienteId, @RequestParam String resposta, @RequestParam String novaSenha) {
+        final var cliente = clienteDao.listar(Collections.singletonList(clienteId)).stream()
+                .findFirst()
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+
+        final var novoCliente = resetSenhaHelper.resetarSenha(cliente, resposta, novaSenha);
+
+        return novoCliente.isPresent() ? ResponseEntity.ok(novoCliente.get()) : ResponseEntity.badRequest().build();
     }
 
 }

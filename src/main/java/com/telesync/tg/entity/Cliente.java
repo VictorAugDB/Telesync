@@ -92,6 +92,13 @@ public class Cliente {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private Date dtCadastroCliente;
 
+    @OneToOne
+    @JoinColumn(name = "codperguntasecreta")
+    private PerguntaSecreta perguntaSecreta;
+
+    @Column(name = "respostasecreta")
+    private String respostaSecreta;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "codlogin")
     private Login login;
