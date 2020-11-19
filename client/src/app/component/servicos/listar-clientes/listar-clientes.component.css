@@ -31,7 +31,15 @@ i.edit{
   width: 100%;
   margin: 0px;
   padding: 0px;
+  display: flex;
+  justify-content: center;
   flex-direction: column;
+}
+
+.backspace{
+  display: block;
+  margin-left: 48%;
+  margin-right: 49.5%;
 }
 
 .header {

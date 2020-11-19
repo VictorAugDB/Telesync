@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientService } from '../../cliente/client.service';
+import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 
 function setActualDate() {
   let date = new Date();
@@ -24,11 +25,16 @@ function setdtVencimento() {
 })
 export class AlterarVendaPlanoComponent implements OnInit {
 
+  idVendaPlano = parseInt(this.route.snapshot.paramMap.get('id-venda-plano'));
+
   idCliente = parseInt(this.route.snapshot.paramMap.get('id-cliente'));
+  codVenda = this.route.snapshot.paramMap.get('id')
 
   formVendaPlano: FormGroup;
 
   selected = null;
+
+  statusAnterior = [];
 
   cliente: Cliente = null;
 
@@ -39,6 +45,8 @@ export class AlterarVendaPlanoComponent implements OnInit {
     cicloDias: null,
     tipoPlano: null
   }]
+
+  vendaPlanos: VendaPlano[] = []
 
   vendaPlano: VendaPlano = {
     numeroTelefone: null,
@@ -60,10 +68,19 @@ export class AlterarVendaPlanoComponent implements OnInit {
     cliente: this.cliente
   }
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private route: ActivatedRoute, private router: Router, private clientService: ClientService) { }
+  constructor(private fb: FormBuilder, private productService: ProductService, private route: ActivatedRoute, private router: Router, private clientService: ClientService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    const idVendaPlano = parseInt(this.route.snapshot.paramMap.get('id-venda-plano'));
+    const id = parseInt(this.route.snapshot.paramMap.get('id'))
+    this.productService.buscarVendaPlanosVendaCliente(id).subscribe(vendaPlanos => {
+      this.vendaPlanos = vendaPlanos
+      vendaPlanos.forEach((el, i) => {
+        if (el.codVendaPlano === this.idVendaPlano) {
+          return (this.vendaPlano = el,
+            this.vendaPlano.venda = el.venda)
+        }
+      })
+    })
 
     this.clientService.buscarPorId(this.idCliente).subscribe(cliente => {
       this.cliente = cliente.find(cliente => true)
@@ -74,7 +91,7 @@ export class AlterarVendaPlanoComponent implements OnInit {
       this.planos = planos;
     })
 
-    this.productService.buscarVendaPlanoPorId(idVendaPlano).subscribe(vendaPlano => {
+    this.productService.buscarVendaPlanoPorId(this.idVendaPlano).subscribe(vendaPlano => {
       const vendaPlan = vendaPlano.find(vendaPlano => true);
       this.vendaPlano = vendaPlan;
       this.vendaPlano.venda = vendaPlan.venda;
@@ -104,46 +121,81 @@ export class AlterarVendaPlanoComponent implements OnInit {
   }
 
   alterarVendaPlano() {
-    const numeroTelefone = this.vendaPlano.numeroTelefone;
-    const imei = this.vendaPlano.imei;
-    this.vendaPlano.numeroTelefone = null;
-    this.vendaPlano.imei = null;
-    if (this.vendaPlano.status == true)
-      this.vendaPlano.status = false;
-    this.productService.altVendaPlano(this.vendaPlano).subscribe(() => {
-      //this.productService.showMessage('Plano Alterado com sucesso!')
-    })
-
-    setTimeout(() => {
-      console.log(this.venda)
-      this.productService.cadVenda(this.venda).subscribe((venda) => {
-        this.venda = venda
-        this.vendaPlano.venda = venda
+    if (this.vendaPlano.venda.status === true) {
+      const numeroTelefone = this.vendaPlano.numeroTelefone;
+      const imei = this.vendaPlano.imei;
+      this.vendaPlanos.forEach((el, i) => {
+        this.statusAnterior.push({ cod: el.codVendaPlano, status: el.status })
+        if (el.status == true)
+          el.status = false;
+        this.productService.altVendaPlano(el).subscribe(() => {
+          //this.productService.showMessage('Plano Alterado com sucesso!')
+        })
       })
-    }, 300)
-    
-    setTimeout(() => {
-      this.vendaPlano.numeroTelefone = numeroTelefone;
-      this.vendaPlano.imei = imei;
-      this.cadastrarVendaPlano()
-    }, 700)
-    
-    setTimeout(() => {
-      this.alterarVenda()
-    }, 700)
+
+
+      this.vendaPlano.venda.status = false
+      setTimeout(() => {
+        this.productService.altVenda(this.vendaPlano.venda).subscribe(() => {
+        })
+      }, 500)
+
+
+      setTimeout(() => {
+        this.productService.cadVenda(this.venda).subscribe((venda) => {
+          this.venda = venda
+          this.vendaPlanos.forEach((el, i) => {
+            el.venda = venda
+          })
+        })
+      }, 400)
+
+      setTimeout(() => {
+        this.cadastrarVendaPlano()
+      }, 700)
+
+      setTimeout(() => {
+        this.alterarVenda()
+      }, 1300)
+
+      setTimeout(() => {
+        this.router.navigate([`listar-clientes/${this.idCliente}/acompanhar-vendas/alterar-venda/${this.codVenda}`])
+      }, 1600)
+    } else {
+      alert('venda já está desativada, impossivel alterar planos')
+    }
   }
 
   cadastrarVendaPlano(): void {
-    this.vendaPlano.codVendaPlano = null;
-    this.vendaPlano.venda = this.venda;
-    this.venda.valorTotal += this.planos[this.selected].valorPlano;
-    this.venda.quantidadeChips += 1;
-    this.vendaPlano.plano = this.planos[this.selected]
-    this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
-      this.productService.showMessage('Operação Executada com sucesso!!!')
-    }),
-      console.log(this.vendaPlano);
-      console.log(this.venda);
+    this.vendaPlanos.forEach((el, i) => {
+      setTimeout(() => {
+        let indexStatus = 0;
+        this.statusAnterior.forEach((el2, j) => {
+          if (el2.cod == el.codVendaPlano) {
+            return indexStatus = j;
+          }
+        })
+        if (el.codVendaPlano !== this.idVendaPlano) {
+          el.codVendaPlano = null;
+          el.status = this.statusAnterior[indexStatus].status
+          this.venda.valorTotal += el.plano.valorPlano;
+          this.venda.quantidadeChips += 1;
+          this.productService.cadVendaPlano(el).subscribe((vendaPlano) => {
+            this.productService.showMessage('Plano')
+          })
+        } else {
+          this.vendaPlano.venda = this.venda
+          this.vendaPlano.status = true
+          this.vendaPlano.codVendaPlano = null;
+          this.venda.valorTotal += this.planos[this.selected].valorPlano;
+          this.venda.quantidadeChips += 1;
+          this.vendaPlano.plano = this.planos[this.selected]
+          this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
+            this.productService.showMessage('Plano')
+          })
+        }
+      }, 300)
+    })
   }
 
   alterarVenda() {
@@ -153,7 +205,6 @@ export class AlterarVendaPlanoComponent implements OnInit {
   }
 
   cancel() {
-    const id = parseInt(this.route.snapshot.paramMap.get('id'))
-    this.router.navigate([`/acompanhamento-de-pedido/alterar-venda/${id}`])
+    this.router.navigate([`listar-clientes/${this.idCliente}/acompanhar-vendas/alterar-venda/${this.codVenda}`])
   }
 }

@@ -72,7 +72,7 @@ export class CadastroPlanoComponent implements OnInit {
     numeroTelefone: null,
     ddd: '',
     imei: null,
-    status: null,
+    status: true,
     venda: this.venda,
     plano: this.planos[this.selected]
   }

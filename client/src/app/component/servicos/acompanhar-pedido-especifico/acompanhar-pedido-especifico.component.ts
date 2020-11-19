@@ -2,8 +2,9 @@ import { Venda } from './../models/product-venda.model';
 import { Plano } from './../models/product-plano.model';
 import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VendaPlano } from '../models/product-venda-plano.model';
+import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 
 @Component({
   selector: 'app-acompanhar-pedido-especifico',
@@ -12,9 +13,11 @@ import { VendaPlano } from '../models/product-venda-plano.model';
 })
 export class AcompanharPedidoEspecificoComponent implements OnInit {
 
+  idCliente = this.route.snapshot.paramMap.get('id-cliente')
   vendaPlanos: VendaPlano[] = []
+  deCodeToken = this.authenticationService.decodePayLoadJWT()
   
-  constructor(private productService: ProductService, private route: ActivatedRoute) {
+  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) {
    }
 
   ngOnInit(): void {
@@ -25,6 +28,10 @@ export class AcompanharPedidoEspecificoComponent implements OnInit {
   }
 
   goToBackPage(){
-    window.history.back()
+    if(this.deCodeToken.isFuncionario){
+      this.router.navigate([`listar-clientes/${this.idCliente}/acompanhar-vendas`])
+    }else{
+      this.router.navigate(['acompanhamento-de-pedido'])
+    }
   }
 }

@@ -34,7 +34,6 @@ const routes: Routes = [
       { path: "acompanhamento-de-pedido", component: AcompanhamentoDePedidoComponent },
       { path: "acompanhamento-de-pedido/venda/:id", component: AcompanharPedidoEspecificoComponent },
       { path: "acompanhamento-de-pedido/alterar-venda/:id", component: AlterarVendaComponent},
-      { path: "acompanhamento-de-pedido/alterar-venda/:id/alterar-plano/:id-venda-plano", component: AlterarVendaPlanoComponent},
       { path: "alterar-dados-cadastrais", component: AlterarDadosCadastraisComponent },
       { path: "relatório-vendas", component: RelatorioDeVendasComponent, canActivate: [PermissionGuard] },
       { path: "listar-clientes", component: ListarClientesComponent, canActivate: [PermissionGuard] },
