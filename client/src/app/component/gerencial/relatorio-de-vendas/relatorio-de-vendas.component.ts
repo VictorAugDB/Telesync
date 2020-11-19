@@ -12,9 +12,6 @@ export class RelatorioDeVendasComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
-    if(this.authenticationService.decodePayLoadJWT().codPermissao !== '2'){
-      this.router.navigate(['']);
-    }
   }
 
 }

@@ -78,6 +78,15 @@
                 <input matInput placeholder="Profissao" formControlName="profissaoCliente"
                     [(ngModel)]="cliente.profissaoCliente">
             </mat-form-field>
+            <mat-form-field>
+                <mat-label>Pergunta Secreta</mat-label>
+                <mat-select name="perguntaSecreta" formControlName="perguntaSecreta">
+                    <mat-option>None</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Resposta" formControlName="respostaPerguntaSecreta">
+            </mat-form-field>
         </mat-card>
         <mat-card class="cadastroLogin">
             <mat-form-field>

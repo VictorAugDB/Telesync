@@ -75,6 +75,10 @@
                 <input matInput placeholder="Profissao" formControlName="profissaoCliente"
                     [(ngModel)]="cliente.profissaoCliente">
             </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="emailCliente"
+                    [(ngModel)]="cliente?.login.email">
+            </mat-form-field>
         </mat-card>
         <div class="container-buttons">
             <button [disabled]="formulario.invalid" mat-raised-button (click)="alterarDadosCliente()" color="primary">

@@ -68,6 +68,7 @@ export class AlterarDadosCadastraisComponent implements OnInit {
       numeroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      emailCliente: ['', Validators.email],
       complementoCliente: '',
       codCliente: ''
     })
