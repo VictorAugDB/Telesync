@@ -44,7 +44,7 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
     if(this.deCodeToken.isFuncionario){
       this.displayedColumns = ['codVendaPlano', 'numeroTelefone', 'ddd', 'imei', 'status' ,'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit', 'cancel'];
     }else{
-      this.displayedColumns = ['numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit', 'cancel'];
+      this.displayedColumns = ['numeroTelefone', 'ddd', 'imei', 'status', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'cancel'];
     }
   }
 
@@ -57,9 +57,13 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
   }
 
   cancelarPlano(row){
+    if(row.status == true){
     row.status = false;
     this.productService.altVendaPlano(row).subscribe(() => {
       this.productService.showMessage('Venda Cancelada!')
     })
+  } else {
+    alert('Plano já está cancelado!')
+  }
   }
 }

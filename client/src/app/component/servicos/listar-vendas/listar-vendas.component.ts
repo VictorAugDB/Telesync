@@ -88,4 +88,9 @@ export class ListarVendasComponent implements AfterViewInit, OnInit {
       return 'Cancelado'
     }
   }
+
+  getPermissao() {
+    const token = this.authenticationService.decodePayLoadJWT()
+    return token.isFuncionario;
+  }
 }

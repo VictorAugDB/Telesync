@@ -1,6 +1,7 @@
 <div class="mat-elevation-z2">
   <div class="search">
-    <h2>Gerenciar Vendas</h2>
+    <h2 *ngIf="!getPermissao()">Gerenciar Pedidos</h2>
+    <h2 *ngIf="getPermissao()">Gerenciar Vendas</h2>
     <mat-form-field>
       <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Buscar">
     </mat-form-field>
