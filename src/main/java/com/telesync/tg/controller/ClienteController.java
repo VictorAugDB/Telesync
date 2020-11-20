@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("cliente")
@@ -65,10 +64,7 @@ public class ClienteController {
     @PostMapping(value = "/inserir")
     public ResponseEntity<?> inserirCliente(@RequestBody String cliente) {
         try {
-            final var response = dao.inserir(cliente);
-            final var responseStatus = response.entrySet().iterator().next().getValue().entrySet().iterator().next().getKey();
-            final var responseMessage = response.entrySet().iterator().next().getValue().entrySet().iterator().next().getValue();
-            return ResponseEntity.status(responseStatus).body(Map.of(response.keySet().iterator().next(), responseMessage));
+            return ResponseEntity.ok(dao.inserir(cliente));
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().body(ex.getMessage());

@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Slf4j
@@ -42,14 +41,14 @@ public class FuncionarioDao extends AbstractDao<Funcionario> {
     }
 
     @Override
-    public Map<Funcionario, Map<Integer, String>> inserir(String entity) throws JsonProcessingException {
+    public Funcionario inserir(String entity) throws JsonProcessingException {
         final var usuario = objectMapper.readValue(entity, Funcionario.class);
         final var login  = usuario.getLogin();
         login.setSenha(passwordEncoder.encode(login.getSenha()));
         usuario.setLogin(login);
         loginRepository.save(login);
         // Validacao ainda nao implementada
-        return Map.of(funcionarioRepository.save(usuario), Map.of(200, ""));
+        return funcionarioRepository.save(usuario);
     }
 
     @Override

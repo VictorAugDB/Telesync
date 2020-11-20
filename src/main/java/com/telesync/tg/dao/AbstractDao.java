@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
-import java.util.Map;
 
 public class AbstractDao<T> implements Dao<T> {
 
@@ -19,7 +18,7 @@ public class AbstractDao<T> implements Dao<T> {
     }
 
     @Override
-    public Map<T, Map<Integer, String>> inserir(String entity) throws JsonProcessingException {
+    public T inserir(String entity) throws JsonProcessingException {
         return null;
     }
 

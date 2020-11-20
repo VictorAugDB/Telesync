@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -44,7 +43,7 @@ public class ClienteDao extends AbstractDao<Cliente> {
     }
 
     @Override
-    public Map<Cliente, Map<Integer, String>> inserir(String entity) throws JsonProcessingException {
+    public Cliente inserir(String entity) throws JsonProcessingException {
         final var usuario = objectMapper.readValue(entity, Cliente.class);
         final var login = usuario.getLogin();
         login.setSenha(passwordEncoder.encode(login.getSenha()));
@@ -52,7 +51,7 @@ public class ClienteDao extends AbstractDao<Cliente> {
         usuario.setRespostaSecreta(passwordEncoder.encode(usuario.getRespostaSecreta()));
         loginRepository.save(login);
         // Validacao ainda nao implementada
-        return Map.of(clientRepository.save(usuario), Map.of(200, ""));
+        return clientRepository.save(usuario);
     }
 
     @Override
