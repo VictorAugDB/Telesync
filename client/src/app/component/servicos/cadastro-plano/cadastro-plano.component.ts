@@ -236,9 +236,15 @@ export class CadastroPlanoComponent implements OnInit {
     this.router.navigate(['/crud-product'])
   }
 
+  addEventListenerAll(element, events, fn){
+    events.split(' ').forEach((event) =>{
+      element.addEventListener(event, fn, false)
+    })
+  }
+
   buscarClienteOnChange() {
     const busca = document.getElementById('codCliente')
-    busca.addEventListener('change keyup', (event) => {
+    this.addEventListenerAll(busca, 'change keyup', (event) => {
       this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
         this.cliente = cliente.find(cliente => true)
         this.venda.cliente = cliente.find(cliente => true)

@@ -6,30 +6,55 @@
         <div>
             <h2>Relatório de Vendas por período</h2>
         </div>
-        <div class="date">
-            <ul>
-                <mat-form-field>
-                    <mat-label>Data Inicial</mat-label>
-                    <input matInput [matDatepicker]="pickerDtInicial" name="dtInicial">
-                    <mat-datepicker-toggle matSuffix [for]="pickerDtInicial"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerDtInicial></mat-datepicker>
-                </mat-form-field>
-            </ul>
-            <ul>
-                <mat-form-field>
-                    <mat-label>Data Final</mat-label>
-                    <input matInput [matDatepicker]="pickerDtFinal" name="dtFinal">
-                    <mat-datepicker-toggle matSuffix [for]="pickerDtFinal"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerDtFinal></mat-datepicker>
-                </mat-form-field>
-            </ul>
-        </div>
-        <div>
-            <textarea class="txt_contrato" cols="100" rows="20"></textarea>
-        </div>
-        <div class="buttons">
-            <button mat-raised-button class="btn_ação" color="primary">Gerar Relatório</button>
-            <button mat-raised-button class="btn_ação" color="primary">Imprimir</button>
-        </div>
+        <form [formGroup]="formulario" class="form">
+            <div class="date">
+                <ul>
+                    <mat-form-field>
+                        <mat-label>Data Inicial</mat-label>
+                        <input matInput [matDatepicker]="pickerDtInicial" name="dataInicio" formControlName="dataInicio"
+                            [(ngModel)]="dataInicio">
+                        <mat-datepicker-toggle matSuffix [for]="pickerDtInicial"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDtInicial></mat-datepicker>
+                    </mat-form-field>
+                </ul>
+                <ul>
+                    <mat-form-field>
+                        <mat-label>Data Final</mat-label>
+                        <input matInput [matDatepicker]="pickerDtFim" name="dataFim" formControlName="dataFim"
+                            [(ngModel)]="dataFim">
+                        <mat-datepicker-toggle matSuffix [for]="pickerDtFim"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDtFim></mat-datepicker>
+                    </mat-form-field>
+                </ul>
+            </div>
+            <div class="relatorio">
+                
+                <div class="dados-relatorio">
+                    Tipo Plano
+                    <p *ngFor="let relatorio of relatorios">{{relatorio.tipoPlano}}</p>
+                </div>
+                <div class="dados-relatorio">
+                    nome Plano
+                    <p *ngFor="let relatorio of relatorios">{{relatorio.nomePlano}}</p>
+                </div>
+                <div class="dados-relatorio">
+                    Quantidade
+                    <p *ngFor="let relatorio of relatorios">{{relatorio.quantidade}}</p>
+                </div>
+                <div class="dados-relatorio">
+                    Unidades
+                    <p *ngFor="let relatorio of relatorios">{{relatorio.unidades}}</p>
+                </div>
+                <div class="dados-relatorio">
+                    Valor Total
+                    <p *ngFor="let relatorio of relatorios">{{relatorio.valorTotal}}</p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button mat-raised-button class="btn_ação" color="primary" (click)="gerarRelatorio()">Gerar
+                    Relatório</button>
+                <button mat-raised-button class="btn_ação" color="primary">Imprimir</button>
+            </div>
+        </form>
     </div>
 </mat-card>
