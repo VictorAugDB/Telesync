@@ -28,11 +28,4 @@ public class PlanoDao extends AbstractDao<Plano> {
     public List<Plano> listar() {
         return repository.findAll();
     }
-
-    @Override
-    public void deletar(List<Integer> ids) {
-        final var planos = listar(ids);
-        repository.deleteInBatch(planos);
-        log.debug("Plano(s) com o(s) id(s) {} foram excluído(s) com sucesso", ids);
-    }
 }
