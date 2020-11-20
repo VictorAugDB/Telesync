@@ -48,6 +48,11 @@ export class ProductService {
     return this.http.get<VendaPlano[]>(url)
   }
 
+  buscarVendaPlanos(): Observable<VendaPlano[]> {
+    const url = `${this.baseUrl}/vendaPlano/listar`
+    return this.http.get<VendaPlano[]>(url)
+  }
+
   deletarVenda(id: number): Observable<Venda> {
     const url = `${this.baseUrl}/venda/deletar?ids=${id}`
     return this.http.delete<Venda>(url, {responseType: 'text' as 'json'})
