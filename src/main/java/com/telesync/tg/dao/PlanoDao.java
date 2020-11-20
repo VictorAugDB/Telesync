@@ -1,6 +1,5 @@
 package com.telesync.tg.dao;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telesync.tg.entity.Plano;
 import com.telesync.tg.repository.JpaPlanoRepository;
@@ -28,17 +27,6 @@ public class PlanoDao extends AbstractDao<Plano> {
     @Override
     public List<Plano> listar() {
         return repository.findAll();
-    }
-
-    @Override
-    public Plano inserir(String entity) throws JsonProcessingException {
-        final var plano = objectMapper.readValue(entity, Plano.class);
-        return repository.save(plano);
-    }
-
-    @Override
-    public void alterar(String entity) throws JsonProcessingException {
-        inserir(entity);
     }
 
     @Override

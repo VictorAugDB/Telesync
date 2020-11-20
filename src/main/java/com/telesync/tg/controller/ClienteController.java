@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("cliente")
@@ -33,7 +34,6 @@ public class ClienteController {
         return dao.listar();
     }
 
-    @PreAuthorize("hasAuthority('BASICO')")
     @GetMapping(value = "/listarEsp")
     public List<Cliente> listar(@RequestParam List<Integer> ids) {
         return dao.listar(ids);
@@ -51,7 +51,6 @@ public class ClienteController {
         }
     }
 
-    @PreAuthorize("hasAuthority('BASICO')")
     @PutMapping(value = "/alterar")
     public ResponseEntity<String> alterar(@RequestBody String cliente) {
         try {
@@ -63,14 +62,16 @@ public class ClienteController {
         }
     }
 
-    @PreAuthorize("hasAuthority('BASICO')")
     @PostMapping(value = "/inserir")
-    public Cliente inserirCliente(@RequestBody String cliente) {
+    public ResponseEntity<?> inserirCliente(@RequestBody String cliente) {
         try {
-            return dao.inserir(cliente);
+            final var response = dao.inserir(cliente);
+            final var responseStatus = response.entrySet().iterator().next().getValue().entrySet().iterator().next().getKey();
+            final var responseMessage = response.entrySet().iterator().next().getValue().entrySet().iterator().next().getValue();
+            return ResponseEntity.status(responseStatus).body(Map.of(response.keySet().iterator().next(), responseMessage));
         } catch (Exception ex) {
             log.error(ex.getMessage());
-            return null;
+            return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 }

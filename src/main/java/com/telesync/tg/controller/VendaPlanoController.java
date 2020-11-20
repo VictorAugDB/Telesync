@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -30,13 +32,11 @@ public class VendaPlanoController {
     @Autowired
     Dao<Venda> vendaDao;
 
-    @PreAuthorize("hasAuthority('BASICO')")
     @GetMapping(value = "/listar")
     public List<VendaPlano> listar() {
         return vendaPlanoDao.listar();
     }
 
-    @PreAuthorize("hasAuthority('BASICO')")
     @GetMapping(value = "/listarEsp")
     public List<VendaPlano> listar(@RequestParam List<Integer> ids, Boolean isVendaId) {
         if (isVendaId) {
@@ -59,19 +59,17 @@ public class VendaPlanoController {
         return vendaPlanoDao.listar(ids);
     }
 
-    @PreAuthorize("hasAuthority('BASICO')")
-    @PostMapping(value = "/cancelar")
+    @DeleteMapping(value = "/deletar")
     public ResponseEntity<String> cancelar(@RequestParam List<Integer> ids) {
         try {
             vendaPlanoDao.deletar(ids);
-            return ResponseEntity.ok("Venda Plano(s) cancelados com sucesso");
+            return ResponseEntity.ok("Venda Plano(s) deletado(s) com sucesso");
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
 
-    @PreAuthorize("hasAuthority('BASICO')")
     @PutMapping(value = "/alterar")
     public ResponseEntity<String> alterar(@RequestBody String VendaPlano) {
         try {
@@ -85,12 +83,15 @@ public class VendaPlanoController {
 
     @PreAuthorize("hasAuthority('BASICO')")
     @PostMapping(value = "/inserir")
-    public VendaPlano inserirVendaPlano(@RequestBody String VendaPlano) {
+    public ResponseEntity<?> inserirVendaPlano(@RequestBody String vendaPlano) {
         try {
-            return vendaPlanoDao.inserir(VendaPlano);
+            final var response = vendaPlanoDao.inserir(vendaPlano);
+            final var responseStatus = response.entrySet().iterator().next().getValue().entrySet().iterator().next().getKey();
+            final var responseMessage = response.entrySet().iterator().next().getValue().entrySet().iterator().next().getValue();
+            return ResponseEntity.status(responseStatus).body(Map.of(response.keySet().iterator().next(), responseMessage));
         } catch (Exception ex) {
             log.error(ex.getMessage());
-            return null;
+            return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 }
