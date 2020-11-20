@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Service
 @Slf4j
@@ -36,13 +36,12 @@ public class VendaPlanoDao extends AbstractDao<VendaPlano> {
     }
 
     @Override
-    public Map<VendaPlano, Map<Integer, String>> inserir(String entity) throws JsonProcessingException {
+    public VendaPlano inserir(String entity) throws JsonProcessingException {
         final var vendaPlano = objectMapper.readValue(entity, VendaPlano.class);
-        final var response = validator.validate(vendaPlano);
-        if (!response.containsKey(200)) {
-            return Map.of(vendaPlano, response);
+        if (!validator.validate(vendaPlano)) {
+            throw new NoSuchElementException(String.format("A venda plano [%s] não é válida", vendaPlano));
         }
-        return Map.of(repository.save(vendaPlano), response);
+        return repository.save(vendaPlano);
     }
 
     @Override

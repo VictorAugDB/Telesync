@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Slf4j
@@ -32,10 +31,10 @@ public class VendaDao extends AbstractDao<Venda> {
     }
 
     @Override
-    public Map<Venda, Map<Integer, String>> inserir(String entity) throws JsonProcessingException {
+    public Venda inserir(String entity) throws JsonProcessingException {
         final var venda = objectMapper.readValue(entity, Venda.class);
         // Validacao ainda nao implementada
-        return Map.of(repository.save(venda), Map.of(200, ""));
+        return repository.save(venda);
     }
 
     @Override
