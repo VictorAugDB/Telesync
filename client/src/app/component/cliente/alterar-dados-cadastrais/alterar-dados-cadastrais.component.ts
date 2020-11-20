@@ -39,6 +39,8 @@ export class AlterarDadosCadastraisComponent implements OnInit {
     profissaoCliente: '',
     liberacaoCredito: 2,
     dtCadastroCliente: setActualDate(),
+    codPerguntaSecreta: null,
+    respostaSecreta: '',
     login: {
       email: '',
       senha: '',

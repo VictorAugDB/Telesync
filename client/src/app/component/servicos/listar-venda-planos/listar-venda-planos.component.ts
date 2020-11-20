@@ -69,7 +69,7 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
     } else {
       let cont = 0;
       for (let i = 0; i < this.dataSource.data.length; i++) {
-        if (this.dataSource.data[i].status == true)
+        if (this.dataSource.data[i].active == true)
           cont++
       }
       if (cont > 1) {

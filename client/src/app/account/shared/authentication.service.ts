@@ -1,9 +1,10 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Cliente } from './../../component/cliente/client.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { EMPTY, Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment.prod';
 import jwt_decode from 'jwt-decode';
 
@@ -15,21 +16,43 @@ export class AuthenticationService {
 
   baseUrl = "/api"
 
-  constructor(private http: HttpClient, private router: Router) {  }
+  constructor(private snackBar: MatSnackBar, private http: HttpClient, private router: Router) {  }
+
+  showMessage(msg: string, isError: boolean = false): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 3000,
+      horizontalPosition: "right",
+      verticalPosition: "top",
+      panelClass: isError ? ['msg-error'] : ['msg-success']
+    })
+  }
+
+  errorHandler(e: any): Observable<any> {
+    this.showMessage('Dados Incorretos, tente novamente.', true);
+    return EMPTY;
+  }
+
 
   async login(user: any){
-    const result = await this.http.post<any>(`${this.baseUrl}/auth`, user).toPromise();
+    const result = await this.http.post<any>(`${this.baseUrl}/auth/autenticar`, user).pipe(map(obj => obj),
+    catchError(e => this.errorHandler(e))
+  ).toPromise();
     if(result && result.jwt){
       window.localStorage.setItem('token', result.jwt);
       return true;
     }
-
     return false;
   }
 
   getAuthorizationToken(){
     const token = window.localStorage.getItem('token');
     return token;
+  }
+
+  recuperarSenha(username, resposta, novaSenha){
+    return this.http.post(`${this.baseUrl}/auth/resetar-senha?username=${username}&resposta=${resposta}&novaSenha=${novaSenha}`, '1').pipe(map(obj => obj),
+    catchError(e => this.errorHandler(e))
+  );
   }
 
   getTokenExpirationDate(token: string): Date{

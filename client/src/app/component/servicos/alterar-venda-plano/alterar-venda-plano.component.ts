@@ -52,7 +52,7 @@ export class AlterarVendaPlanoComponent implements OnInit {
     numeroTelefone: null,
     ddd: '',
     imei: null,
-    status: null,
+    active: null,
     venda: null,
     plano: this.planos[this.selected]
   }
@@ -125,9 +125,9 @@ export class AlterarVendaPlanoComponent implements OnInit {
       const numeroTelefone = this.vendaPlano.numeroTelefone;
       const imei = this.vendaPlano.imei;
       this.vendaPlanos.forEach((el, i) => {
-        this.statusAnterior.push({ cod: el.codVendaPlano, status: el.status })
-        if (el.status == true)
-          el.status = false;
+        this.statusAnterior.push({ cod: el.codVendaPlano, status: el.active })
+        if (el.active == true)
+          el.active = false;
         this.productService.altVendaPlano(el).subscribe(() => {
           //this.productService.showMessage('Plano Alterado com sucesso!')
         })
@@ -178,14 +178,14 @@ export class AlterarVendaPlanoComponent implements OnInit {
         })
         if (el.codVendaPlano !== this.idVendaPlano) {
           el.codVendaPlano = null;
-          el.status = this.statusAnterior[indexStatus].status
+          el.active = this.statusAnterior[indexStatus].status
           this.venda.valorTotal += el.plano.valorPlano;
           this.venda.quantidadeChips += 1;
           this.productService.cadVendaPlano(el).subscribe((vendaPlano) => {
           })
         } else {
           this.vendaPlano.venda = this.venda
-          this.vendaPlano.status = true
+          this.vendaPlano.active = true
           this.vendaPlano.codVendaPlano = null;
           this.venda.valorTotal += this.planos[this.selected].valorPlano;
           this.venda.quantidadeChips += 1;

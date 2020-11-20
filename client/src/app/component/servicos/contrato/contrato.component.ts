@@ -41,7 +41,7 @@ export class ContratoComponent implements OnInit {
 
     setTimeout(() => {
       this.vendaPlanos.forEach((el, i) => {
-        el.status = false;
+        el.active = false;
         this.productService.altVendaPlano(el).subscribe((el) => {
         })
       })

@@ -18,5 +18,7 @@ export class Cliente{
     profissaoCliente: string
     liberacaoCredito: number
     dtCadastroCliente: string
+    codPerguntaSecreta: number
+    respostaSecreta: string
     login: Login;
 }
