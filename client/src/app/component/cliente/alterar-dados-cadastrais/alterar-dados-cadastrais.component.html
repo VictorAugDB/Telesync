@@ -19,13 +19,6 @@
                 <input matInput placeholder="Nome" formControlName="nomeCliente" [(ngModel)]="cliente.nomeCliente">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Data de nascimento</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="dtNascCliente" name="dtNascCliente"
-                    [(ngModel)]="cliente.dtNascCliente">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
                 <mat-label>Sexo</mat-label>
                 <mat-select [(ngModel)]="cliente.sexoCliente" name="sexoCliente"
                     formControlName="sexoCliente">
@@ -81,6 +74,10 @@
             <mat-form-field>
                 <input matInput placeholder="Profissao" formControlName="profissaoCliente"
                     [(ngModel)]="cliente.profissaoCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="emailCliente"
+                    [(ngModel)]="cliente?.login.email">
             </mat-form-field>
         </mat-card>
         <div class="container-buttons">

@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Venda } from './../models/product-venda.model';
 import { ProductService } from './../product.service';
 import { VendaPlano } from './../models/product-venda-plano.model';
@@ -13,7 +14,7 @@ import { AuthenticationService } from 'src/app/account/shared/authentication.ser
 })
 export class AcompanhamentoDePedidoComponent implements OnInit {
 
-  constructor(private clientService: ClientService, private ProductService: ProductService, private authenticationService: AuthenticationService) { }
+  constructor(private clientService: ClientService, private ProductService: ProductService, private authenticationService: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
 
   id = this.authenticationService.decodePayLoadJWT().codUsuario
 
@@ -31,17 +32,21 @@ export class AcompanhamentoDePedidoComponent implements OnInit {
     }, 1000)*/
   }
 
-  encontrarVendasCliente(){
-    this.ProductService.buscarVendasCliente(this.id).subscribe(vendas =>{
+  encontrarVendasCliente() {
+    this.ProductService.buscarVendasCliente(this.id).subscribe(vendas => {
       this.vendas = vendas
     })
   }
 
-  mostrarVendasCliente(){
+  mostrarVendasCliente() {
     console.log(this.vendas);
   }
 
-  goToBackPage(){
-    window.history.back()
+  goToBackPage() {
+    if (this.authenticationService.decodePayLoadJWT().isFuncionario) {
+      this.router.navigate([`listar-clientes`])
+    } else {
+      this.router.navigate([''])
+    }
   }
 }

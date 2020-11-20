@@ -32,7 +32,7 @@ export class ListarVendasComponent implements AfterViewInit, OnInit {
     valorTotal: null,
     obs: 'a',
     formaPagamento: '',
-    statusPagamento: null,
+    status: null,
     cliente: this.cliente
   }]
 
@@ -75,9 +75,22 @@ export class ListarVendasComponent implements AfterViewInit, OnInit {
 
   displayedColumnsByPermission(){
     if(this.deCodeToken.isFuncionario){
-      this. displayedColumns = ['codVenda', 'quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'statusPagamento', 'action', 'edit'];
+      this. displayedColumns = ['codVenda', 'quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'status', 'action', 'edit'];
     }else{
-      this.displayedColumns = ['quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'statusPagamento', 'action', 'edit'];
+      this.displayedColumns = ['quantidadeChips', 'dtVenda', 'dtVencimento', 'valorTotal', 'formaPagamento', 'status', 'action', 'edit'];
     }
+  }
+
+  verificaStatus(row){
+    if(row == true){
+      return 'Ativo'
+    }else{
+      return 'Cancelado'
+    }
+  }
+
+  getPermissao() {
+    const token = this.authenticationService.decodePayLoadJWT()
+    return token.isFuncionario;
   }
 }

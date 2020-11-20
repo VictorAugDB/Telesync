@@ -40,11 +40,50 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
     }, 600)
   }
 
-  displayedColumnsByPermission(){
-    if(this.deCodeToken.isFuncionario){
-      this.displayedColumns = ['codVendaPlano', 'numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit'];
-    }else{
-      this.displayedColumns = ['numeroTelefone', 'ddd', 'imei', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit'];
+  displayedColumnsByPermission() {
+    if (this.deCodeToken.isFuncionario) {
+      this.displayedColumns = ['codVendaPlano', 'numeroTelefone', 'ddd', 'imei', 'status', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'edit', 'cancel'];
+    } else {
+      this.displayedColumns = ['numeroTelefone', 'ddd', 'imei', 'status', 'nomePlano', 'valorPlano', 'cicloDias', 'tipoPlano', 'cancel'];
+    }
+  }
+
+  verificaStatus(row) {
+    if (row == true) {
+      return 'Ativo'
+    } else {
+      return 'Cancelado'
+    }
+  }
+
+  cancelarPlano(row) {
+    if (this.deCodeToken.isFuncionario) {
+      if (row.status == true) {
+        row.status = false;
+        this.productService.altVendaPlano(row).subscribe(() => {
+          this.productService.showMessage('Venda Cancelada!')
+        })
+      } else {
+        alert('Plano já está cancelado!')
+      }
+    } else {
+      let cont = 0;
+      for (let i = 0; i < this.dataSource.data.length; i++) {
+        if (this.dataSource.data[i].status == true)
+          cont++
+      }
+      if (cont > 1) {
+        if (row.status == true) {
+          row.status = false;
+          this.productService.altVendaPlano(row).subscribe(() => {
+            this.productService.showMessage('Venda Cancelada!')
+          })
+        } else {
+          alert('Plano já está cancelado!')
+        }
+      } else {
+        alert('Favor entrar em contato com algum de nossos funcionários em algum ponto de venda ou via telefone.')
+      }
     }
   }
 }

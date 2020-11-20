@@ -6,6 +6,7 @@ export class VendaPlano{
     numeroTelefone: number;
     ddd: string;
     imei: number;
+    status: boolean;
     venda: Venda;
     plano: Plano;
 }

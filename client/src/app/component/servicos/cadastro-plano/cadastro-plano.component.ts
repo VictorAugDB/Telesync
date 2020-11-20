@@ -19,6 +19,12 @@ function setdtVencimento() {
   return `${date.getFullYear()}-${date.getMonth() + 2}-${date.getDate()}`;
 }
 
+enum Liberacao {
+  REPROVADO = 0,
+  APROVADO = 1,
+  PENDENTE = 2
+}
+
 @Component({
   selector: 'app-cadastro-plano',
   templateUrl: './cadastro-plano.component.html',
@@ -34,6 +40,11 @@ export class CadastroPlanoComponent implements OnInit {
   formVenda: FormGroup;
 
   selected = null;
+
+  liberacaoCliente = 0;
+
+  deCodeToken = this.authenticationService.decodePayLoadJWT()
+  idCliente = this.deCodeToken.codUsuario;
 
   codClienteVend = null;
 
@@ -63,7 +74,7 @@ export class CadastroPlanoComponent implements OnInit {
     valorTotal: 0,
     obs: '',
     formaPagamento: 'BOLETO',
-    statusPagamento: 1,
+    status: true,
     cliente: this.cliente
   }
 
@@ -72,17 +83,22 @@ export class CadastroPlanoComponent implements OnInit {
     numeroTelefone: null,
     ddd: '',
     imei: null,
+    status: true,
     venda: this.venda,
     plano: this.planos[this.selected]
   }
 
   ngOnInit(): void {
-    const deCodeToken = this.authenticationService.decodePayLoadJWT()
-    const id = deCodeToken.codUsuario;
-    if (!deCodeToken.isFuncionario) {
-      this.clientService.buscarPorId(id).subscribe(cliente => {
+    if (!this.deCodeToken.isFuncionario) {
+      this.clientService.buscarPorId(this.idCliente).subscribe(cliente => {
         this.cliente = cliente.find(cliente => true)
         this.venda.cliente = cliente.find(cliente => true)
+        const client = this.cliente
+        this.liberacaoCliente = parseInt(Liberacao[client.liberacaoCredito])
+        if (this.liberacaoCliente === 0) {
+          alert('Você não pode adquirir planos, pois seu crédito está reprovado!!!')
+          this.router.navigate([''])
+        }
       });
     }
 
@@ -100,6 +116,8 @@ export class CadastroPlanoComponent implements OnInit {
       formaPagamento: ['', Validators.required],
       valorTotal: [{ value: '', disabled: true }, Validators.required],
       codCliente: [{ value: '' }, Validators.required],
+      nomeCliente: [''],
+      cpfCliente: [''],
     })
   }
 
@@ -125,35 +143,23 @@ export class CadastroPlanoComponent implements OnInit {
 
   buscarPlano(): void {
     this.productService.buscarPlanoPorId(this.selected).subscribe(plano => {
-      this.plano = plano
+      this.plano = plano.find(plano => true)
     });
   }
 
   cadastrarVenda(): void {
     if (this.venda.codVenda == null) {
-      if (this.authenticationService.decodePayLoadJWT().isFuncionario) {
-        this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
-          this.cliente = cliente.find(cliente => true)
-          this.venda.cliente = cliente.find(cliente => true)
-        });
-        setTimeout(() => 
-        this.productService.cadVenda(this.venda).subscribe((venda) => {
-          this.venda = venda
-          this.vendaPlano.venda = venda
-        }), 100);
-      } else {
-        this.productService.cadVenda(this.venda).subscribe((venda) => {
-          this.venda = venda
-          this.vendaPlano.venda = venda
-        })
-      }
+      this.productService.cadVenda(this.venda).subscribe((venda) => {
+        this.venda = venda
+        this.vendaPlano.venda = venda
+      })
     }
   }
 
   excluirVenda(): void {
     this.productService.deletarVenda(this.venda.codVenda).subscribe(() => {
       this.productService.showMessage('Venda Cancelada!')
-      this.router.navigate(['/crud-product']);
+      this.router.navigate([''])
     })
   }
 
@@ -174,10 +180,14 @@ export class CadastroPlanoComponent implements OnInit {
   }
 
   excluirTudo() {
-    this.excluirVendaPlanos();
-    setTimeout(() => {
-      this.excluirVenda();
-    }, 500)
+    if (this.codigosVendaPlano.length > 0) {
+      this.excluirVendaPlanos();
+      setTimeout(() => {
+        this.excluirVenda();
+      }, 500)
+    } else {
+      this.router.navigate([''])
+    }
   }
 
   cadastrarVendaVendaPlano() {
@@ -188,23 +198,32 @@ export class CadastroPlanoComponent implements OnInit {
   }
 
   cadastrarVendaPlano(): void {
-    this.vendaPlano.venda = this.venda;
-    this.venda.valorTotal += this.planos[this.selected].valorPlano;
-    this.venda.quantidadeChips += 1;
-    this.vendaPlano.plano = this.planos[this.selected]
-    this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
-      this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
-      this.productService.showMessage('Operação Executada com sucesso!!!')
-      console.log(vendaPlano)
-    }),
-      console.log(this.vendaPlano);
-    console.log(this.venda);
+    if (this.vendaPlano.numeroTelefone !== null && this.vendaPlano.imei !== null) {
+      this.vendaPlano.venda = this.venda;
+      this.venda.valorTotal += this.planos[this.selected].valorPlano;
+      this.venda.quantidadeChips += 1;
+      this.vendaPlano.plano = this.planos[this.selected]
+      this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
+        this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
+        this.productService.showMessage('Operação Executada com sucesso!!!')
+        console.log(vendaPlano)
+        this.zerarNumeroTelImei()
+      }),
+        console.log(this.vendaPlano);
+      console.log(this.venda);
+    } else {
+      alert("Escolha um novo plano ou finalize a compra")
+    }
   }
 
   alterarVenda() {
     this.productService.altVenda(this.venda).subscribe(() => {
       this.productService.showMessage('Compra finalizada com sucesso!')
-      this.router.navigate(['/analise'])
+      if (this.deCodeToken.isFuncionario) {
+        this.router.navigate([`analise/${this.venda.cliente.codCliente}/venda/${this.venda.codVenda}`])
+      } else {
+        this.router.navigate([`/analise/${this.venda.codVenda}`])
+      }
     })
   }
 
@@ -217,4 +236,18 @@ export class CadastroPlanoComponent implements OnInit {
     this.router.navigate(['/crud-product'])
   }
 
+  buscarClienteOnChange() {
+    const busca = document.getElementById('codCliente')
+    busca.addEventListener('change keyup', (event) => {
+      this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
+        this.cliente = cliente.find(cliente => true)
+        this.venda.cliente = cliente.find(cliente => true)
+      });
+    })
+  }
+
+  zerarNumeroTelImei() {
+    this.vendaPlano.numeroTelefone = null;
+    this.vendaPlano.imei = null;
+  }
 }

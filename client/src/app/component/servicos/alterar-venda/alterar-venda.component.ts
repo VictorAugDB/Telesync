@@ -1,5 +1,6 @@
+import { AuthenticationService } from './../../../account/shared/authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-alterar-venda',
@@ -8,13 +9,20 @@ import { Router } from '@angular/router';
 })
 export class AlterarVendaComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  deCodeToken = this.authenticationService.decodePayLoadJWT()
+  idCliente = this.route.snapshot.paramMap.get('id-cliente')
+
+  constructor(private router: Router, private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   goToBackPage(){
-    window.history.back()
+    if(this.deCodeToken.isFuncionario){
+      this.router.navigate([`listar-clientes/${this.idCliente}/acompanhar-vendas`])
+    }else{
+      this.router.navigate(['acompanhamento-de-pedido'])
+    }
   }
 
   goToHome(){

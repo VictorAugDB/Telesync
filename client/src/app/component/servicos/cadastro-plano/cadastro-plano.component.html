@@ -7,10 +7,20 @@
         <h2>Adquirir Plano</h2>
     </div>
     <form [formGroup]="formVendaPlano" class="campos">
+        <mat-card *ngIf="getPermissao()">
+            <mat-form-field>
+                <input disabled [ngModel]="venda?.cliente?.cpfCliente" matInput placeholder="CPF do cliente"
+                    name="cpfCliente" formControlName="cpfCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [ngModel]="venda?.cliente?.nomeCliente" matInput placeholder="Nome do CLiente"
+                    name="nomeCliente" formControlName="nomeCliente">
+            </mat-form-field>
+        </mat-card>
         <mat-card class="cardVenda">
             <mat-form-field *ngIf="getPermissao()">
-                <input [(ngModel)]="codClienteVend" matInput placeholder="Código do Cliente"
-                    formControlName="codCliente" name="codCliente">
+                <input [(ngModel)]="codClienteVend" id="codCliente" matInput placeholder="Código do Cliente"
+                    formControlName="codCliente" name="codCliente" (click)="buscarClienteOnChange()">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Forma de Pagamento</mat-label>
@@ -66,17 +76,14 @@
                     color="primary">
                     Adicionar
                 </button>
+                <button [disabled]="formVendaPlano.invalid" id="finalizar" class="btnFinalizar" mat-raised-button
+                    (click)="alterarVenda()" color="primary">
+                    Finalizar
+                </button>
+                <button class="btnCancelar" mat-raised-button (click)="excluirTudo()" color="warn">
+                    Cancelar
+                </button>
             </div>
         </mat-card>
-        <div>
-            <button [disabled]="formVendaPlano.invalid" id="finalizar" class="btnFinalizar" mat-raised-button
-                (click)="alterarVenda()" color="primary">
-                Finalizar
-            </button>
-            <button [disabled]="formVendaPlano.invalid" class="btnCancelar" mat-raised-button (click)="excluirTudo()"
-                color="warn">
-                Cancelar
-            </button>
-        </div>
     </form>
 </mat-card>

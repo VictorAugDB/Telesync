@@ -38,9 +38,9 @@ export class ProductService {
     return this.http.get<Plano[]>(this.baseUrl + "/plano" + "/listar")
   }
 
-  buscarPlanoPorId(id: number): Observable<Plano> {
+  buscarPlanoPorId(id: number): Observable<Plano[]> {
     const url = `${this.baseUrl}/plano/listarEsp?ids=${id}`
-    return this.http.get<Plano>(url)
+    return this.http.get<Plano[]>(url)
   }
 
   buscarVendaPlanoPorId(id: number, isVendaId: Boolean = false): Observable<VendaPlano[]> {
@@ -60,7 +60,7 @@ export class ProductService {
 
   buscarVendaCliente(id: number, isClientId: Boolean = false) {
     const url = `${this.baseUrl}/venda/listarEsp?ids=${id}&isClientId=${isClientId}`
-    return this.http.get<Venda>(url)
+    return this.http.get<Venda[]>(url)
   }
 
 

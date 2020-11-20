@@ -27,6 +27,12 @@
       <td mat-cell *matCellDef="let row">{{row.imei}}</td>
     </ng-container>
 
+    <!-- status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">{{verificaStatus(row.status)}}</td>
+    </ng-container>
+
     <!-- nomePlano Column -->
     <ng-container matColumnDef="nomePlano">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome do Plano</th>
@@ -49,6 +55,9 @@
     <ng-container matColumnDef="tipoPlano">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo do Plano</th>
       <td mat-cell *matCellDef="let row">{{row.plano.tipoPlano}}</td>
+
+      <!-- edit Column -->
+
     </ng-container>
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Editar</th>
@@ -56,6 +65,19 @@
         <a routerLink="alterar-plano/{{row.codVendaPlano}}">
           <i class="material-icons edit">
             edit
+          </i>
+        </a>
+      </td>
+    </ng-container>
+
+    <!-- cancel Column -->
+
+    <ng-container matColumnDef="cancel">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cancelar</th>
+      <td mat-cell *matCellDef="let row" (click)="cancelarPlano(row)">
+        <a>
+          <i class="material-icons cancel">
+            cancel
           </i>
         </a>
     </ng-container>

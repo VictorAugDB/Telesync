@@ -24,6 +24,7 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
       numeroTelefone: null,
       ddd: '',
       imei: null,
+      status: null,
       venda: this.venda,
       plano: this.plano
     }];
@@ -39,11 +40,11 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
     })
 
     this.productService.buscarVendaCliente(id).subscribe(venda => {
-      this.venda = venda;
+      this.venda = venda.find(venda => true);
     })
 
     this.productService.buscarPlanoPorId(1).subscribe(plano => {
-      this.plano = plano
+      this.plano = plano.find(plano => true)
     });
   }
 

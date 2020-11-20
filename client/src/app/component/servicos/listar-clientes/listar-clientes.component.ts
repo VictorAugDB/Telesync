@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Cliente } from './../../cliente/client.model';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,9 +22,9 @@ export class ListarClientesComponent implements AfterViewInit, OnInit {
   cliente: Cliente[] = null
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['codCliente', 'cpfCliente', 'nomeCliente', 'dtNascCliente', 'sexoCliente', 'estadoCivilCliente', 'nomeMaeCliente', 'ufCliente', 'cidadeCliente', 'logradouroCliente', 'cepCliente', 'numeroCliente', 'bairroCliente', 'profissaoCliente', 'liberacaoCredito', 'dtCadastroCliente', 'edit'];
+  displayedColumns = ['codCliente', 'cpfCliente', 'nomeCliente', 'dtNascCliente', 'sexoCliente', 'estadoCivilCliente', 'nomeMaeCliente', 'liberacaoCredito', 'dtCadastroCliente', 'edit'];
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService, private router: Router) { }
 
   ngOnInit() {
 
@@ -43,5 +44,9 @@ export class ListarClientesComponent implements AfterViewInit, OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  goToBackPage(){
+      this.router.navigate([''])
   }
 }

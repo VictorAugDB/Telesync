@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/account/shared/authentication.service';
 
 @Component({
   selector: 'app-relatorio-de-vendas',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RelatorioDeVendasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }

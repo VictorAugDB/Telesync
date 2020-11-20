@@ -8,6 +8,6 @@ export class Venda{
     valorTotal: number;
     obs?: string;
     formaPagamento: string;
-    statusPagamento: number;
+    status: boolean;
     cliente: Cliente;
 }
