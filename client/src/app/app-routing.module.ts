@@ -29,8 +29,9 @@ const routes: Routes = [
     children: [
       { path: "", component: TaskListComponent },
       { path: "cadastro-plano", component: CadastroPlanoComponent },
-      { path: "analise", component: AnaliseDeCreditoComponent },
-      { path: "contrato", component: ContratoComponent },
+      { path: "analise/:id-venda", component: AnaliseDeCreditoComponent },
+      { path: "analise/:id-cliente/venda/:id-venda", component: AnaliseDeCreditoComponent },
+      { path: "contrato/:id-venda", component: ContratoComponent },
       { path: "acompanhamento-de-pedido", component: AcompanhamentoDePedidoComponent },
       { path: "acompanhamento-de-pedido/venda/:id", component: AcompanharPedidoEspecificoComponent },
       { path: "acompanhamento-de-pedido/alterar-venda/:id", component: AlterarVendaComponent},

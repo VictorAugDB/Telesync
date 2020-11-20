@@ -40,7 +40,7 @@ export class ListarVendaPlanosDataSource extends DataSource<VendaPlano> {
     })
 
     this.productService.buscarVendaCliente(id).subscribe(venda => {
-      this.venda = venda;
+      this.venda = venda.find(venda => true);
     })
 
     this.productService.buscarPlanoPorId(1).subscribe(plano => {

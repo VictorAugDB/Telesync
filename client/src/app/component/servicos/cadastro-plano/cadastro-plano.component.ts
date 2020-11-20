@@ -19,6 +19,12 @@ function setdtVencimento() {
   return `${date.getFullYear()}-${date.getMonth() + 2}-${date.getDate()}`;
 }
 
+enum Liberacao {
+  REPROVADO = 0,
+  APROVADO = 1,
+  PENDENTE = 2
+}
+
 @Component({
   selector: 'app-cadastro-plano',
   templateUrl: './cadastro-plano.component.html',
@@ -34,6 +40,11 @@ export class CadastroPlanoComponent implements OnInit {
   formVenda: FormGroup;
 
   selected = null;
+
+  liberacaoCliente = 0;
+
+  deCodeToken = this.authenticationService.decodePayLoadJWT()
+  idCliente = this.deCodeToken.codUsuario;
 
   codClienteVend = null;
 
@@ -78,12 +89,16 @@ export class CadastroPlanoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const deCodeToken = this.authenticationService.decodePayLoadJWT()
-    const id = deCodeToken.codUsuario;
-    if (!deCodeToken.isFuncionario) {
-      this.clientService.buscarPorId(id).subscribe(cliente => {
+    if (!this.deCodeToken.isFuncionario) {
+      this.clientService.buscarPorId(this.idCliente).subscribe(cliente => {
         this.cliente = cliente.find(cliente => true)
         this.venda.cliente = cliente.find(cliente => true)
+        const client = this.cliente
+        this.liberacaoCliente = parseInt(Liberacao[client.liberacaoCredito])
+        if (this.liberacaoCliente === 0) {
+          alert('Você não pode adquirir planos, pois seu crédito está reprovado!!!')
+          this.router.navigate([''])
+        }
       });
     }
 
@@ -183,23 +198,32 @@ export class CadastroPlanoComponent implements OnInit {
   }
 
   cadastrarVendaPlano(): void {
-    this.vendaPlano.venda = this.venda;
-    this.venda.valorTotal += this.planos[this.selected].valorPlano;
-    this.venda.quantidadeChips += 1;
-    this.vendaPlano.plano = this.planos[this.selected]
-    this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
-      this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
-      this.productService.showMessage('Operação Executada com sucesso!!!')
-      console.log(vendaPlano)
-    }),
-      console.log(this.vendaPlano);
-    console.log(this.venda);
+    if (this.vendaPlano.numeroTelefone !== null && this.vendaPlano.imei !== null) {
+      this.vendaPlano.venda = this.venda;
+      this.venda.valorTotal += this.planos[this.selected].valorPlano;
+      this.venda.quantidadeChips += 1;
+      this.vendaPlano.plano = this.planos[this.selected]
+      this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
+        this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
+        this.productService.showMessage('Operação Executada com sucesso!!!')
+        console.log(vendaPlano)
+        this.zerarNumeroTelImei()
+      }),
+        console.log(this.vendaPlano);
+      console.log(this.venda);
+    } else {
+      alert("Escolha um novo plano ou finalize a compra")
+    }
   }
 
   alterarVenda() {
     this.productService.altVenda(this.venda).subscribe(() => {
       this.productService.showMessage('Compra finalizada com sucesso!')
-      this.router.navigate(['/analise'])
+      if (this.deCodeToken.isFuncionario) {
+        this.router.navigate([`analise/${this.venda.cliente.codCliente}/venda/${this.venda.codVenda}`])
+      } else {
+        this.router.navigate([`/analise/${this.venda.codVenda}`])
+      }
     })
   }
 
@@ -214,7 +238,7 @@ export class CadastroPlanoComponent implements OnInit {
 
   buscarClienteOnChange() {
     const busca = document.getElementById('codCliente')
-    busca.addEventListener('change', (event) => {
+    busca.addEventListener('change keyup', (event) => {
       this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
         this.cliente = cliente.find(cliente => true)
         this.venda.cliente = cliente.find(cliente => true)
@@ -222,4 +246,8 @@ export class CadastroPlanoComponent implements OnInit {
     })
   }
 
+  zerarNumeroTelImei() {
+    this.vendaPlano.numeroTelefone = null;
+    this.vendaPlano.imei = null;
+  }
 }

@@ -60,7 +60,7 @@ export class ProductService {
 
   buscarVendaCliente(id: number, isClientId: Boolean = false) {
     const url = `${this.baseUrl}/venda/listarEsp?ids=${id}&isClientId=${isClientId}`
-    return this.http.get<Venda>(url)
+    return this.http.get<Venda[]>(url)
   }
 
 

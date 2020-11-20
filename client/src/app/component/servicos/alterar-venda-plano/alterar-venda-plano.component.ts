@@ -159,6 +159,7 @@ export class AlterarVendaPlanoComponent implements OnInit {
       }, 1300)
 
       setTimeout(() => {
+        this.productService.showMessage('Alteração foi bem sucedida!')
         this.router.navigate([`listar-clientes/${this.idCliente}/acompanhar-vendas/alterar-venda/${this.codVenda}`])
       }, 1600)
     } else {
@@ -181,7 +182,6 @@ export class AlterarVendaPlanoComponent implements OnInit {
           this.venda.valorTotal += el.plano.valorPlano;
           this.venda.quantidadeChips += 1;
           this.productService.cadVendaPlano(el).subscribe((vendaPlano) => {
-            this.productService.showMessage('Plano')
           })
         } else {
           this.vendaPlano.venda = this.venda
@@ -191,7 +191,6 @@ export class AlterarVendaPlanoComponent implements OnInit {
           this.venda.quantidadeChips += 1;
           this.vendaPlano.plano = this.planos[this.selected]
           this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
-            this.productService.showMessage('Plano')
           })
         }
       }, 300)
@@ -200,7 +199,6 @@ export class AlterarVendaPlanoComponent implements OnInit {
 
   alterarVenda() {
     this.productService.altVenda(this.venda).subscribe(() => {
-      this.productService.showMessage('Compra finalizada com sucesso!')
     })
   }
 
