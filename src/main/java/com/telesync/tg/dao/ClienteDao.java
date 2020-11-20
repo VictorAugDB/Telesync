@@ -48,6 +48,7 @@ public class ClienteDao extends AbstractDao<Cliente> {
         final var login = usuario.getLogin();
         login.setSenha(passwordEncoder.encode(login.getSenha()));
         usuario.setLogin(login);
+        usuario.setRespostaSecreta(passwordEncoder.encode(usuario.getRespostaSecreta()));
         loginRepository.save(login);
         return clientRepository.save(usuario);
     }

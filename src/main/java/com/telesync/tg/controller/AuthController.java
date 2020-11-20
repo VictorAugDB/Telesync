@@ -3,6 +3,7 @@ package com.telesync.tg.controller;
 import com.telesync.tg.dao.Dao;
 import com.telesync.tg.entity.Cliente;
 import com.telesync.tg.entity.Funcionario;
+import com.telesync.tg.helper.ResetSenhaHelper;
 import com.telesync.tg.model.AuthorizationRequest;
 import com.telesync.tg.model.AuthorizationResponse;
 import com.telesync.tg.service.CustomUserDetailService;
@@ -17,6 +18,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,19 +36,27 @@ public class AuthController {
     JwtUtil jwtUtil;
 
     @Autowired
+    ResetSenhaHelper resetSenhaHelper;
+
+    @Autowired
     Dao<Funcionario> funcionarioDao;
 
     @Autowired
     Dao<Cliente> clienteDao;
 
-    @PostMapping
+    private final static String FALHA_ATENTITCACAO = "Usuario não existe ou a senha está incorreta. Usuário [%s]";
+    private final static String FUNCIONARIO_RESET = "Funcionários devem contatar o administrador para resetar sua senha";
+    private final static String FALHA_RESET = "Resposta incorreta";
+
+
+    @PostMapping(value = "/autenticar")
     public ResponseEntity<?> authenticate(@RequestBody AuthorizationRequest authorizationRequest) {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authorizationRequest.getUsername(), authorizationRequest.getPassword()));
         } catch (BadCredentialsException ex) {
-            log.error("The user does not exist or password is incorrect. User[{}]", authorizationRequest.getUsername());
-            throw ex;
+            log.error(String.format(FALHA_ATENTITCACAO, authorizationRequest.getUsername()));
+            return ResponseEntity.badRequest().body(String.format(FALHA_ATENTITCACAO, authorizationRequest.getUsername()));
         }
 
         final var userDetails = userDetailService
@@ -75,6 +85,23 @@ public class AuthController {
         final var jwt = jwtUtil.generateToken(userDetails, codUsuario, isFuncionario, codPermissao);
 
         return ResponseEntity.ok(new AuthorizationResponse(jwt));
+    }
+
+    @PostMapping(value = "/resetar-senha")
+    public ResponseEntity<?> resetarSenha(@RequestParam String username, @RequestParam String resposta, @RequestParam String novaSenha) {
+        final var user = userDetailService.loadUserByUsername(username);
+
+        // Tem mais de uma autoridade, ou seja, funcionario
+        if (user.getAuthorities().size() > 1) {
+            log.error(FUNCIONARIO_RESET);
+            return ResponseEntity.badRequest().body(FUNCIONARIO_RESET);
+        }
+
+        final var cliente= clienteDao.getUsuarioByLogin(user);
+
+        final var novoCliente = resetSenhaHelper.resetarSenha(cliente, resposta, novaSenha);
+
+        return novoCliente.isPresent() ? ResponseEntity.ok(novoCliente.get()) : ResponseEntity.badRequest().body(FALHA_RESET);
     }
 
 }
