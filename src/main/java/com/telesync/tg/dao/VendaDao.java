@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -31,9 +32,10 @@ public class VendaDao extends AbstractDao<Venda> {
     }
 
     @Override
-    public Venda inserir(String entity) throws JsonProcessingException {
+    public Map<Venda, Map<Integer, String>> inserir(String entity) throws JsonProcessingException {
         final var venda = objectMapper.readValue(entity, Venda.class);
-        return repository.save(venda);
+        // Validacao ainda nao implementada
+        return Map.of(repository.save(venda), Map.of(200, ""));
     }
 
     @Override
@@ -49,13 +51,7 @@ public class VendaDao extends AbstractDao<Venda> {
     @Override
     public void deletar(List<Integer> ids) {
         final var vendas = listar(ids);
-        if (vendas.isEmpty()) {
-            log.error("Vendas não encontradas");
-        } else {
-            vendas.forEach(v -> v.setStatus(false));
-            repository.saveAll(vendas);
-            log.debug("Venda(s) com o(s) id(s) {} foram cancelado(s) com sucesso", ids);
-        }
+        repository.deleteInBatch(vendas);
     }
 
     private boolean checkIfVendaExists(Venda venda) {

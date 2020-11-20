@@ -38,7 +38,8 @@ public class VendaPlano {
 
     private Long imei;
 
-    private boolean status;
+    @Column(name = "status")
+    private boolean active;
 
     @ManyToOne
     @JoinColumn(name = "codvenda")

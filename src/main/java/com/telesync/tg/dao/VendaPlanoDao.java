@@ -4,11 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telesync.tg.entity.VendaPlano;
 import com.telesync.tg.repository.JpaVendaPlanoRepository;
+import com.telesync.tg.validator.Validator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -19,6 +21,9 @@ public class VendaPlanoDao extends AbstractDao<VendaPlano> {
 
     @Autowired
     ObjectMapper objectMapper;
+
+    @Autowired
+    Validator<VendaPlano> validator;
 
     @Override
     public List<VendaPlano> listar(List<Integer> ids) {
@@ -31,9 +36,13 @@ public class VendaPlanoDao extends AbstractDao<VendaPlano> {
     }
 
     @Override
-    public VendaPlano inserir(String entity) throws JsonProcessingException {
+    public Map<VendaPlano, Map<Integer, String>> inserir(String entity) throws JsonProcessingException {
         final var vendaPlano = objectMapper.readValue(entity, VendaPlano.class);
-        return repository.save(vendaPlano);
+        final var response = validator.validate(vendaPlano);
+        if (!response.containsKey(200)) {
+            return Map.of(vendaPlano, response);
+        }
+        return Map.of(repository.save(vendaPlano), response);
     }
 
     @Override
@@ -49,13 +58,7 @@ public class VendaPlanoDao extends AbstractDao<VendaPlano> {
     @Override
     public void deletar(List<Integer> ids) {
         final var vendaPlanos = listar(ids);
-        if (vendaPlanos.isEmpty()) {
-            log.error("Vendaplano(s) não encontradas");
-        } else {
-            vendaPlanos.forEach(v -> v.setStatus(false));
-            repository.saveAll(vendaPlanos);
-            log.debug("Venda plano(s) com o(s) id(s) {} cancelado(s) com sucesso", ids);
-        }
+        repository.deleteInBatch(vendaPlanos);
     }
 
     private boolean checkIfVendaPlanoExists(VendaPlano vendaPlano) {
