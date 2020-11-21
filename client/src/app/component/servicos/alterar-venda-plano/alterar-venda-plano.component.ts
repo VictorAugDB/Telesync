@@ -136,7 +136,8 @@ export class AlterarVendaPlanoComponent implements OnInit {
 
       this.vendaPlano.venda.status = false
       setTimeout(() => {
-        this.productService.altVenda(this.vendaPlano.venda).subscribe(() => {
+        this.productService.altVenda(this.vendaPlano.venda).subscribe((venda) => {
+          console.log(venda)
         })
       }, 500)
 

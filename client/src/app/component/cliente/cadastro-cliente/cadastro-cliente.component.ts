@@ -4,6 +4,7 @@ import { ClientService } from './../client.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Login } from '../login.model';
+import { PerguntaSecreta } from './pergunta.secreta.model';
 
 function setActualDate(){
   let date = new Date();
@@ -18,6 +19,16 @@ function setActualDate(){
 export class CadastroClienteComponent implements OnInit {
 
   formulario: FormGroup;
+
+  perguntasSecretas: PerguntaSecreta[] = []
+
+  login: Login = {
+    email: '',
+    senha: '',
+    permissao: 0
+  }
+
+  selected = 0;
 
   cliente: Cliente = {
     cpfCliente: null,
@@ -35,18 +46,18 @@ export class CadastroClienteComponent implements OnInit {
     profissaoCliente: '',
     liberacaoCredito: 2,
     dtCadastroCliente: setActualDate(),
-    codPerguntaSecreta: null,
+    perguntaSecreta: this.perguntasSecretas[this.selected],
+    login: this.login,
     respostaSecreta: '',
-    login:{
-      email: '',
-      senha: '',
-      permissao: 0   
-    }
   }
 
   constructor(private clientService: ClientService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.clientService.buscarPerguntas().subscribe((perguntasSecretas) => {
+      this.perguntasSecretas = perguntasSecretas
+    })
+
     this.formulario = this.fb.group({
       cpfCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9 ]*')])],
       nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
@@ -61,15 +72,17 @@ export class CadastroClienteComponent implements OnInit {
       numeroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      senha: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[0-9 ]*')])],
       complementoCliente: '',
       perguntaSecreta: '',
-      respostaPerguntaSecreta: ''
+      respostaSecreta: '',
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      senha: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[0-9 ]*')])],
     })
   }
 
   cadastrarCliente(): void{
+    this.cliente.perguntaSecreta = this.perguntasSecretas[this.selected]
+    this.cliente.login = this.login;
     this.clientService.cadastrar(this.cliente).subscribe(()=>{
       this.clientService.showMessage('Operação Executada com sucesso!!!')
       this.router.navigate([''])

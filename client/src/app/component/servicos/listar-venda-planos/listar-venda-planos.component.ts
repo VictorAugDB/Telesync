@@ -58,8 +58,8 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
 
   cancelarPlano(row) {
     if (this.deCodeToken.isFuncionario) {
-      if (row.status == true) {
-        row.status = false;
+      if (row.active == true) {
+        row.active = false;
         this.productService.altVendaPlano(row).subscribe(() => {
           this.productService.showMessage('Venda Cancelada!')
         })
@@ -73,8 +73,8 @@ export class ListarVendaPlanosComponent implements AfterViewInit, OnInit {
           cont++
       }
       if (cont > 1) {
-        if (row.status == true) {
-          row.status = false;
+        if (row.active == true) {
+          row.active = false;
           this.productService.altVendaPlano(row).subscribe(() => {
             this.productService.showMessage('Venda Cancelada!')
           })

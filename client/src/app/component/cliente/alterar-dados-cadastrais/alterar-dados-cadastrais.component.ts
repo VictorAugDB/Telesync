@@ -1,3 +1,4 @@
+import { PerguntaSecreta } from './../cadastro-cliente/pergunta.secreta.model';
 import { Router } from '@angular/router';
 import { ClientService } from './../client.service';
 import { Cliente } from './../client.model';
@@ -16,6 +17,8 @@ function setActualDate() {
   styleUrls: ['./alterar-dados-cadastrais.component.css']
 })
 export class AlterarDadosCadastraisComponent implements OnInit {
+
+  perguntaSecreta: PerguntaSecreta = null;
 
   deCodeToken = this.authenticationService.decodePayLoadJWT()
   id = this.deCodeToken.codUsuario;
@@ -39,7 +42,7 @@ export class AlterarDadosCadastraisComponent implements OnInit {
     profissaoCliente: '',
     liberacaoCredito: 2,
     dtCadastroCliente: setActualDate(),
-    codPerguntaSecreta: null,
+    perguntaSecreta: this.perguntaSecreta,
     respostaSecreta: '',
     login: {
       email: '',
