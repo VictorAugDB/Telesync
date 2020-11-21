@@ -73,10 +73,10 @@ export class CadastroClienteComponent implements OnInit {
       bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       complementoCliente: '',
-      perguntaSecreta: '',
-      respostaSecreta: '',
+      perguntaSecreta: ['', Validators.required],
+      respostaSecreta: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      senha: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[0-9 ]*')])],
+      senha: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern('[0-9 a-z, A-Z]*')])],
     })
   }
 
