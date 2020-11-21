@@ -4,7 +4,7 @@ import { ClientService } from './../client.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Login } from '../login.model';
-import { PerguntaSecreta } from './pergunta.secreta.model';
+import { PerguntaSecreta } from '../pergunta.secreta.model';
 
 function setActualDate(){
   let date = new Date();

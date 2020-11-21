@@ -1,5 +1,3 @@
-import { Venda } from './../models/product-venda.model';
-import { Plano } from './../models/product-plano.model';
 import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';

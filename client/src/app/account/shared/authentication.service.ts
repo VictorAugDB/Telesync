@@ -1,11 +1,9 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Cliente } from './../../component/cliente/client.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EMPTY, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { environment } from '../../../environments/environment.prod';
 import jwt_decode from 'jwt-decode';
 
 

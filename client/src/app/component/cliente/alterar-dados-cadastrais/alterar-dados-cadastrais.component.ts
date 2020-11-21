@@ -1,4 +1,4 @@
-import { PerguntaSecreta } from './../cadastro-cliente/pergunta.secreta.model';
+import { PerguntaSecreta } from '../pergunta.secreta.model';
 import { Router } from '@angular/router';
 import { ClientService } from './../client.service';
 import { Cliente } from './../client.model';

@@ -5,7 +5,6 @@ import { EMPTY, Observable } from 'rxjs';
 import { Plano } from './models/product-plano.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

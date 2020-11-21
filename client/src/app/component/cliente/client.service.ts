@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { HttpClient } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
 import * as moment from 'moment';
-import { PerguntaSecreta } from './cadastro-cliente/pergunta.secreta.model';
+import { PerguntaSecreta } from './pergunta.secreta.model';
 
 @Injectable({
   providedIn: 'root'

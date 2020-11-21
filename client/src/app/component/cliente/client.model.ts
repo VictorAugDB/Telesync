@@ -1,4 +1,4 @@
-import { PerguntaSecreta } from './cadastro-cliente/pergunta.secreta.model';
+import { PerguntaSecreta } from './pergunta.secreta.model';
 import { Login } from './login.model';
 
 export class Cliente{

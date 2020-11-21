@@ -1,5 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../shared/authentication.service';
 

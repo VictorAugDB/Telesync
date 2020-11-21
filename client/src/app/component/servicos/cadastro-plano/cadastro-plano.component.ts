@@ -1,5 +1,4 @@
 import { AuthenticationService } from 'src/app/account/shared/authentication.service';
-import { Observable } from 'rxjs';
 import { ClientService } from './../../cliente/client.service';
 import { Venda } from './../models/product-venda.model';
 import { VendaPlano } from './../models/product-venda-plano.model';
@@ -24,6 +23,8 @@ enum Liberacao {
   APROVADO = 1,
   PENDENTE = 2
 }
+
+
 
 @Component({
   selector: 'app-cadastro-plano',
@@ -198,10 +199,9 @@ export class CadastroPlanoComponent implements OnInit {
       this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
         this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
         this.productService.showMessage('Operação Executada com sucesso!!!')
-        console.log(vendaPlano)
-      }),
-        console.log(this.vendaPlano);
-      console.log(this.venda);
+        this.vendaPlano.numeroTelefone = null;
+        this.vendaPlano.imei = null;
+      })
     } else {
       alert("Escolha um novo plano ou finalize a compra")
     }
@@ -241,6 +241,14 @@ export class CadastroPlanoComponent implements OnInit {
         this.venda.cliente = cliente.find(cliente => true)
       });
     })
+  }
+
+  liberaFinalizar(){
+    if(this.venda.codVenda){
+      return false;
+    } else {
+      return true;
+    }
   }
 
   zerarNumeroTelImei() {
