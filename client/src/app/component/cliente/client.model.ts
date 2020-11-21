@@ -1,3 +1,4 @@
+import { PerguntaSecreta } from './pergunta.secreta.model';
 import { Login } from './login.model';
 
 export class Cliente{
@@ -18,5 +19,7 @@ export class Cliente{
     profissaoCliente: string
     liberacaoCredito: number
     dtCadastroCliente: string
+    perguntaSecreta: PerguntaSecreta
+    respostaSecreta: string
     login: Login;
 }

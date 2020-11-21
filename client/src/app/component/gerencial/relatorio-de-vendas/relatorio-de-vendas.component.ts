@@ -23,6 +23,8 @@ export class RelatorioDeVendasComponent implements OnInit {
   dataInicio
   dataFim
 
+  deCodeToken = this.authenticationService.decodePayLoadJWT();
+
   relatorios = []
 
   planos: Plano[];
@@ -31,6 +33,10 @@ export class RelatorioDeVendasComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService, private router: Router, private productService: ProductService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    if(this.deCodeToken.codPermissao != 2){
+      this.router.navigate([''])
+    }
+
     this.formulario = this.fb.group({
       dataInicio: '',
       dataFim: ''

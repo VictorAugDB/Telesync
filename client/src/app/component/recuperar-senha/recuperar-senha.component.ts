@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/account/shared/authentication.service';
+import { ProductService } from '../servicos/product.service';
 
 @Component({
   selector: 'app-recuperar-senha',
@@ -9,7 +10,11 @@ import { AuthenticationService } from 'src/app/account/shared/authentication.ser
 })
 export class RecuperarSenhaComponent implements OnInit {
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService, private productService: ProductService) { }
+
+  username = ''
+  resposta = ''
+  novaSenha = ''
 
   ngOnInit(): void {
     if(this.authenticationService.isUserLoggedIn()){
@@ -17,9 +22,13 @@ export class RecuperarSenhaComponent implements OnInit {
     }
   }
 
-  alertarSucesso(){
-    alert("Aprovado, sua nova senha é xxxxxxx")
-    this.cancel();
+
+
+  recuperarSenha(){
+    this.authenticationService.recuperarSenha(this.username, this.resposta, this.novaSenha).subscribe(() =>{
+      this.productService.showMessage('Senha Alterada com Sucesso!')
+      this.cancel();
+    })
   }
 
   alertarFracasso(){

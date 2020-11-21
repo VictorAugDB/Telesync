@@ -80,20 +80,22 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Pergunta Secreta</mat-label>
-                <mat-select name="perguntaSecreta" formControlName="perguntaSecreta">
-                    <mat-option>None</mat-option>
+                <mat-select [(value)]="selected" name="perguntaSecreta" formControlName="perguntaSecreta">
+                    <mat-option [value]="perguntasSecretas[0]?.codPerguntaSecreta">{{perguntasSecretas[0]?.perguntaSecreta}}</mat-option>
+                    <mat-option [value]="perguntasSecretas[1]?.codPerguntaSecreta">{{perguntasSecretas[1]?.perguntaSecreta}}</mat-option>
+                    <mat-option [value]="perguntasSecretas[2]?.codPerguntaSecreta">{{perguntasSecretas[2]?.perguntaSecreta}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Resposta" formControlName="respostaPerguntaSecreta">
+                <input matInput placeholder="Resposta" formControlName="respostaSecreta" [(ngModel)]="cliente.respostaSecreta">
             </mat-form-field>
         </mat-card>
         <mat-card class="cadastroLogin">
             <mat-form-field>
-                <input matInput placeholder="email" formControlName="email" [(ngModel)]="cliente.login.email">
+                <input matInput placeholder="email" formControlName="email" [(ngModel)]="login.email">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="senha" formControlName="senha" [(ngModel)]="cliente.login.senha">
+                <input matInput placeholder="senha" formControlName="senha" [(ngModel)]="login.senha">
             </mat-form-field>
         </mat-card>
         <div class="container-buttons">

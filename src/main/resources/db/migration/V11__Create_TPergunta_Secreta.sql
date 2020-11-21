@@ -11,7 +11,6 @@ ENGINE=MyISAM
 
 ALTER TABLE `tcliente`
 	ADD COLUMN `codPerguntaSecreta` INT NOT NULL AFTER `dtCadastroCliente`,
-	ADD UNIQUE INDEX `codPerguntaSecreta` (`codPerguntaSecreta`),
 	ADD CONSTRAINT `FK_TPergunta_Secreta` FOREIGN KEY (`codPerguntaSecreta`) REFERENCES tpergunta_secreta (`codPerguntaSecreta`);
 
 ALTER TABLE `tcliente`

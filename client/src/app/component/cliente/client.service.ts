@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { HttpClient } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
 import * as moment from 'moment';
+import { PerguntaSecreta } from './pergunta.secreta.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +23,20 @@ export class ClientService {
       panelClass: isError ? ['msg-error'] : ['msg-success']
     })
   }
+
   cadastrar(cliente: Cliente): Observable<Cliente>{
     let newDate: moment.Moment = moment.utc(cliente.dtNascCliente).local();
     cliente.dtNascCliente = newDate.format("YYYY-MM-DD");
-    return this.http.post<Cliente>(this.baseUrl + "/inserir", cliente, {responseType: 'text' as 'json'})
+    return this.http.post<Cliente>(this.baseUrl + "/inserir", cliente)
   }
 
   buscar(): Observable<Cliente[]>{
     return this.http.get<Cliente[]>(this.baseUrl + "/listar")
+  }
+
+  buscarPerguntas(): Observable<PerguntaSecreta[]>{
+    const url = "/api"
+    return this.http.get<PerguntaSecreta[]>(url + "/listar-perguntas")
   }
 
   buscarPorId(id: number): Observable<Cliente[]>{

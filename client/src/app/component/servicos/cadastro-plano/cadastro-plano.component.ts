@@ -1,5 +1,4 @@
 import { AuthenticationService } from 'src/app/account/shared/authentication.service';
-import { Observable } from 'rxjs';
 import { ClientService } from './../../cliente/client.service';
 import { Venda } from './../models/product-venda.model';
 import { VendaPlano } from './../models/product-venda-plano.model';
@@ -24,6 +23,8 @@ enum Liberacao {
   APROVADO = 1,
   PENDENTE = 2
 }
+
+
 
 @Component({
   selector: 'app-cadastro-plano',
@@ -83,7 +84,7 @@ export class CadastroPlanoComponent implements OnInit {
     numeroTelefone: null,
     ddd: '',
     imei: null,
-    status: true,
+    active: true,
     venda: this.venda,
     plano: this.planos[this.selected]
   }
@@ -170,15 +171,6 @@ export class CadastroPlanoComponent implements OnInit {
     })
   }
 
-  habilitaBtnFinalizar() {
-    let el = <HTMLButtonElement>document.getElementById("finalizar")
-    if (this.codigosVendaPlano.length < 1) {
-      el.disabled = true;
-    } else {
-      el.disabled = false;
-    }
-  }
-
   excluirTudo() {
     if (this.codigosVendaPlano.length > 0) {
       this.excluirVendaPlanos();
@@ -194,6 +186,7 @@ export class CadastroPlanoComponent implements OnInit {
     this.cadastrarVenda()
     setTimeout(() => {
       this.cadastrarVendaPlano()
+      console.log(this.venda)
     }, 500)
   }
 
@@ -206,11 +199,9 @@ export class CadastroPlanoComponent implements OnInit {
       this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
         this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
         this.productService.showMessage('Operação Executada com sucesso!!!')
-        console.log(vendaPlano)
-        this.zerarNumeroTelImei()
-      }),
-        console.log(this.vendaPlano);
-      console.log(this.venda);
+        this.vendaPlano.numeroTelefone = null;
+        this.vendaPlano.imei = null;
+      })
     } else {
       alert("Escolha um novo plano ou finalize a compra")
     }
@@ -250,6 +241,14 @@ export class CadastroPlanoComponent implements OnInit {
         this.venda.cliente = cliente.find(cliente => true)
       });
     })
+  }
+
+  liberaFinalizar(){
+    if(this.venda.codVenda){
+      return false;
+    } else {
+      return true;
+    }
   }
 
   zerarNumeroTelImei() {

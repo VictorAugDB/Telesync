@@ -4,17 +4,13 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './component/template/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { FooterComponent } from './component/template/footer/footer.component';
-import { NavComponent } from './component/template/nav/nav.component'
 
 import{ MatSidenavModule } from "@angular/material/sidenav";
 import{ MatListModule } from "@angular/material/list";
 import { HomeComponent } from './views/home/home.component';
-import { ClientCrudComponent } from './views/client-crud/client-crud.component';
 import{ MatCardModule } from "@angular/material/card";
 import { CadastroClienteComponent } from './component/cliente/cadastro-cliente/cadastro-cliente.component';
 import{ MatButtonModule } from "@angular/material/button";
@@ -28,7 +24,6 @@ import { MatSelectModule } from '@angular/material/select'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cadastro-plano.component';
-import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanhamento_de_pedido/acompanhamento-de-pedido.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
@@ -50,7 +45,6 @@ import { AlterarVendaPlanoComponent } from './component/servicos/alterar-venda-p
 import { AlterarVendaComponent } from './component/servicos/alterar-venda/alterar-venda.component';
 import { AlterarDadosCadastraisComponent } from './component/cliente/alterar-dados-cadastrais/alterar-dados-cadastrais.component';
 import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
-import { RelatoriosComponent } from './views/relatorios/relatorios.component';
 import { ListarClientesComponent } from './component/servicos/listar-clientes/listar-clientes.component';
 
 registerLocaleData(localePT)
@@ -58,14 +52,9 @@ registerLocaleData(localePT)
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    NavComponent,
     HomeComponent,
-    ClientCrudComponent,
     CadastroClienteComponent,
     CadastroPlanoComponent,
-    ProductCrudComponent,
     AcompanhamentoDePedidoComponent,
     AnaliseDeCreditoComponent,
     ContratoComponent,
@@ -80,7 +69,6 @@ registerLocaleData(localePT)
     AlterarVendaComponent,
     AlterarDadosCadastraisComponent,
     RelatorioDeVendasComponent,
-    RelatoriosComponent,
     ListarClientesComponent,
   ],
   imports: [

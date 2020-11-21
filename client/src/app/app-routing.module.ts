@@ -4,11 +4,9 @@ import { AcompanhamentoDePedidoComponent } from './component/servicos/acompanham
 import { ContratoComponent } from './component/servicos/contrato/contrato.component';
 import { AnaliseDeCreditoComponent } from './component/servicos/analise-de-credito/analise-de-credito.component';
 import { CadastroClienteComponent } from './component/cliente/cadastro-cliente/cadastro-cliente.component';
-import { ClientCrudComponent } from './views/client-crud/client-crud.component';
 import { HomeComponent } from './views/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { CadastroPlanoComponent } from './component/servicos/cadastro-plano/cadastro-plano.component';
 import { AcompanharPedidoEspecificoComponent } from './component/servicos/acompanhar-pedido-especifico/acompanhar-pedido-especifico.component';
 import { RecuperarSenhaComponent } from './component/recuperar-senha/recuperar-senha.component';
@@ -17,7 +15,6 @@ import { AuthenticationComponent } from './views/authentication/authentication.c
 import { AuthGuard } from './account/shared/auth.guard';
 import { AlterarVendaComponent } from './component/servicos/alterar-venda/alterar-venda.component';
 import { AlterarVendaPlanoComponent } from './component/servicos/alterar-venda-plano/alterar-venda-plano.component';
-import { RelatoriosComponent } from './views/relatorios/relatorios.component';
 import { RelatorioDeVendasComponent } from './component/gerencial/relatorio-de-vendas/relatorio-de-vendas.component';
 import { ListarClientesComponent } from './component/servicos/listar-clientes/listar-clientes.component';
 import { PermissionGuard } from './account/shared/permission.guard';

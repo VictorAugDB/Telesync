@@ -76,7 +76,7 @@
                     color="primary">
                     Adicionar
                 </button>
-                <button [disabled]="formVendaPlano.invalid" id="finalizar" class="btnFinalizar" mat-raised-button
+                <button [disabled]="liberaFinalizar()" name="finalizar" id="btnFinalizar" class="btnFinalizar" mat-raised-button
                     (click)="alterarVenda()" color="primary">
                     Finalizar
                 </button>

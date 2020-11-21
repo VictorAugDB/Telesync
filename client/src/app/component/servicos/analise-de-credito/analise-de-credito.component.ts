@@ -74,7 +74,7 @@ export class AnaliseDeCreditoComponent implements OnInit {
         this.productService.buscarVendaPlanosVendaCliente(this.idVenda).subscribe(vendaPlanos => {
           this.vendaPlanos = vendaPlanos
           this.vendaPlanos.forEach((el, i) => {
-            el.status = false;
+            el.active = false;
           })
         })
       }, 300)
