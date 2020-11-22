@@ -46,6 +46,6 @@ INSERT INTO `tlogin` VALUES ('1','carlos_almeida@gmail.com','123',0);
 
 INSERT INTO `tcliente` VALUES (1, 80815629826,'Carlos','2000-02-02','m','Solteiro','Maria Aparecida','SP','Jundiaí','rua eloy chaves',13218040,'1201','Casa','Ponte de São João','Psiquiatra', "aprovado", "2019-02-02", "1");
 
-INSERT INTO `telesyncdb`.`tvenda` (`quantidadeChips`, `dtVenda`, `dtVencim`, `valorTotal`, `codPagamento`, `codCliente`, `codStatusPag`) VALUES ('1', '2020-02-02', '2020-03-02', '300', '0', '1', '0');
+INSERT INTO `telesyncdb`.`tvenda` (`quantidadeChips`, `dtVenda`, `dtVencim`, `valorTotal`, `codPagamento`, `codCliente`, `codStatusPag`) VALUES ('1', '2020-02-02', '2020-03-02', '60', '0', '1', '0');
 
 INSERT INTO `telesyncdb`.`tvenda_plano` (`numeroTelefone`, `ddd`, `imei`, `codVenda`, `codPlano`) VALUES ('15993239663', '13', '398654871298562', '1', '1');
