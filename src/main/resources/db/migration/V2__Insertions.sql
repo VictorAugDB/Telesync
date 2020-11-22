@@ -22,21 +22,19 @@ insert into tinternet values (3, "10", "180");
 insert into tinternet values (4, "20", "270");
 
 insert into tminutos_telefone values (0, "0", "0", "0");
-insert into tminutos_telefone values (1, "30", "40", "0");
-insert into tminutos_telefone values (2, "60", "60", "1");
-insert into tminutos_telefone values (3, "120", "90", "1");
+insert into tminutos_telefone values (1, "60", "60", "1");
+insert into tminutos_telefone values (2, "120", "90", "1");
+insert into tminutos_telefone values (3, "500", "150", "1");
 
-insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Pré-pago 60 minutos", "60", "30", "0", "0", "2");
-insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Pré-pago 120 minutos", "90", "30", "0", "0", "3");
-insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Pós-pago 60 minutos", "70", "30", "0", "0", "2");
-insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Pós-pago 120 minutos", "100", "30", "0", "0", "3");
-insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Controle 30 minutos", "40", "30", "0", "0", "1");
-insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Controle 60 minutos", "70", "30", "0", "0", "2");
-insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Internet 1 gb ", "30", "30", "0", "1", "0");
+insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Pré-pago 60 minutos", "60", "30", "0", "0", "1");
+insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Pré-pago 120 minutos", "90", "30", "0", "0", "2");
+insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Pós-pago 60 minutos", "70", "30", "0", "0", "1");
+insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Pós-pago 120 minutos", "100", "30", "0", "0", "2");
+insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Controle 60 minutos", "70", "30", "0", "0", "1");
 insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Internet 5 gb ", "100", "30", "0", "2", "0");
 insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Internet 10 gb ", "180", "30", "0", "3", "0");
 insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Internet 20 gb ", "270", "30", "0", "4", "0");
-insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Telefonia fixa ", "150", "30", "1", "0", "0");
+insert into tplano (`nomePlano`, `valorPlano`, `cicloDias`, `codTipoPlano`, `codPacInternet`, `codPacMinutos`) values("Telefonia fixa ", "150", "30", "1", "0", "3");
 
 insert into tstatus_pagamento values(0, "pago");
 insert into tstatus_pagamento values(1, "pendente");

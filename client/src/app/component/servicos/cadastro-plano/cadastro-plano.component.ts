@@ -51,7 +51,7 @@ export class CadastroPlanoComponent implements OnInit {
 
   cliente: Cliente = null
 
-  codigosVendaPlano = []
+  codigosVendaPlano = [];
 
   planos: Array<Plano> = [{
     codPlano: null,
@@ -74,7 +74,6 @@ export class CadastroPlanoComponent implements OnInit {
     cliente: this.cliente
   }
 
-
   vendaPlano: VendaPlano = {
     numeroTelefone: null,
     ddd: '',
@@ -83,6 +82,8 @@ export class CadastroPlanoComponent implements OnInit {
     venda: this.venda,
     plano: this.planos[this.selected]
   }
+
+  vendaPlanos = [];
 
   ngOnInit(): void {
     if (!this.deCodeToken.isFuncionario) {
@@ -152,54 +153,38 @@ export class CadastroPlanoComponent implements OnInit {
     }
   }
 
-  excluirVenda(): void {
-    this.productService.deletarVenda(this.venda.codVenda).subscribe(() => {
-      this.productService.showMessage('Venda Cancelada!')
-      this.router.navigate([''])
-    })
-  }
-
-  excluirVendaPlanos(): void {
-    this.venda.quantidadeChips = 0;
-    this.venda.valorTotal = 0;
-    this.productService.deletarVendaPlanos(this.codigosVendaPlano).subscribe(() => {
-    })
-  }
-
-  excluirTudo() {
-    if (this.codigosVendaPlano.length > 0) {
-      this.excluirVendaPlanos();
-      setTimeout(() => {
-        this.excluirVenda();
-      }, 500)
-    } else {
-      this.router.navigate([''])
-    }
-  }
-
   cadastrarVendaVendaPlano() {
-    this.cadastrarVenda()
-    setTimeout(() => {
-      this.cadastrarVendaPlano()
-      console.log(this.venda)
-    }, 500)
-  }
-
-  cadastrarVendaPlano(): void {
     if (this.vendaPlano.numeroTelefone !== null && this.vendaPlano.imei !== null) {
-      this.vendaPlano.venda = this.venda;
+      this.plano = this.planos[this.selected]
+      console.log(this.plano);
+      this.vendaPlanos.push({
+        numeroTelefone: this.vendaPlano.numeroTelefone,
+        ddd: this.vendaPlano.ddd,
+        imei: this.vendaPlano.imei,
+        active: this.vendaPlano.active,
+        plano: this.plano,
+        venda: this.vendaPlano.venda,
+      });
+      this.vendaPlano.numeroTelefone = null;
+      this.vendaPlano.imei = null;
       this.venda.valorTotal += this.planos[this.selected].valorPlano;
       this.venda.quantidadeChips += 1;
-      this.vendaPlano.plano = this.planos[this.selected]
-      this.productService.cadVendaPlano(this.vendaPlano).subscribe((vendaPlano) => {
-        this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
-        this.productService.showMessage('Operação Executada com sucesso!!!')
-        this.vendaPlano.numeroTelefone = null;
-        this.vendaPlano.imei = null;
-      })
+        this.productService.showMessage("Plano Adicionado Com sucesso!")
     } else {
       alert("Escolha um novo plano ou finalize a compra")
     }
+  }
+
+  cadastrarVendaPlano(): void {
+    this.vendaPlanos.forEach((el, i) => {
+      setTimeout(() => {
+        el.venda = this.venda;
+        this.productService.cadVendaPlano(el).subscribe((vendaPlano) => {
+          this.codigosVendaPlano.push(vendaPlano.codVendaPlano)
+          console.log(vendaPlano)
+        })
+      }, 300)
+    })
   }
 
   alterarVenda() {
@@ -213,17 +198,30 @@ export class CadastroPlanoComponent implements OnInit {
     })
   }
 
+  finalizarVenda() {
+    this.cadastrarVenda()
+
+    setTimeout(() => {
+      this.cadastrarVendaPlano()
+      console.log(this.venda)
+    }, 500)
+
+    setTimeout(() => {
+      this.alterarVenda()
+    }, 500)
+  }
+
   getPermissao() {
     const token = this.authenticationService.decodePayLoadJWT()
     return token.isFuncionario;
   }
 
   cancel() {
-    this.router.navigate(['/crud-product'])
+    this.router.navigate([''])
   }
 
-  addEventListenerAll(element, events, fn){
-    events.split(' ').forEach((event) =>{
+  addEventListenerAll(element, events, fn) {
+    events.split(' ').forEach((event) => {
       element.addEventListener(event, fn, false)
     })
   }
@@ -238,8 +236,8 @@ export class CadastroPlanoComponent implements OnInit {
     })
   }
 
-  liberaFinalizar(){
-    if(this.venda.codVenda){
+  liberaFinalizar() {
+    if (this.vendaPlanos.length > 0) {
       return false;
     } else {
       return true;
