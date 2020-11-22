@@ -124,7 +124,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `telesyncDB`.`TPlano` (
   `codPlano` INT AUTO_INCREMENT NOT NULL,
-  `nomePlano` VARCHAR(15) NOT NULL,
+  `nomePlano` VARCHAR(30) NOT NULL,
   `valorPlano` FLOAT NOT NULL,
   `cicloDias` INT NOT NULL,
   `codTipoPlano` INT NOT NULL,
