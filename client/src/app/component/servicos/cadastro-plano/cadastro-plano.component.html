@@ -42,10 +42,7 @@
             <mat-form-field (click)="gerarImeiTelefone()">
                 <mat-label>Escolha um plano</mat-label>
                 <mat-select [(value)]="selected" formControlName="nomePlano" name="nomePlano">
-                    <mat-option [value]="planos[0]?.codPlano -1">{{planos[0]?.nomePlano}}</mat-option>
-                    <mat-option [value]="planos[1]?.codPlano -1">{{planos[1]?.nomePlano}}</mat-option>
-                    <mat-option [value]="planos[2]?.codPlano -1">{{planos[2]?.nomePlano}}</mat-option>
-                    <mat-option [value]="planos[3]?.codPlano -1">{{planos[3]?.nomePlano}}</mat-option>
+                    <mat-option *ngFor="let plano of planos" [value]="plano.codPlano -1">{{plano.nomePlano}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>

@@ -53,11 +53,6 @@ export class CadastroPlanoComponent implements OnInit {
 
   codigosVendaPlano = []
 
-  profile = {
-    imei: null,
-    numeroTelefone: null,
-  }
-
   planos: Array<Plano> = [{
     codPlano: null,
     nomePlano: '',
