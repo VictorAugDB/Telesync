@@ -43,10 +43,7 @@ public class FuncionarioDao extends AbstractDao<Funcionario> {
     @Override
     public Funcionario inserir(String entity) throws JsonProcessingException {
         final var usuario = objectMapper.readValue(entity, Funcionario.class);
-        final var login  = usuario.getLogin();
-        login.setSenha(passwordEncoder.encode(login.getSenha()));
-        usuario.setLogin(login);
-        loginRepository.save(login);
+        usuario.getLogin().setSenha(passwordEncoder.encode(usuario.getLogin().getSenha()));
         // Validacao ainda nao implementada
         return funcionarioRepository.save(usuario);
     }
