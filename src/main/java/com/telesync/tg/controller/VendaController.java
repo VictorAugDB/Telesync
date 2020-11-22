@@ -6,7 +6,6 @@ import com.telesync.tg.entity.Venda;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,7 +59,6 @@ public class VendaController {
         return vendaDao.listar(ids);
     }
 
-    @PreAuthorize("hasAuthority('BUSCA_CLIENTES')")
     @DeleteMapping(value = "/deletar")
     public ResponseEntity<String> deletar(@RequestParam List<Integer> ids) {
         try {
