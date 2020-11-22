@@ -8,10 +8,10 @@
             <h2>Cadastro</h2>
         </div>
         <mat-card class="cadastro">
-            <mat-form-field>
-                <input mask="000.000.000.99" matInput placeholder="CPF" formControlName="cpfCliente"
-                    [(ngModel)]="cliente.cpfCliente">
-            </mat-form-field>
+                <mat-form-field>
+                    <input mask="000.000.000.99" matInput placeholder="CPF" id="CPF" (click)="validaCPF()"
+                        formControlName="cpfCliente" [(ngModel)]="cliente.cpfCliente">
+                </mat-form-field>
             <mat-form-field>
                 <input matInput placeholder="Nome" formControlName="nomeCliente" [(ngModel)]="cliente.nomeCliente">
             </mat-form-field>
@@ -81,13 +81,17 @@
             <mat-form-field>
                 <mat-label>Pergunta Secreta</mat-label>
                 <mat-select [(value)]="selected" name="perguntaSecreta" formControlName="perguntaSecreta">
-                    <mat-option [value]="perguntasSecretas[0]?.codPerguntaSecreta">{{perguntasSecretas[0]?.perguntaSecreta}}</mat-option>
-                    <mat-option [value]="perguntasSecretas[1]?.codPerguntaSecreta">{{perguntasSecretas[1]?.perguntaSecreta}}</mat-option>
-                    <mat-option [value]="perguntasSecretas[2]?.codPerguntaSecreta">{{perguntasSecretas[2]?.perguntaSecreta}}</mat-option>
+                    <mat-option [value]="perguntasSecretas[0]?.codPerguntaSecreta">
+                        {{perguntasSecretas[0]?.perguntaSecreta}}</mat-option>
+                    <mat-option [value]="perguntasSecretas[1]?.codPerguntaSecreta">
+                        {{perguntasSecretas[1]?.perguntaSecreta}}</mat-option>
+                    <mat-option [value]="perguntasSecretas[2]?.codPerguntaSecreta">
+                        {{perguntasSecretas[2]?.perguntaSecreta}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Resposta" formControlName="respostaSecreta" [(ngModel)]="cliente.respostaSecreta">
+                <input matInput placeholder="Resposta" formControlName="respostaSecreta"
+                    [(ngModel)]="cliente.respostaSecreta">
             </mat-form-field>
         </mat-card>
         <mat-card class="cadastroLogin">
