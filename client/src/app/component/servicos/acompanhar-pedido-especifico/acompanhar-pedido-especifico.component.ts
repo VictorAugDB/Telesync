@@ -32,4 +32,12 @@ export class AcompanharPedidoEspecificoComponent implements OnInit {
       this.router.navigate(['acompanhamento-de-pedido'])
     }
   }
+
+  verificaStatus(row) {
+    if (row == true) {
+      return 'Ativo'
+    } else {
+      return 'Cancelada'
+    }
+  }
 }

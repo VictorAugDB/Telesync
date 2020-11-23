@@ -228,7 +228,7 @@ export class CadastroPlanoComponent implements OnInit {
 
   buscarClienteOnChange() {
     const busca = document.getElementById('codCliente')
-    this.addEventListenerAll(busca, 'change keyup', (event) => {
+    this.addEventListenerAll(busca, 'change keyup focusout', (event) => {
       this.clientService.buscarPorId(this.codClienteVend).subscribe(cliente => {
         this.cliente = cliente.find(cliente => true)
         this.venda.cliente = cliente.find(cliente => true)

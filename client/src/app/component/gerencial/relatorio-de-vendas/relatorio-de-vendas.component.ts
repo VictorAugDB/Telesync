@@ -52,6 +52,9 @@ export class RelatorioDeVendasComponent implements OnInit {
 
 
   gerarRelatorio() {
+    while(this.relatorios.length){
+      this.relatorios.pop();
+    }
     let newDate1: moment.Moment = moment.utc(this.dataInicio).local();
     let nDateI = parseInt(newDate1.format("YYYYMMDD"));
     let newDate2: moment.Moment = moment.utc(this.dataFim).local();
