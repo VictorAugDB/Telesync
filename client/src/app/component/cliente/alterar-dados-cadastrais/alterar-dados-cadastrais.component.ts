@@ -62,18 +62,18 @@ export class AlterarDadosCadastraisComponent implements OnInit {
 
     this.formulario = this.fb.group({
       cpfCliente: [{ value: '', disabled: true }, Validators.compose([Validators.required, Validators.pattern('[0-9 ]*')])],
-      nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
       sexoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       estadoCivilCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      nomeMaeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      nomeMaeCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
       ufCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      cidadeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      logradouroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      cidadeCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
+      logradouroCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
       cepCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       numeroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
-      bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      emailCliente: ['', Validators.email],
+      bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
+      profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
+      emailCliente: [{value: '', disabled: true} ,Validators.email],
       complementoCliente: '',
       codCliente: ''
     })

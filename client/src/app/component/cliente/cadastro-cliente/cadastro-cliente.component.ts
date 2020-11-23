@@ -19,6 +19,10 @@ function setActualDate() {
 })
 export class CadastroClienteComponent implements OnInit {
 
+  startDate = new Date(1970, 0, 1);
+
+  endDate = new Date(2002, 0, 1);
+
   formulario: FormGroup;
 
   perguntasSecretas: PerguntaSecreta[] = []
@@ -61,18 +65,18 @@ export class CadastroClienteComponent implements OnInit {
 
     this.formulario = this.fb.group({
       cpfCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
-      nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      nomeCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
       dtNascCliente: ['', Validators.required],
       sexoCliente: ['', Validators.required],
       estadoCivilCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      nomeMaeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      nomeMaeCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
       ufCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      cidadeCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      logradouroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      cidadeCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
+      logradouroCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
       cepCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
       numeroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
-      bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
+      bairroCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
+      profissaoCliente: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$')])],
       complementoCliente: '',
       perguntaSecreta: ['', Validators.required],
       respostaSecreta: ['', Validators.required],
