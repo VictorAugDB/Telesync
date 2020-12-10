@@ -58,7 +58,7 @@
                     formControlName="tipoPlano" name="tipoPlano">
             </mat-form-field>
             <mat-form-field>
-                <input [(ngModel)]="vendaPlano.ddd" matInput placeholder="DDD" formControlName="ddd" name="ddd">
+                <input [(ngModel)]="vendaPlano.ddd" mask="00" matInput placeholder="DDD" formControlName="ddd" name="ddd">
             </mat-form-field>
             <mat-form-field>
                 <input disabled [(ngModel)]="vendaPlano.imei" matInput placeholder="Número do Chip"
