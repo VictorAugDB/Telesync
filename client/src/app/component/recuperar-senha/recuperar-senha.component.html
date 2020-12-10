@@ -1,0 +1,22 @@
+<mat-card class="home">
+    <div class="content">
+        <img class="logo" src="../../../assets/logo_celular.PNG" alt="logo" routerLink="/">
+        <mat-form-field>
+            <input type="text" matInput placeholder="Email" name="cpf" [(ngModel)]="username">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Resposta da pergunta secreta" name="pergunta" [(ngModel)]="resposta">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Nova Senha" name="resposta" [(ngModel)]="novaSenha">
+        </mat-form-field>
+    </div>
+    <div class="container">
+        <button mat-raised-button class="btn_recuperar" (click)="recuperarSenha()" color="primary">
+            Recuperar
+        </button>
+        <button mat-raised-button class="btn_cancelar" (click)="cancel()" color="primary">
+            Cancelar
+        </button>
+    </div>
+</mat-card>

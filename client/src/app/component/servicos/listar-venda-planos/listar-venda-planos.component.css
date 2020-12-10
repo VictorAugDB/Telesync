@@ -1,0 +1,28 @@
+.full-width-table {
+  width: 100%;
+}
+
+i.edit{
+  color: #FFD700;
+  margin-right: 10px;
+}
+
+i.cancel{
+  color: rgb(255, 56, 56);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+
+
+.mat-row {
+  height: auto;
+}
+
+.mat-cell {
+  padding: 8px 8px 8px 0;
+}
+
+.title{
+  text-align: center;
+}

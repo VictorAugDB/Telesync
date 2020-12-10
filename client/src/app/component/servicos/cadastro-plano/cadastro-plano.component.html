@@ -1,0 +1,86 @@
+<mat-card class="formularios">
+    <div class="header">
+        <img src="../../../assets/logo.PNG" alt="logo">
+        <img class="header_home" src="../../../assets/logo_celular.PNG">
+    </div>
+    <div class="title">
+        <h2>Adquirir Plano</h2>
+    </div>
+    <form [formGroup]="formVendaPlano" class="campos">
+        <mat-card *ngIf="getPermissao()">
+            <mat-form-field>
+                <input disabled [ngModel]="venda?.cliente?.cpfCliente" matInput placeholder="CPF do cliente"
+                    name="cpfCliente" formControlName="cpfCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [ngModel]="venda?.cliente?.nomeCliente" matInput placeholder="Nome do CLiente"
+                    name="nomeCliente" formControlName="nomeCliente">
+            </mat-form-field>
+        </mat-card>
+        <mat-card class="cardVenda">
+            <mat-form-field *ngIf="getPermissao()">
+                <input [(ngModel)]="codClienteVend" id="codCliente" matInput placeholder="Código do Cliente"
+                    formControlName="codCliente" name="codCliente" (click)="buscarClienteOnChange()">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Forma de Pagamento</mat-label>
+                <mat-select [(value)]="venda.formaPagamento" formControlName="formaPagamento" name="formaPagamento">
+                    <mat-option value="DEBITO">Debito</mat-option>
+                    <mat-option value="BOLETO">Boleto</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [(ngModel)]="venda.quantidadeChips" matInput placeholder="Quantidade de Chips"
+                    formControlName="quantidadeChips" name="quantidadeChips">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [(ngModel)]="venda.valorTotal" matInput placeholder="Valor Total"
+                    formControlName="valorTotal" name="valorTotal">
+            </mat-form-field>
+        </mat-card>
+        <mat-card class="cardVendaPlano">
+            <mat-form-field (click)="gerarImeiTelefone()">
+                <mat-label>Escolha um plano</mat-label>
+                <mat-select [(value)]="selected" formControlName="nomePlano" name="nomePlano">
+                    <mat-option *ngFor="let plano of planos" [value]="plano.codPlano -1">{{plano.nomePlano}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [ngModel]="planos[selected]?.valorPlano" matInput placeholder="Valor do plano"
+                    formControlName="valorPlano" name="valorPlano">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [ngModel]="planos[selected]?.cicloDias" matInput placeholder="Ciclo de cobrança"
+                    formControlName="cicloDias" name="cicloDias">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [ngModel]="planos[selected]?.tipoPlano" matInput placeholder="Tipo do plano"
+                    formControlName="tipoPlano" name="tipoPlano">
+            </mat-form-field>
+            <mat-form-field>
+                <input [(ngModel)]="vendaPlano.ddd" matInput placeholder="DDD" formControlName="ddd" name="ddd">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [(ngModel)]="vendaPlano.imei" matInput placeholder="Número do Chip"
+                    formControlName="imei" name="imei">
+            </mat-form-field>
+            <mat-form-field>
+                <input disabled [(ngModel)]="vendaPlano.numeroTelefone" matInput placeholder="Número de Telefone"
+                    formControlName="numeroTelefone" name="numeroTelefone">
+            </mat-form-field>
+            <div class="container-buttons">
+                <button [disabled]="formVendaPlano.invalid" mat-raised-button (click)="cadastrarVendaVendaPlano()"
+                    color="primary">
+                    Adicionar
+                </button>
+                <button [disabled]="liberaFinalizar()" name="finalizar" id="btnFinalizar" class="btnFinalizar" mat-raised-button
+                    (click)="finalizarVenda()" color="primary">
+                    Finalizar
+                </button>
+                <button class="btnCancelar" mat-raised-button (click)="cancel()" color="warn">
+                    Cancelar
+                </button>
+            </div>
+        </mat-card>
+    </form>
+</mat-card>

@@ -1,0 +1,114 @@
+<mat-card class="corpo">
+    <div class="header">
+        <img src="../../../assets/logo.PNG" alt="logo">
+        <img class="header_home" src="../../../assets/logo_celular.PNG">
+    </div>
+    <form [formGroup]="formulario" class="campos">
+        <div>
+            <h2>Cadastro</h2>
+        </div>
+        <mat-card class="cadastro">
+                <mat-form-field>
+                    <input mask="000.000.000.99" matInput placeholder="CPF" id="CPF" (click)="validaCPF()"
+                        formControlName="cpfCliente" [(ngModel)]="cliente.cpfCliente">
+                </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Nome" formControlName="nomeCliente" [(ngModel)]="cliente.nomeCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Data de nascimento</mat-label>
+                <input matInput [min]="startDate" [max]="endDate" [matDatepicker]="picker" formControlName="dtNascCliente" name="dtNascCliente"
+                    [(ngModel)]="cliente.dtNascCliente">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Sexo</mat-label>
+                <mat-select [(value)]="cliente.sexoCliente" name="sexoCliente" formControlName="sexoCliente">
+                    <mat-option>None</mat-option>
+                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="F">Feminino</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Estado Civil</mat-label>
+                <mat-select [(value)]="cliente.estadoCivilCliente" name="estadoCivilCliente"
+                    formControlName="estadoCivilCliente">
+                    <mat-option>None</mat-option>
+                    <mat-option value="S">Solteiro(a)</mat-option>
+                    <mat-option value="C">Casado(a)</mat-option>
+                    <mat-option value="S">Separado(a)</mat-option>
+                    <mat-option value="D">Divorciado(a)</mat-option>
+                    <mat-option value="V">Víuvo(a)</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Nome da Mae" formControlName="nomeMaeCliente"
+                    [(ngModel)]="cliente.nomeMaeCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input [patterns]="validacaoLetras" mask="00" matInput placeholder="UF" formControlName="ufCliente"
+                    [(ngModel)]="cliente.ufCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Cidade" formControlName="cidadeCliente"
+                    [(ngModel)]="cliente.cidadeCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Rua" formControlName="logradouroCliente"
+                    [(ngModel)]="cliente.logradouroCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input mask="00000-000" matInput placeholder="CEP" formControlName="cepCliente"
+                    [(ngModel)]="cliente.cepCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Numero da Casa" formControlName="numeroCliente"
+                    [(ngModel)]="cliente.numeroCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Complemento" formControlName="complementoCliente"
+                    [(ngModel)]="cliente.complementoCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Bairro" formControlName="bairroCliente"
+                    [(ngModel)]="cliente.bairroCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Profissao" formControlName="profissaoCliente"
+                    [(ngModel)]="cliente.profissaoCliente">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Pergunta Secreta</mat-label>
+                <mat-select [(value)]="selected" name="perguntaSecreta" formControlName="perguntaSecreta">
+                    <mat-option [value]="perguntasSecretas[0]?.codPerguntaSecreta">
+                        {{perguntasSecretas[0]?.perguntaSecreta}}</mat-option>
+                    <mat-option [value]="perguntasSecretas[1]?.codPerguntaSecreta">
+                        {{perguntasSecretas[1]?.perguntaSecreta}}</mat-option>
+                    <mat-option [value]="perguntasSecretas[2]?.codPerguntaSecreta">
+                        {{perguntasSecretas[2]?.perguntaSecreta}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Resposta" formControlName="respostaSecreta"
+                    [(ngModel)]="cliente.respostaSecreta">
+            </mat-form-field>
+        </mat-card>
+        <mat-card class="cadastroLogin">
+            <mat-form-field>
+                <input matInput placeholder="email" formControlName="email" [(ngModel)]="login.email">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="senha" formControlName="senha" [(ngModel)]="login.senha">
+            </mat-form-field>
+        </mat-card>
+        <div class="container-buttons">
+            <button [disabled]="formulario.invalid" mat-raised-button (click)="cadastrarCliente()" color="primary">
+                Salvar
+            </button>
+            <button mat-raised-button (click)="cancel()" color="warn">
+                Cancelar
+            </button>
+        </div>
+    </form>
+</mat-card>

@@ -1,0 +1,13 @@
+<mat-card class="home">
+    <div class="header">
+        <img src="../../../assets/logo.PNG" class="logo" alt="logo" (click)="goToHome()">
+    </div>
+    <div class="container">
+        <app-listar-venda-planos class="listar-venda-planos"></app-listar-venda-planos>
+        <div (click)="goToBackPage()" class="backspace">
+            <i class="material-icons">
+                keyboard_backspace
+            </i>
+        </div>
+    </div>
+</mat-card>

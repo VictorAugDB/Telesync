@@ -1,8 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+    height: 100%;
+    width: 100%;
+}
 
-.blue{
+body {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: rgb(231, 238, 238);
+}
+
+.app{
+    width: 95%;
+    height: 90%;
+}
+
+.blue {
     color: blue;
+}
+
+.v-middle {
+    vertical-align: middle;
+}
+
+.msg-success{
+    background-color: #28a745;
+    color: #fff;
+}
+
+.msg-error{
+    background-color: #e35e6b;
+    color: #fff;
+}
+
+.logo:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.logo{
+    cursor:pointer;
+}
+
+.img_link:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.backspace{
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+.backspace:hover{
+    background-color: rgb(230, 230, 230);
+    cursor: pointer;
 }
