@@ -28,6 +28,11 @@ export class TaskListComponent implements OnInit {
     return token.isFuncionario;
   }
 
+  getCargo() {
+    const token = this.authenticationService.decodePayLoadJWT()
+    return token.codPermissao  === 2 && 'gerente'
+  }
+
   logout(){
     if(this.authenticationService.isUserLoggedIn()){
       this.authenticationService.logoutUser()
